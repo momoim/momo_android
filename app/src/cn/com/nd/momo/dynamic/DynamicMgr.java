@@ -5,12 +5,10 @@ import java.util.ArrayList;
 
 import org.apache.http.HttpStatus;
 import org.json.JSONException;
-import org.json.JSONObject;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.statuses.StatusesManager;
-import cn.com.nd.momo.api.sync.MoMoContactsManager;
 import cn.com.nd.momo.api.types.Avatar;
 import cn.com.nd.momo.api.types.GroupInfo;
 import cn.com.nd.momo.api.util.BitmapToolkit;
@@ -190,48 +188,7 @@ public final class DynamicMgr {
      * @return 圆角位图
      */
     public Bitmap getAvaterBitmapOrigin(long uid, String avatarUrl) {
-        Bitmap bmp = null;
-        String error = "";
-        do {
-            // load from db
-            // ToDo By Zgx 20120731 uid / contactid
-            Avatar avatar = MoMoContactsManager.getInstance().getAvatarByContactId(uid);
-            if (avatar != null) {
-                byte[] avatarByte = avatar.getMomoAvatarImage();
-                if (avatarByte == null) {
-                    error = "Avatar.getMomoAvatarImage() return null";
-                }
-                else {
-                    bmp = BitmapToolkit.ByteArrayToBitmap(avatarByte);
-                }
-            } else {
-                error = "MoMoContactsManager.getInstance().getAvatarByContactId(userID) retun null";
-            }
-
-            if (bmp != null) {
-                Log.i("load avatar succeed from db");
-                break;
-            }
-
-            // load from remote
-            if (avatarUrl == null || avatarUrl.length() < 5) {
-                avatarUrl = getAvatarUrl(uid);
-            }
-
-            Log.i("load avatar url:" + avatarUrl);
-            BitmapToolkit bt = new BitmapToolkit(BitmapToolkit.DIR_MOMO_PHOTO, avatarUrl, "",
-                    ".small.avatar");
-            bmp = bt.loadBitmapNetOrLocalScale(ConfigHelper.SZIE_AVATAR);
-            if (bmp == null) {
-                error = "getAvatarBitmapFromNet(avatarUrl) return null";
-            }
-        } while (false);
-
-        if (bmp == null) {
-            Log.e("\ngetAvaterBitmap" + uid + "\nurl" + avatarUrl + "\nerror" + error);
-        }
-
-        return bmp;
+        return null;
     }
 
     public Bitmap getAvaterBitmapWithFrame(long uid, String avatarUrl) {

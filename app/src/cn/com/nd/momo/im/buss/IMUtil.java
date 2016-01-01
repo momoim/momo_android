@@ -4,15 +4,12 @@ package cn.com.nd.momo.im.buss;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.ListIterator;
+
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,9 +61,7 @@ import cn.com.nd.momo.api.types.ChatContent.LongText;
 import cn.com.nd.momo.api.types.ChatContent.Picture;
 import cn.com.nd.momo.api.types.ChatContent.Text;
 import cn.com.nd.momo.api.types.Contact;
-import cn.com.nd.momo.api.types.Group;
 import cn.com.nd.momo.api.types.User;
-import cn.com.nd.momo.api.types.UserList;
 import cn.com.nd.momo.api.util.Base64;
 import cn.com.nd.momo.api.util.BitmapToolkit;
 import cn.com.nd.momo.api.util.ConfigHelper;
@@ -74,7 +69,6 @@ import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 
 import cn.com.nd.momo.im.types.ChatLocal;
-import cn.com.nd.momo.manager.CardManager;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.util.StartForResults;
 import cn.com.nd.momo.util.StartForResults.PickData;
@@ -674,130 +668,7 @@ public class IMUtil {
         public void onCancel();
     }
 
-    /**
-     * 检查发送者是否有名字
-     * 
-     * @param context
-     * @param checkNameListener
-     * @param handler
-     */
-    public static void checkNameOfExperiences(final Context context,
-            final CheckNameListener checkNameListener, final Handler handler) {
-        String name = GlobalUserInfo.getName();
-        Log.i(TAG, "checkNameOfExperiences : " + name);
 
-        // if not have name
-        if (name == null || name.length() == 0) {
-
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    checkNameView(context, checkNameListener, handler);
-                }
-            });
-        } else {
-            checkNameListener.onComplete();
-        }
-
-    }
-
-    private static void checkNameView(final Context context,
-            final CheckNameListener checkNameListener, final Handler handler) {
-        // make input dialog
-        View checkNameView = LayoutInflater.from(context).inflate(R.layout.check_name, null);
-        final EditText editText = (EditText)checkNameView.findViewById(R.id.edit_name);
-        final TextView btnConfigure = (TextView)checkNameView.findViewById(R.id.btn_configure);
-        btnConfigure.setEnabled(false);
-        TextView btnCancer = (TextView)checkNameView.findViewById(R.id.btn_cancer);
-
-        // text watcher
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().length() <= 1) {
-                    btnConfigure.setEnabled(false);
-                } else {
-                    btnConfigure.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        // make dlg
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        final AlertDialog dlg = builder.setTitle("请输入真实姓名").setView(checkNameView)
-                .setCancelable(false).show();
-
-        // on click listener
-        btnConfigure.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builderWait = new AlertDialog.Builder(context);
-                final Dialog dlgWait = builderWait.setTitle("注册姓名中..请稍等").show();
-
-                final String name = editText.getText().toString();
-                // check name
-                new Thread() {
-                    public void run() {
-                        Contact user = new Contact();
-                        user.setName(name);
-
-                        final Map<String, Object> userData = CardManager.getInstance()
-                                .updateUserCard(user);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                dlgWait.cancel();
-                                int responseCode = Integer.valueOf(userData.get(
-                                        CardManager.KEY_RESPONSE_STATUS).toString());
-                                String respnse = userData.get(
-                                        CardManager.KEY_RESPONSE_EXCPETION_TEXT).toString();
-
-                                if (responseCode == 200) {
-                                    checkNameListener.onComplete();
-                                    Toast.makeText(context, "注册成功", 0).show();
-                                    // 服务器成功后才会将名字保存到本地
-                                    GlobalUserInfo.setName(name);
-                                } else {
-                                    checkNameListener.onCancel();
-                                    String error = "注册失败";
-                                    if (respnse != null && respnse.length() > 0) {
-                                        try {
-                                            JSONObject jobj = new JSONObject(respnse);
-                                            error += "\n" + jobj.optString("error");
-                                        } catch (Exception e) {
-                                        }
-
-                                    }
-                                    Toast.makeText(context, error, 0).show();
-                                }
-                            }
-                        });
-                    }
-                }.start();
-                // close dialg
-                dlg.cancel();
-
-            }
-        });
-        btnCancer.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // call back
-                checkNameListener.onCancel();
-                dlg.cancel();
-            }
-        });
-    }
 
     /**
      * 察看长文本内容

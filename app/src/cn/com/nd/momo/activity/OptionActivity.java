@@ -1,10 +1,7 @@
 
 package cn.com.nd.momo.activity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import android.accounts.Account;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -23,17 +20,11 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.RequestUrl;
-import cn.com.nd.momo.api.types.MyAccount;
 import cn.com.nd.momo.api.types.UpgradeInfo;
-import cn.com.nd.momo.api.types.User;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.api.util.Utils;
-import cn.com.nd.momo.manager.CardManager;
 import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.manager.UpgradeMgr;
 import cn.com.nd.momo.view.MarqueeTextView;
 
 /**
@@ -344,16 +335,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
                 configHelper.commit();
                 break;
             case R.id.btn_opt_change_password:
-                // String url = RequestUrl.CHANGE_PASSWORD + "?token="
-                // + GlobalUserInfo.getOAuthKey();
-                // i = new Intent(OptionActivity.this, WebViewActivity.class);
-                // i.putExtra(WebViewActivity.EXTARS_WEBVIEW_URL, url);
-                // i.putExtra(WebViewActivity.EXTARS_WEBVIEW_NEED_TITLE, false);
-                // i.putExtra(WebViewActivity.EXTARS_WEBVIEW_CAN_CALL_BACK,
-                // false);
-                // startActivity(i);
-                i = new Intent(OptionActivity.this, ResetPasswordActivity.class);
-                startActivity(i);
                 break;
             case R.id.btn_opt_account:
                 break;
@@ -396,82 +377,7 @@ public class OptionActivity extends TabActivity implements OnClickListener {
 
                 break;
             case R.id.btn_opt_upgrade:
-                Log.d(TAG, "phone_model:" + android.os.Build.MODEL);
-                Log.d(TAG, "os:" + android.os.Build.VERSION.RELEASE);
-                // show wait
-                cn.com.nd.momo.util.Utils.showWaitDialog(
-                        getString(R.string.txt_option_version_check), this);
-                new Thread() {
-                    @Override
-                    public void run() {
-                        // check new version
-                        int versionCode = 0;
-                        try {
-                            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-                        } catch (NameNotFoundException e) {
-                            e.printStackTrace();
-                            return;
-                        }
-                        final UpgradeInfo uinfo = UpgradeMgr.GetInstance().postUpgrade(
-                                String.valueOf(versionCode));
-                        // back to ui thread
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                // hide wait
-                                cn.com.nd.momo.util.Utils.hideWaitDialog();
-                                // if exit new verstion
-                                if (uinfo != null) {
-                                    String message = getString(R.string.txt_option_upgrade_size)
-                                            + ": "
-                                            + cn.com.nd.momo.util.Utils.formatSize2String(Long
-                                                    .valueOf(uinfo.fileSize))
-                                            + "\n"
-                                            + getString(R.string.txt_option_upgrade_version)
-                                            + ": "
-                                            + uinfo.currentVersion
-                                            + "\n"
-                                            + getString(R.string.txt_option_upgrade_remark)
-                                            + ": "
-                                            + uinfo.remark
-                                            + "\n"
-                                            + getString(R.string.txt_option_upgrade_date)
-                                            + ": "
-                                            + cn.com.nd.momo.util.Utils
-                                                    .formatDateToNormalRead(String.valueOf(Long
-                                                            .valueOf(uinfo.publishDate) * 1000));
 
-                                    // show dialog for upgrade
-                                    new AlertDialog.Builder(OptionActivity.this).setTitle(
-                                            getString(R.string.txt_option_version_yes)).setMessage(
-                                            message).setIcon(android.R.drawable.ic_dialog_info)
-                                            .setPositiveButton(getString(R.string.txt_ok),
-                                                    new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog,
-                                                                int which) {
-                                                            UpgradeMgr.down(OptionActivity.this,
-                                                                    uinfo.downloadUrl);
-                                                        }
-                                                    }).setNegativeButton(
-                                                    getString(R.string.txt_cancel),
-                                                    new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog,
-                                                                int which) {
-                                                            dialog.dismiss();
-                                                        }
-                                                    }).show();
-                                }
-                                // if no exit new verstion toast
-                                else {
-                                    Toast.makeText(OptionActivity.this,
-                                            getString(R.string.txt_option_version_no), 0).show();
-                                }
-                            }
-                        });
-                    }
-                }.start();
                 break;
             case R.id.sms_opt_all_intercep:
                 mIsInterceptAll = !mIsInterceptAll;
@@ -579,35 +485,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "requestCode:" + requestCode + " resultCode:" + resultCode);
-        ConfigHelper configHelper = ConfigHelper.getInstance(this);
-        switch (requestCode) {
-            case ACCOUNT_BIND_REQUEST_ID:
-                if (resultCode != RESULT_OK) {
-                    break;
-                }
-                configHelper.saveKey(ConfigHelper.CONFIG_KEY_SYNC_MODE,
-                        ConfigHelper.SYNC_MODE_TWO_WAY);
-                configHelper.saveBooleanKey(ConfigHelper.CONFIG_KEY_IMPORT_ACCOUNTS, true);
-                configHelper.commit();
-                beginSync(false);
-                break;
-            case ACCOUNT_BIND_SYNC_REQUEST_ID:
-                if (resultCode != RESULT_OK) {
-                    return;
-                } else {
-                    configHelper.saveKey(ConfigHelper.CONFIG_KEY_SYNC_MODE,
-                            ConfigHelper.SYNC_MODE_TWO_WAY);
-                    configHelper.saveBooleanKey(ConfigHelper.CONFIG_KEY_IMPORT_ACCOUNTS, true);
-                    configHelper.commit();
-                    beginSync(true);
-                    break;
-                }
-        }
-
-    }
-
-    private void beginSync(final boolean needDelete) {
     }
 
 }

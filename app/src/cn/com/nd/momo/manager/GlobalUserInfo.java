@@ -338,23 +338,6 @@ public class GlobalUserInfo {
         return zoneCode;
     }
 
-    /**
-     * 获取切除国家前缀的电话号码
-     * 
-     * @param context
-     * @param orig
-     * @return
-     */
-    public static String getCutMobile(Context context, String orig) {
-        String mobile = orig;
-        String zoneCode = GlobalUserInfo.getCurrentZoneCode(context);
-        if (zoneCode.equals(GlobalUserInfo.DEFAULT_ZONE_CODE)) {
-            mobile = CardManager.ignoreChinaMobilePrefix(mobile);
-        } else {
-            mobile = CardManager.ignoreInternationalMobilePrefix(zoneCode, mobile);
-        }
-        return mobile;
-    }
 
     public static boolean logout(Context context) {
         Log.d(TAG, "logout");
@@ -373,7 +356,7 @@ public class GlobalUserInfo {
         mOAuthSecret = "";
         mQName = "";
 
-        Utils.clearAccount();
+
 
         // clear all configuration
         Log.d(TAG, "logout step1");
@@ -433,9 +416,7 @@ public class GlobalUserInfo {
         Log.d(TAG, "logout step5");
         //SyncManager.getInstance().emptyAllMoMoDatabase();
 
-        // delete user cache
-        CardManager.getInstance().deleteAllUserCache();
-        CardManager.getInstance().clearCardCache();
+
 
         return true;
     }
@@ -456,7 +437,7 @@ public class GlobalUserInfo {
         mOAuthSecret = "";
         mQName = "";
 
-        Utils.clearAccount();
+
 
         // clear all configuration
         Log.d(TAG, "logout step1");

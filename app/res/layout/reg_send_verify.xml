@@ -52,7 +52,8 @@
 					android:phoneNumber="true"
 					android:inputType="number"
 					android:background="@drawable/login_edit_background"
-					android:hint="@string/txt_reg_num"/>
+					android:hint="@string/txt_reg_num"
+					android:textColor="#000000" />
 					
 			</LinearLayout>
 					

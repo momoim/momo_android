@@ -139,7 +139,8 @@
             android:maxLines="5"
             android:minHeight="46dip"
             android:singleLine="false"
-            android:text="" />
+            android:text=""
+            android:textColor="#000000" />
     </RelativeLayout>
 
 </LinearLayout>

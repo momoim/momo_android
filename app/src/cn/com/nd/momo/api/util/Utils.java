@@ -15,11 +15,9 @@ import android.accounts.AccountManagerFuture;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SyncAdapterType;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -34,14 +32,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.provider.BaseColumns;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.telephony.PhoneNumberUtils;
-import android.text.TextUtils;
 import android.util.TypedValue;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.api.types.MyAccount;
 import cn.com.nd.momo.api.types.UserList;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 
@@ -52,13 +47,8 @@ import cn.com.nd.momo.manager.GlobalUserInfo;
  */
 public final class Utils {
 
-    public static final String ACCOUNT_MOBILE_NAME = "mobile";
-
-    public static final String ACCOUNT_MOBILE_TYPE = "mobile";
 
     private static ConfigHelper config;
-
-    private static Account currentAccount;
 
     private static Context mContext;
     
@@ -194,28 +184,6 @@ public final class Utils {
         return matchList.toArray(new String[matchList.size()]);
     }
 
-    /**
-     * 获取帐号查询条件语句
-     */
-    public static String getAccountQueryFilterStr() {
-        return getAccountQueryFilterStr(getCurrentAccount());
-    }
-
-    public static String getAccountQueryFilterStr(Account account) {
-        if (null == account)
-            return "";
-        if (ACCOUNT_MOBILE_NAME.equals(account.name)
-                && ACCOUNT_MOBILE_TYPE.equals(account.type)) {
-            Account vendorAccount = getVendorAccount();
-            if (null != vendorAccount)
-                return generateAccountFilterString(vendorAccount.name, vendorAccount.type);
-            else
-                return " account_name is null AND account_type is null ";
-        } else
-            return new StringBuilder().append("account_name = '")
-                    .append(account.name).append("' AND account_type = '")
-                    .append(account.type).append("'").toString();
-    }
 
     private static String generateAccountFilterString(String accountName,
             String accountType) {
@@ -230,27 +198,7 @@ public final class Utils {
         return filter.toString();
     }
 
-    /**
-     * 获取厂商预定义帐号。未匹配的返回null,以便判断。
-     */
-    public static Account getVendorAccount() {
-        AccountManager am = AccountManager.get(mContext);
-        Account[] accounts = am.getAccounts();
-        for (Account account : accounts) {
-            if (MyAccount.SONYERICSSON_MOBILE_ACCOUNT.isEqual(account)) {
-                return account;
-            }
-        }
-        MyAccount[] knownSupportList = MyAccount.KNOWN_SUPPORT_VENDOR_LIST;
-        for (MyAccount myAccount : knownSupportList) {
-            String accountName = myAccount.name;
-            String accountType = myAccount.type;
-            boolean result = checkVerdor(accountName, accountType);
-            if (result)
-                return myAccount;
-        }
-        return null;
-    }
+
 
     public static boolean checkVerdor(String accountName, String accountType) {
         String[] projection = {
@@ -272,113 +220,9 @@ public final class Utils {
         }
         return ret;
     }
-    
-    public static Account getMoMoAccount() {
-        String momoAccountName = GlobalUserInfo.getPhoneNumber();
-        String momoAccountType = GlobalUserInfo.MOMO_ACCOUNT_TYPE;
-        MyAccount momoAccount = null;
-        if(!TextUtils.isEmpty(momoAccountName)) {
-            try {
-                momoAccount = new MyAccount(momoAccountName, momoAccountType);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return momoAccount;
-    }
 
-    public static Account getCurrentAccount() {
-        if (null == currentAccount) {
-            String accountName = config.loadKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_NAME);
-            String accountType = config.loadKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_TYPE);
-            if (!TextUtils.isEmpty(accountName) && !TextUtils.isEmpty(accountType)) {
-                currentAccount = new MyAccount(accountName, accountType);
-            }
-        }
-        String momoAccountName = GlobalUserInfo.getPhoneNumber();
-        String momoAccountType = GlobalUserInfo.MOMO_ACCOUNT_TYPE;
-        MyAccount momoAccount = null;
-        if(!TextUtils.isEmpty(momoAccountName)) {
-            try {
-                momoAccount = new MyAccount(momoAccountName, momoAccountType);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (currentAccount != null
-                && !MyAccount.MOBILE_ACCOUNT.isEqual(currentAccount)
-                && (momoAccount == null || !momoAccount.isEqual(currentAccount))) {
-            currentAccount = null;
-            config.removeKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_NAME);
-            config.removeKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_TYPE);
-        }
-        return currentAccount;
-    }
 
-    /**
-     * 添断绑定的账户是否还存在
-     * 
-     * @return
-     */
-    public static boolean isBindedAccountExist(Account account) {
-        if (null == account) {
-            return false;
-        }
-        if (account.name.equals(MyAccount.ACCOUNT_MOBILE_NAME)
-                && account.type.equals(MyAccount.ACCOUNT_MOBILE_TYPE)) {
-            return true;
-        }
-        boolean isExist = false;
-        AccountManager am = AccountManager.get(mContext);
-        Account[] accounts = am.getAccounts();
-        for (Account acc : accounts) {
-            Log.d("Utils", "account name:" + acc.name + " type:" + acc.type);
-            if (account.type.equals(acc.type) && account.name.equals(acc.name)) {
-                isExist = true;
-                break;
-            }
-        }
-        return isExist;
-    }
 
-    public static Account resetAccount(Activity activity) {
-        Account account = null;
-        account = getVendorAccount();
-        if(account == null) {
-            // 去除创建momo的帐号
-            if (hasIceCream()) {
-                try {
-                    String accountName = GlobalUserInfo.getPhoneNumber();
-    
-                    String accountType = GlobalUserInfo.MOMO_ACCOUNT_TYPE;
-                    account = new Account(accountName, accountType);
-                    if (!Utils.isBindedAccountExist(account)) {
-                        Bundle bundle = Utils.addAccount(activity);
-                        accountName = bundle.getString(AccountManager.KEY_ACCOUNT_NAME);
-                        accountType = bundle.getString(AccountManager.KEY_ACCOUNT_TYPE);
-                        Log.d("Utils", "accountName:" + accountName + " accountType:" +
-                                accountType
-                                + " bundle:" + bundle.toString());
-                        if (accountName == null ||
-                                !accountName.equals(GlobalUserInfo.getPhoneNumber())) {
-                            account = new Account(MyAccount.ACCOUNT_MOBILE_NAME,
-                                    MyAccount.ACCOUNT_MOBILE_TYPE);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-    
-                }
-            }
-            if(account == null) {
-                account = new Account(MyAccount.ACCOUNT_MOBILE_NAME, MyAccount.ACCOUNT_MOBILE_TYPE);
-            }
-        } else {
-            account = new Account(MyAccount.ACCOUNT_MOBILE_NAME, MyAccount.ACCOUNT_MOBILE_TYPE);
-        }
-        saveCurrentAccount(account);
-        return account;
-    }
     
     public static Bundle addAccount(Activity activity) {
         mBundle = null;
@@ -405,86 +249,11 @@ public final class Utils {
         return bundle;
     }
 
-    public static void saveCurrentAccount(Account account) {
-        if (account == null) {
-            account = new Account(MyAccount.ACCOUNT_MOBILE_NAME, MyAccount.ACCOUNT_MOBILE_TYPE);
-        }
-        config.saveKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_NAME, account.name);
-        config.saveKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_TYPE, account.type);
-        config.commit();
-        currentAccount = account;
 
-        // if (null != account) {
-        // config.saveKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_NAME,
-        // account.name);
-        // config.saveKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_TYPE,
-        // account.type);
-        // config.commit();
-        // currentAccount = account;
-        // }
-    }
 
-    public static List<MyAccount> getAccounts() {
-        List<MyAccount> accountList = new ArrayList<MyAccount>();
-        // 获取所有同步器对应的账号类型
-        SyncAdapterType[] syncs = ContentResolver.getSyncAdapterTypes();
-        List<String> authorityAccountTypes = new ArrayList<String>();
-        for (SyncAdapterType sync : syncs) {
-            Log.d("Utils", "authority:" + sync.authority + " accountType:" + sync.accountType);
-            if (ContactsContract.AUTHORITY.equals(sync.authority) && sync.supportsUploading()) {
-                authorityAccountTypes.add(sync.accountType);
-            }
-        }
-        AccountManager am = AccountManager.get(mContext);
-        Account[] accounts = am.getAccounts();
-        for (Account acc : accounts) {
-            Log.d("Utils", "account name:" + acc.name + " type:" + acc.type);
-            MyAccount eachAccount = new MyAccount(acc.name, acc.type);
-            int count = getContactCountByAccount(eachAccount);
-            for (String contactAccountType : authorityAccountTypes) {
-                if (contactAccountType.equals(acc.type) || count > 0) {
-                    eachAccount.setCount(count);
-                    accountList.add(eachAccount);
-                    break;
-                }
-            }
-        }
 
-        MyAccount mobileCount = MyAccount.MOBILE_ACCOUNT;
-        int count = getContactCountByAccount(mobileCount);
-        mobileCount.setCount(count);
-        accountList.add(mobileCount);
-        // putMaxCountFirst(accountList);
-        return accountList;
-    }
 
-    public static void clearAccount() {
-        currentAccount = null;
-    }
 
-    public static int getContactCountByAccount(Account account) {
-        Cursor cursor = null;
-        int count = 0;
-        if (account == null) {
-            return count;
-        }
-        String filter = Utils.getAccountQueryFilterStr(account);
-        String[] projection = {
-                BaseColumns._COUNT
-        };
-        String andFilterStr = filter.length() > 0 ? "AND " + filter : "";
-        String selection = RawContacts.DELETED + " = 0 " + andFilterStr;
-        cursor = mContext.getContentResolver().query(RawContacts.CONTENT_URI,
-                projection, selection, null, null);
-        if (cursor.moveToNext())
-            count = cursor.getInt(0);
-        if (null != cursor) {
-            cursor.close();
-            cursor = null;
-        }
-        return count;
-    }
-    
     // android 2.2 begin
     private static final int FLAG_EXTERNAL_STORAGE = 0x00040000;
 

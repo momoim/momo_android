@@ -40,7 +40,7 @@ public class LoginActivity extends Activity {
 
     private static final int REQ_COUNTRY_CODE = 9;
 
-    private static final int REQ_FORGET_PASSWORD = 10;
+    private static final int REQ_REGISTER = 10;
 
     private static final int MSG_LOGIN_RET = 0x101;
 
@@ -142,20 +142,15 @@ public class LoginActivity extends Activity {
             }
         }
 
-        TextView forgetPsw = (TextView)findViewById(R.id.txt_forget_pwd);
-        forgetPsw.setTextColor(Color.BLUE);
-        forgetPsw.setText(Html.fromHtml("<u>" + getString(R.string.txt_forget_pwd) + "</u> "));
-        forgetPsw.setOnClickListener(new View.OnClickListener() {
+        TextView registerBtn = (TextView)findViewById(R.id.btn_register);
+        registerBtn.setTextColor(Color.BLUE);
+        registerBtn.setText(Html.fromHtml("<u>" + getString(R.string.btn_regist) + "</u> "));
+        registerBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
-                intent.putExtra(ForgetPasswordActivity.EXTRA_ZONE_CODE, GlobalUserInfo
-                        .getZoneCode());
-                intent
-                        .putExtra(ForgetPasswordActivity.EXTRA_MOBILE, m_txtUser.getText()
-                                .toString());
-                startActivityForResult(intent, REQ_FORGET_PASSWORD);
+                Intent intent = new Intent(LoginActivity.this, RegistSendVerifyActivity.class);
+                startActivityForResult(intent, REQ_REGISTER);
             }
         });
     }
@@ -246,27 +241,14 @@ public class LoginActivity extends Activity {
                     }
                 }
                 break;
-            case REQ_FORGET_PASSWORD:
+            case REQ_REGISTER:
                 if (data != null) {
-                    String zoneCode = data.getStringExtra(ForgetPasswordActivity.EXTRA_ZONE_CODE);
-                    String mobile = data.getStringExtra(ForgetPasswordActivity.EXTRA_MOBILE);
-                    if (zoneCode == null || zoneCode.length() < 1) {
-                        zoneCode = GlobalUserInfo.DEFAULT_ZONE_CODE;
+                    boolean isRegist = data.getBooleanExtra(RegistSendVerifyActivity.EXTRA_HAD_REGIST, false);
+                    boolean registComplete = data.getBooleanExtra(RegistSendVerifyActivity.EXTRA_REGIST_COMPLETE, false);
+                    if (isRegist || registComplete) {
+                        setResult(resultCode, data);
+                        finish();
                     }
-                    String countryName = "";
-                    ArrayList<Country> countryList = Country
-                            .getCountryList(getApplicationContext());
-                    for (Country country : countryList) {
-                        if (zoneCode.equals(country.getZoneCode())) {
-                            countryName = country.getCnName();
-                            mBtnSelectCountry.setText(countryName + "(+" + zoneCode + ")");
-                            GlobalUserInfo.setZoneCode(zoneCode);
-                            break;
-                        }
-                    }
-                    countryList.clear();
-                    countryList = null;
-                    m_txtUser.setText(mobile);
                 }
                 break;
 

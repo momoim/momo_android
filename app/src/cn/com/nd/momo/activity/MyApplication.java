@@ -4,7 +4,6 @@ package cn.com.nd.momo.activity;
 import android.app.Application;
 import android.content.Context;
 import android.telephony.TelephonyManager;
-import cn.com.nd.momo.api.sync.ContactDatabaseHelper;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.manager.GlobalUserInfo;
@@ -32,7 +31,6 @@ public class MyApplication extends Application {
         sMyApp = this;
 
         MyDatabaseHelper.initDatabase(getApplicationContext());
-        ContactDatabaseHelper.initDatabase(getApplicationContext());
         Context context = getApplicationContext();
 
         // init global class

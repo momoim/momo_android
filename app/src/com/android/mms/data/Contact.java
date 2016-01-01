@@ -1,8 +1,6 @@
 
 package com.android.mms.data;
 
-import cn.com.nd.momo.activity.GlobalContactList;
-
 public class Contact {
     private String mName;
 
@@ -54,10 +52,7 @@ public class Contact {
      * @return 联系人
      */
     static Contact get(String number) {
-        Contact c = new Contact(number);
-        String name = GlobalContactList.getInstance().getContactNameByMobile(number);
-        c.mName = name;
-        return c;
+        return null;
     }
 
     /**

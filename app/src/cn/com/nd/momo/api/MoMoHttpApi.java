@@ -21,7 +21,6 @@ import cn.com.nd.momo.api.parsers.json.ChatBaseParser;
 import cn.com.nd.momo.api.parsers.json.ChatParser;
 import cn.com.nd.momo.api.parsers.json.ContactParser;
 import cn.com.nd.momo.api.parsers.json.GroupParser;
-import cn.com.nd.momo.api.parsers.json.RobotParser;
 import cn.com.nd.momo.api.types.Attachment;
 import cn.com.nd.momo.api.types.Chat;
 import cn.com.nd.momo.api.types.Contact;
@@ -333,34 +332,6 @@ public final class MoMoHttpApi {
             throw new MoMoException(e);
         } finally {
             Log.i("get robots complete!");
-        }
-        return robotList;
-    }
-
-    /**
-     * 获取订阅的应用机器人列表
-     * 
-     * @return
-     */
-    public static ArrayList<Robot> getSubscriptRobotList() throws MoMoException {
-        ArrayList<Robot> robotList = new ArrayList<Robot>();
-        HttpTool httpTool = new HttpTool(RequestUrl.GET_SUBSCRIPTION_ROBOT_LIST_URL);
-        int responseCode = httpTool.DoGet();
-        String response = httpTool.GetResponse();
-        Log.d("code:" + responseCode + " response:" + response);
-        try {
-            JSONArray jsonArray = new JSONArray(response);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject object = jsonArray.optJSONObject(i);
-                RobotParser psr = new RobotParser();
-                Robot robot = psr.parse(object);
-                if (robot != null) {
-                    robotList.add(robot);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new MoMoException(e);
         }
         return robotList;
     }

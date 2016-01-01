@@ -2,6 +2,7 @@
 package cn.com.nd.momo.activity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import cn.com.nd.momo.adapters.CountryAdapter;
 import cn.com.nd.momo.api.types.Contact;
 import cn.com.nd.momo.api.types.Country;
 import cn.com.nd.momo.api.util.ContactFilter;
+import cn.com.nd.momo.api.util.PinYinComparator;
 import cn.com.nd.momo.view.AlphabeticBar;
 
 public class CountrySelectActivity extends ListActivity {
@@ -82,7 +84,7 @@ public class CountrySelectActivity extends ListActivity {
         mAlphabeticBar.setOnTouchingLetterChangedListener(new LetterListViewListener());
 
         // sort array list
-        GlobalContactList.getInstance().sortContactByPinyin(mArrayTempContact);
+        sortContactByPinyin(mArrayTempContact);
 
         marr.clear();
         for (Contact c : mArrayTempContact) {
@@ -95,6 +97,10 @@ public class CountrySelectActivity extends ListActivity {
         ContactFilter.setQuanpinSupported(true);
         ContactFilter.setHandler(null);
 
+    }
+
+    public synchronized void sortContactByPinyin(List<Contact> srcArray) {
+        Collections.sort(srcArray, PinYinComparator.getInstance());
     }
 
     private class LetterListViewListener implements

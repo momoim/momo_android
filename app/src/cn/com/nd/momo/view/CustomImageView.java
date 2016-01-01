@@ -2,28 +2,20 @@
 package cn.com.nd.momo.view;
 
 import java.io.File;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.activity.GlobalContactList;
-import cn.com.nd.momo.api.sync.MoMoContactsManager;
-import cn.com.nd.momo.api.types.Contact;
 import cn.com.nd.momo.api.util.BitmapToolkit;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.im.buss.IMUtil;
 import cn.com.nd.momo.manager.AvatarManager;
-import cn.com.nd.momo.manager.CardManager;
 import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.manager.CardManager.IgnoreMobilePrefix;
 
 public class CustomImageView extends ImageView {
     protected static final String TAG = "CustomImageView";
@@ -34,27 +26,23 @@ public class CustomImageView extends ImageView {
 
     private String zoneCode = GlobalUserInfo.DEFAULT_ZONE_CODE;
 
-    private IgnoreMobilePrefix ignoreObject = null;
 
     public CustomImageView(Context context) {
         super(context);
         init();
         zoneCode = GlobalUserInfo.getCurrentZoneCode(context);
-        ignoreObject = CardManager.getInstance().getIgnoreObject(context);
     }
 
     public CustomImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
         zoneCode = GlobalUserInfo.getCurrentZoneCode(context);
-        ignoreObject = CardManager.getInstance().getIgnoreObject(context);
     }
 
     public CustomImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
         zoneCode = GlobalUserInfo.getCurrentZoneCode(context);
-        ignoreObject = CardManager.getInstance().getIgnoreObject(context);
     }
 
     public void setImageBitmapSafe(Bitmap bmp) {
@@ -307,175 +295,10 @@ public class CustomImageView extends ImageView {
 
     private String mCurrentMobile = "";
 
-    /**
-     * 通过电话号码设置用户头像
-     * 
-     * @param uid 用户的uid
-     * @param url 头像的url,可为null
-     *            （当ur为null的时候，可能在取某些头像的时候效率会低——取的是不是好友的头像，或者头像没有同步下来）
-     */
-    public void setCustomImageByMobile(final String mobile,
-            final ConcurrentHashMap<String, Bitmap> cache, boolean scrolling) {
-        mCurrentMobile = mobile;
-        if (IMUtil.isEmptyString(mobile)) {
-            return;
-        }
-        Bitmap temply = cache.get(mobile);
-        CustomImageView.this.setImageBitmapSafe(temply);
-        if (temply != null) {
-            return;
-        }
 
-        // 优化滚动显示
-        if (scrolling) {
-            return;
-        }
-
-        new Thread() {
-            @Override
-            public void run() {
-                final Bitmap bp;
-                if (cache.get(mobile) != null) {
-                    bp = cache.get(mobile);
-                } else {
-                    Contact contact = GlobalContactList.getInstance().getContactByMobile(mobile);
-                    if (contact != null && contact.getAvatar() != null) {
-                        byte[] bytes = contact.getAvatar().getMomoAvatarImage();
-                        if (bytes != null) {
-                            bp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        } else {
-                            bp = null;
-                        }
-                    } else {
-                        bp = null;
-                    }
-                    if (bp == null) {
-                        //
-                    } else {
-                        CustomImageView.this.setTag(false);
-                    }
-                }
-                handle.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Bitmap temply = bp;
-                        if (temply == null) {
-                            temply = ((BitmapDrawable)CustomImageView.this
-                                    .getResources().getDrawable(
-                                            R.drawable.ic_contact_picture))
-                                    .getBitmap();
-                        } else {
-                            temply = BitmapToolkit.compress(temply, ConfigHelper.SZIE_AVATAR);
-                            temply = BitmapToolkit.cornerBitmap(temply, 8);
-                        }
-                        if (!cache.containsKey(mobile)) {
-                            cache.put(mobile, temply);
-                        }
-                        /**
-                         * 可能这个view已经被复用了，不能在这时候设置使用，会导致混乱
-                         * 
-                         * @author Tsung Wu <tsung.bz@gmail.com>
-                         */
-                        if (mCurrentMobile == mobile) {
-                            CustomImageView.this.setImageBitmapSafe(temply);
-                        }
-                        if (onAvatarListener != null) {
-                            onAvatarListener.onAvatarDownload();
-                        }
-                    }
-                });
-            }
-        }.start();
-
-    }
 
     private long mCurrentContactId = 0;
 
-    public void setCustomImageByContactId(final long contactId,
-            final ConcurrentHashMap<Long, Bitmap> cache, boolean scrolling) {
-        mCurrentContactId = contactId;
-        mCurrentRobotId = 0;
-        if (contactId < 0 && contactId != -1) {
-            return;
-        }
-        Bitmap temply = cache.get(contactId);
-        CustomImageView.this.setImageBitmapSafe(temply);
-        if (temply != null) {
-            mCurrentContactId = 0;
-            return;
-        }
-        // 优化滚动显示
-        if (scrolling) {
-            return;
-        }
-
-        new Thread() {
-            @Override
-            public void run() {
-                Bitmap bp = null;
-
-                if (contactId == -1) {
-                    String avatarUrl = GlobalUserInfo.getAvatar();
-                    long userId = 0;
-                    try {
-                        userId = Long.valueOf(GlobalUserInfo.getUID());
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
-                    }
-                    bp = AvatarManager.getAvaterBitmap(userId, avatarUrl);
-                } else {
-                    Contact contact = MoMoContactsManager.getInstance().getContactById(contactId);
-
-                    if (contact != null && contact.getPhoneList() != null) {
-                        Map<String, String> cardMap = CardManager.getInstance().getCardCache();
-                        for (String phone : contact.getPhoneList()) {
-                            phone = ignoreObject.ignore(zoneCode, phone);
-                            if (phone == null || phone.length() < 1) {
-                                continue;
-                            } else if (cardMap.containsKey(phone)
-                                    && cardMap.get(phone).length() > 0) {
-                                bp = AvatarManager.getAvaterBitmap(0, cardMap.get(phone));
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (bp == null) {
-                    //
-                } else {
-                    CustomImageView.this.setTag(false);
-                }
-
-                final Bitmap tbp = bp;
-
-                handle.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Bitmap temply = tbp;
-                        if (temply == null) {
-                            temply = ((BitmapDrawable)CustomImageView.this
-                                    .getResources().getDrawable(
-                                            R.drawable.ic_contact_picture))
-                                    .getBitmap();
-                        } else {
-                            temply = BitmapToolkit.compress(temply, ConfigHelper.SZIE_AVATAR);
-                            temply = BitmapToolkit.cornerBitmap(temply, 8);
-                        }
-
-                        if (!cache.containsKey(contactId)) {
-                            cache.put(contactId, temply);
-                        }
-
-                        if (mCurrentContactId == contactId) {
-                            mCurrentContactId = 0;
-                            CustomImageView.this.setImageBitmapSafe(temply);
-                        }
-                    }
-                });
-            }
-        }.start();
-
-    }
 
     private long mCurrentRobotId = 0;
 

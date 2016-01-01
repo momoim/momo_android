@@ -40,33 +40,25 @@ import cn.com.nd.momo.api.types.UpgradeInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.manager.UpgradeMgr;
+
 
 
 
 public class MainActivity extends ActivityGroup {
     private static final String TAG = "MainActivity";
 
-    private static final int CODE_RET = 1;
-
-    public final int MSG_SMS_COUNT = 100;
-
-    public static final int MSG_SHOW_UPGRADE_DIALOG = 101;
-
-    private TabHost mTabHost;
-
 
     public static String TAB_DYNAMIC = "dynamic";
     public static String TAG_OPTION = "option";
-    public static String DELETE_MOMO_DB = "delete_momo_db";
     public static int TAB_TOGGLED = 2;
 
     private boolean mHasInited = false;
 
-    private AlertDialog mUpgradeDialog = null;
 
-
-    /** Called when the activity is first created. */
+    private TabHost mTabHost;
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,9 +100,6 @@ public class MainActivity extends ActivityGroup {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == CODE_RET) {
-                checkUpgrade();
-            }
             initActivity(0);
         } else {
             finish();
@@ -125,7 +114,7 @@ public class MainActivity extends ActivityGroup {
             return;
         }
 
-        mTabHost = (TabHost)findViewById(R.id.tabhost);
+        mTabHost = (TabHost) findViewById(R.id.tabhost);
         mTabHost.setup(this.getLocalActivityManager());
 
 
@@ -148,10 +137,10 @@ public class MainActivity extends ActivityGroup {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                final EditText searchBar = (EditText)mTabHost.getCurrentView().findViewById(
+                final EditText searchBar = (EditText) mTabHost.getCurrentView().findViewById(
                         R.id.txt_search);
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    ListView contactListView = (ListView)mTabHost.getCurrentView()
+                    ListView contactListView = (ListView) mTabHost.getCurrentView()
                             .findViewById(
                                     R.id.listContacts);
 
@@ -176,20 +165,20 @@ public class MainActivity extends ActivityGroup {
         });
 
         mTabHost.setCurrentTab(tabIndex);
-        
+
         mTabHost.setOnTabChangedListener(new OnTabChangeListener() {
 
-			@Override
-			public void onTabChanged(String tabId) {
-				int tabNow = mTabHost.getCurrentTab();
-				ConfigHelper.getInstance(getApplication()).saveIntKey(ConfigHelper.CONFIG_KEY_LAST_TAB, tabNow);
-			}});
+            @Override
+            public void onTabChanged(String tabId) {
+                int tabNow = mTabHost.getCurrentTab();
+                ConfigHelper.getInstance(getApplication()).saveIntKey(ConfigHelper.CONFIG_KEY_LAST_TAB, tabNow);
+            }
+        });
 
         Log.w(TAG, "begin bind service task");
 
         mHasInited = true;
     }
-
 
 
     @Override
@@ -200,11 +189,11 @@ public class MainActivity extends ActivityGroup {
 
     private View inflaterTab(Drawable icon, String strText) {
         View view = LayoutInflater.from(this).inflate(R.layout.tab_item_layout, null);
-        ViewGroup layout = (ViewGroup)view.findViewById(R.id.tab_bar_layout);
+        ViewGroup layout = (ViewGroup) view.findViewById(R.id.tab_bar_layout);
         layout.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.tab_selector));
-        ImageView imageView = (ImageView)view.findViewById(R.id.tab_imageView);
+        ImageView imageView = (ImageView) view.findViewById(R.id.tab_imageView);
         imageView.setImageDrawable(icon);
-        TextView textView = (TextView)view.findViewById(R.id.tab_textView);
+        TextView textView = (TextView) view.findViewById(R.id.tab_textView);
         textView.setText(strText);
 
         return view;
@@ -213,7 +202,7 @@ public class MainActivity extends ActivityGroup {
     public void setToggleIcon(int nToggleState) {
 
         if (mTabHost.getCurrentTab() == 0) {
-            ViewGroup layout = (ViewGroup)mTabHost.getCurrentTabView().findViewById(
+            ViewGroup layout = (ViewGroup) mTabHost.getCurrentTabView().findViewById(
                     R.id.tab_bar_layout);
             if (layout != null) {
                 if (nToggleState == MainActivity.TAB_TOGGLED) {
@@ -224,7 +213,7 @@ public class MainActivity extends ActivityGroup {
             }
 
         } else if (mTabHost.getCurrentTab() == 2) {
-            ViewGroup layout = (ViewGroup)mTabHost.getCurrentTabView().findViewById(
+            ViewGroup layout = (ViewGroup) mTabHost.getCurrentTabView().findViewById(
                     R.id.tab_bar_layout);
             if (layout != null) {
                 if (nToggleState == MainActivity.TAB_TOGGLED) {
@@ -252,123 +241,7 @@ public class MainActivity extends ActivityGroup {
         Log.i(TAG, "onDestroy");
         super.onDestroy();
 
-        if (mUpgradeDialog != null && mUpgradeDialog.isShowing()) {
-            mUpgradeDialog.dismiss();
-        }
 
         System.gc();
     }
-
-
-
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case MSG_SMS_COUNT:
-                    try {
-                        TextView headerView = (TextView)mTabHost.getCurrentView().findViewById(
-                                R.id.conversation_history_list_header);
-                        if (headerView != null) {
-                            Bundle bundle = msg.getData();
-                            int count = bundle.getInt("sms_count");
-                            String headerTip = String.format(getString(R.string.click_to_reg),
-                                    count);
-                            headerView.setText(headerTip);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case MainActivity.MSG_SHOW_UPGRADE_DIALOG:
-                    UpgradeInfo uinfo = (UpgradeInfo)msg.obj;
-                    showUpgradeDialog(uinfo);
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-
-    private void checkUpgrade() {
-        Log.d(TAG, "check update");
-        int versionCode = 0;
-        try {
-            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-            UpgradeMgr.checkUpgradeThread(this, mHandler, GlobalUserInfo.getUID(), String
-                    .valueOf(versionCode));
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void showUpgradeDialog(final UpgradeInfo uinfo) {
-        String message = getString(R.string.txt_option_upgrade_size)
-                + ": "
-                + cn.com.nd.momo.util.Utils.formatSize2String(Long
-                        .valueOf(uinfo.fileSize))
-                + "\n"
-                + getString(R.string.txt_option_upgrade_version)
-                + ": "
-                + uinfo.currentVersion
-                + "\n"
-                + getString(R.string.txt_option_upgrade_remark)
-                + ": "
-                + uinfo.remark
-                + "\n"
-                + getString(R.string.txt_option_upgrade_date)
-                + ": "
-                + cn.com.nd.momo.util.Utils.formatDateToNormalRead(String
-                        .valueOf(Long.valueOf(uinfo.publishDate) * 1000));
-        try {
-            // show dialog for upgrade
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.txt_option_version_yes));
-            builder.setMessage(message);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            builder.setPositiveButton("跳过此版本",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(
-                                DialogInterface dialog,
-                                int which) {
-                            ConfigHelper
-                                    .getInstance(MainActivity.this)
-                                    .saveKey(
-                                            ConfigHelper.CONFIG_KEY_SKIP_VERSION,
-                                            uinfo.currentVersion);
-                            dialog.dismiss();
-                        }
-                    });
-            builder.setNeutralButton("稍后提醒我",
-                    new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(
-                                DialogInterface dialog,
-                                int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            builder.setNegativeButton("下载并安装",
-                    new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(
-                                DialogInterface dialog,
-                                int which) {
-                            UpgradeMgr.down(MainActivity.this, uinfo.downloadUrl);
-                            dialog.dismiss();
-                        }
-                    });
-            mUpgradeDialog = builder.create();
-            if (!isFinishing()) {
-                mUpgradeDialog.show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }

@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.activity.GlobalContactList;
 import cn.com.nd.momo.api.util.Log;
 
 import com.android.mms.data.Telephony.Mms;
@@ -167,9 +166,7 @@ public class DownloadManager {
                 : mContext.getString(R.string.no_subject);
 
         v = ind.getFrom();
-        String from = (v != null)
-                ? GlobalContactList.getInstance().getContactNameByMobile(v.getString())
-                : mContext.getString(R.string.unknown_sender);
+        String from = mContext.getString(R.string.unknown_sender);
 
         return mContext.getString(R.string.dl_failure_notification, subject, from);
     }

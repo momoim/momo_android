@@ -81,12 +81,6 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
                         mTxtResponse.setVisibility(View.VISIBLE);
                         mTxtResponse.setText(strRet);
                     } else {
-                        // ConfigHelper.getInstance(getApplicationContext()).removeKey(
-                        // ConfigHelper.CONFIG_KEY_SYNC_MODE);
-                        // ConfigHelper.getInstance(getApplicationContext()).commit();
-                        // FlurryAgent.logEvent(FLURRY_LOGIN_SUCCESS);
-                        // setResult(RESULT_OK);
-                        // finish();
                         Intent intent = new Intent(RegistSendVerifyActivity.this,
                                 RegistVerifyCodeActivity.class);
                         intent.putExtra(EXTRA_REGIST_MOBILE, mEditPhoneNum.getText().toString());

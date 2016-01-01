@@ -12,7 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.com.nd.momo.api.sync.MoMoContactsManager;
+
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 
@@ -1194,14 +1194,7 @@ public class Contact implements Comparable<Contact>, MomoType {
         if (getClass() != obj.getClass())
             return false;
         if (null == contactCRC || contactCRC.length() < 1) {
-            Log.i(TAG, "contact crc empty");
-            MoMoContactsManager manager = MoMoContactsManager.getInstance();
-            Contact fullContact = manager.getContactById(contactId);
-            contactCRC = String.valueOf(fullContact.generateCRC());
-            List<Contact> contactList = new ArrayList<Contact>();
-            contactList.add(this);
-            MoMoContactsManager.getInstance().batchUpdateContactsCRC(
-                    contactList);
+
         }
         Contact other = (Contact)obj;
         if (null == contactCRC || contactCRC.length() < 1)

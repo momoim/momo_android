@@ -25,7 +25,6 @@ import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.types.OAuthInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Utils;
-import cn.com.nd.momo.manager.CardManager;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.manager.RegistThread;
 
@@ -80,12 +79,8 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
                             mTxtVerifyCodeResponse.setText(strRet);
                         }
                     } else {
-                        ConfigHelper.getInstance(getApplicationContext()).removeKey(
-                                ConfigHelper.CONFIG_KEY_SYNC_MODE);
-                        ConfigHelper.getInstance(getApplicationContext()).commit();
                         Intent intent = new Intent();
                         intent.putExtra(RegistSendVerifyActivity.EXTRA_REGIST_COMPLETE, true);
-                        FlurryAgent.logEvent(FLURRY_LOGIN_SUCCESS);
                         setResult(RESULT_OK, intent);
                         finish();
                     }
@@ -186,7 +181,6 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
                         // clear try once user
                         configHelper.removeKey(ConfigHelper.LAST_TIME_UPDATE_USER_ID);
                         configHelper.commit();
-                        CardManager.getInstance().deleteAllUserCache();
                     }
                 } catch (MoMoException ex) {
                     nRet = ex.getCode();

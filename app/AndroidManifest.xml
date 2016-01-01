@@ -11,7 +11,6 @@
 		<!-- 单元测试需要用到库 -->
 		<uses-library android:name="android.test.runner" />
 
-		<!-- android:theme="@android:style/Theme.NoDisplay" -->
 		<activity android:name=".activity.LauncherActivity"
 			android:configChanges="keyboardHidden|orientation" android:label="@string/app_name">
 			<intent-filter>
@@ -44,11 +43,7 @@
 
 		<!-- option tab -->
 		<activity android:name=".activity.OptionActivity" />
-
-		<activity android:name=".activity.ForceUpgradeActivity" />
 		<activity android:name=".activity.AboutActivity" />
-
-
 
 		<activity android:name=".activity.LoginActivity"
 			android:configChanges="keyboardHidden|orientation" />
@@ -63,8 +58,6 @@
 
 		<activity android:name=".activity.Group_Fragment_Activity"
 			android:launchMode="standard" android:configChanges="orientation|keyboardHidden" />
-		
-
 
 		<!-- other activity -->
 		<activity android:name=".im.activity.SmileTabActivity"
@@ -104,17 +97,9 @@
 		    </intent-filter>
 		</activity>
 
-
-
 		<activity android:name=".activity.SelectorActivity"
 			android:configChanges="keyboardHidden|orientation"
 			android:windowSoftInputMode="stateHidden|adjustPan" />
-
-
-		<activity android:name=".activity.BindMobileActivity"
-			android:configChanges="keyboardHidden|orientation" />
-		<activity android:name=".activity.BindVerifyCodeActivity"
-			android:configChanges="keyboardHidden|orientation" />
 
 		<!-- 短信 -->
 		<service android:name="com.android.mms.transaction.TransactionService" />
@@ -129,84 +114,30 @@
 		<activity android:name=".activity.WebViewActivity"
 			android:configChanges="keyboardHidden|orientation" />
 
-		<activity android:name=".activity.guide.GuideActivity"
-			android:theme="@style/Transparent">
-		</activity>
-		<activity android:name=".activity.guide.EnterGuideActivity"
-			android:theme="@android:style/Theme.NoTitleBar">
-		</activity>
-
 		<activity android:name=".activity.RegistVerifyCodeActivity"
 			android:configChanges="keyboardHidden|orientation" 
 			android:windowSoftInputMode="stateHidden|adjustPan" />
-		<activity android:name=".activity.ForgetPasswordActivity"
-			android:configChanges="keyboardHidden|orientation"
-			android:windowSoftInputMode="stateHidden|adjustPan" />
-		<activity android:name=".activity.NewPasswordActivity"
-			android:configChanges="keyboardHidden|orientation"
-			android:windowSoftInputMode="stateHidden|adjustPan" />
-		<activity android:name=".activity.ResetPasswordActivity"
-			android:configChanges="keyboardHidden|orientation"
-			android:windowSoftInputMode="stateHidden|adjustPan" />
 
 
-		<service android:name=".account.service.AccountService">
-			<intent-filter>
-				<action android:name="android.accounts.AccountAuthenticator"></action>
-			</intent-filter>
-			<meta-data android:name="android.accounts.AccountAuthenticator"
-				android:resource="@xml/authenticator">
-			</meta-data>
-		</service>
-		<service android:name=".account.service.SyncService"
-            android:exported="true" android:process=":contacts">
-            <intent-filter>
-                <action android:name="android.content.SyncAdapter" />
-            </intent-filter>
-            <meta-data
-                android:name="android.content.SyncAdapter"
-                android:resource="@xml/sync_momo_contacts" />
-        </service>
-        
-		
 	</application>
 
 	<!-- 权限设置部分 -->
-	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
-	<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" /> 
-	<uses-permission android:name="android.permission.READ_SYNC_SETTINGS" /> 
+	<uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 	<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
-	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
-
-	<uses-permission android:name="android.permission.READ_SMS" />
-	<uses-permission android:name="android.permission.SEND_SMS" />
-	<uses-permission android:name="android.permission.WRITE_SMS" />
-	<uses-permission android:name="android.permission.RECEIVE_SMS" />
-
-	<!-- 拨打电话 -->
-	<uses-permission android:name="android.permission.CALL_PHONE" />
-
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<!-- <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" 
-		/> -->
 
 	<uses-permission android:name="android.permission.READ_CALENDAR" />
 	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
 	<uses-permission android:name="android.permission.WRITE_CAbuxinLENDAR" />
 	<uses-permission android:name="android.permission.VIBRATE" />
-	<!-- <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/> -->
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-	<uses-permission android:name="android.permission.RECORD_AUDIO" />
 	<uses-permission android:name="android.permission.CAMERA" />
 
 	<!-- 地图定位 -->

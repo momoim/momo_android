@@ -32,27 +32,20 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.parsers.json.GroupParser;
 import cn.com.nd.momo.api.parsers.json.UserParser;
-import cn.com.nd.momo.api.sync.MoMoContactsManager;
 import cn.com.nd.momo.api.types.Contact;
 import cn.com.nd.momo.api.types.User;
 import cn.com.nd.momo.api.types.UserList;
-import cn.com.nd.momo.api.util.ContactFilter;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
-import cn.com.nd.momo.manager.CardManager;
-import cn.com.nd.momo.manager.CardManager.IgnoreMobilePrefix;
-import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.view.AlphabeticBar;
-import cn.com.nd.momo.view.CustomImageView;
+
 
 public class SelectorActivity extends Activity implements OnClickListener {
     private final static String TAG = "SelectorActivity";
@@ -267,84 +260,7 @@ public class SelectorActivity extends Activity implements OnClickListener {
      * Author:hexy <br>
      * Date:2011-10-6下午04:59:33
      */
-    private void onConfirm() {
-
-        if (mUserArrayMap == null) {
-            return;
-        }
-
-        mGetUidCanceled = false;
-        boolean bNeedUid = false;
-        mUserList.clear();
-        for (Contact c : mUserArrayMap) {
-            User user = new User();
-            user.setId("0");
-            user.setMobile(c.getPrimePhoneNumber());
-            user.setName(c.getFormatName());
-            mUserList.add(user);
-        }
-        CardManager cardManager = CardManager.getInstance();
-        mCacheUserList = cardManager.getUserIdList(getApplicationContext(),
-                mUserList, true);
-        if (mCacheUserList != null && mCacheUserList.size() > 0) {
-            for (User user : mCacheUserList) {
-                if (user.getId().equals(String.valueOf(Contact.DEFAULT_USER_ID_NOT_EXIST))) {
-                    bNeedUid = true;
-                    break;
-                }
-            }
-        }
-
-        // need to get uid from server
-        if (bNeedUid) {
-            // make a progress dialog
-            mProgressUID = new ProgressDialog(this);
-            mProgressUID.setMessage("正在获取信息...");
-            mProgressUID.setCancelable(true);
-            mProgressUID.setOnCancelListener(new OnCancelListener() {
-
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    mGetUidCanceled = true;
-                }
-            });
-            mProgressUID.show();
-
-            // make a thread to get UID from server
-            Thread t = new Thread() {
-
-                @Override
-                public void run() {
-                    super.run();
-                    mUserList.clear();
-                    for (Contact c : mUserArrayMap) {
-                        User user = new User();
-                        user.setId("0");
-                        user.setMobile(c.getPrimePhoneNumber());
-                        user.setName(c.getFormatName());
-                        mUserList.add(user);
-                    }
-                    if (mUserList.size() > 100) {
-                        mUIDHandler.sendMessage(mUIDHandler
-                                .obtainMessage(MSG_GET_UID_FINISH, "选取的人数超过100人"));
-                        return;
-                    }
-                    mCacheUserList = CardManager.getInstance().getUserIdList(
-                            getApplicationContext(), mUserList, false);
-                    if (mCacheUserList.size() < mUserList.size()) {
-                        mUIDHandler.sendMessage(mUIDHandler.obtainMessage(MSG_GET_UID_FINISH,
-                                "已过滤无效号码用户"));
-                    } else {
-                        mUIDHandler.sendEmptyMessage(MSG_GET_UID_FINISH);
-                    }
-                }
-            };
-            t.start();
-
-        } else {
-            mUIDHandler.sendEmptyMessage(MSG_GET_UID_FINISH);
-        }
-    }
+    private void onConfirm() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
