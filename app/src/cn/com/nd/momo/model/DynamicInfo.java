@@ -497,13 +497,23 @@ public class DynamicInfo {
             }
         }
 
-        JSONObject commentObj = info.optJSONObject("comment_list");
-        if (commentObj != null) {
-            JSONObject jsonUser = commentObj.optJSONObject("user");
-            if (jsonUser != null) {
+        int commentCount = info.optInt("comment_count");
+        if (commentCount > 0) {
+            JSONObject commentObj = null;
 
-                commentLast = jsonUser.optString("name") + ":" + commentObj.optString("text");
-                commentLast = decodeAT(commentObj, commentLast, usersAted);
+            if (info.optJSONArray("comment_list") != null) {
+                JSONArray commentArray = info.optJSONArray("comment_list");
+                commentObj = commentArray.optJSONObject(0);
+            } else {
+                commentObj = info.optJSONObject("comment_list");
+            }
+
+            if (commentObj != null) {
+                JSONObject jsonUser = commentObj.optJSONObject("user");
+                if (jsonUser != null) {
+                    commentLast = jsonUser.optString("name") + ":" + commentObj.optString("text");
+                    commentLast = decodeAT(commentObj, commentLast, usersAted);
+                }
             }
         }
     }

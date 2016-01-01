@@ -195,7 +195,11 @@ public class GlobalUserInfo {
         cHelper.saveKey(ConfigHelper.CONFIG_KEY_PHONE_NUMBER, authInfo.getMobile());
         cHelper.saveKey(ConfigHelper.CONFIG_KEY_ZONE_CODE, authInfo.getZoneCode());
         cHelper.saveKey(ConfigHelper.CONFIG_KEY_UID, authInfo.mUid);
+        cHelper.saveKey(ConfigHelper.CONFIG_KEY_REALNAME, authInfo.getUserName());
+        cHelper.saveKey(ConfigHelper.CONFIG_KEY_AVATAR, authInfo.getAvatarName());
 
+        mNAME = authInfo.getUserName();
+        mAvatarName = authInfo.getAvatarName();
         mUID = authInfo.mUid;
         cHelper.commit();
     }
@@ -227,7 +231,7 @@ public class GlobalUserInfo {
             mZoneCode = cHelper.loadKey(ConfigHelper.CONFIG_KEY_ZONE_CODE);
             mNAME = cHelper.loadKey(ConfigHelper.CONFIG_KEY_REALNAME);
             mUID = cHelper.loadKey(ConfigHelper.CONFIG_KEY_UID);
-
+            mAvatarName = cHelper.loadKey(ConfigHelper.CONFIG_KEY_AVATAR);
 
 
             mStatus = cHelper.loadKey(ConfigHelper.CONFIG_USER_STATUS);
@@ -235,6 +239,8 @@ public class GlobalUserInfo {
             // 已成功登录，需设置Api认证信息
             OAuthInfo oAuthInfo = new OAuthInfo();
             oAuthInfo.setUid(mUID);
+            oAuthInfo.setUserName(mNAME);
+            oAuthInfo.setAvatarName(mAvatarName);
             oAuthInfo.mAccessToken = mAccessToken;
             oAuthInfo.mRefreshToken = mRefreshToken;
             oAuthInfo.mExpireTS = mExpireTS;

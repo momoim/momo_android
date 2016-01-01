@@ -88,6 +88,9 @@ public class OAuthHelper {
             result.mUid = "" + jsonResponse.optLong("id");
             result.mExpireTS = getNow() + jsonResponse.optInt("expires_in");
 
+            result.setUserName(jsonResponse.optString("name"));
+            result.setAvatarName(jsonResponse.optString("avatar"));
+
             result.setZoneCode(zoneCode);
             result.setMobile(mobile);
 
@@ -152,6 +155,8 @@ public class OAuthHelper {
             result.mUid = "" + jsonResponse.optLong("id");
             result.mExpireTS = getNow() + jsonResponse.optInt("expires_in");
 
+            result.setUserName(jsonResponse.optString("name"));
+            result.setAvatarName(jsonResponse.optString("avatar"));
             result.setZoneCode(zoneCode);
             result.setMobile(mobile);
 
@@ -180,11 +185,8 @@ public class OAuthHelper {
             result = new OAuthInfo();
             result.mAccessToken = jsonResponse.optString("access_token");
             result.mRefreshToken = jsonResponse.optString("refresh_token");
-            result.mUid = "" + jsonResponse.optLong("id");
             result.mExpireTS = getNow() + jsonResponse.optInt("expires_in");
-
-//        result.setZoneCode(zoneCode);
-//        result.setMobile(mobile);
+            result.mUid = "" + jsonResponse.optLong("id");
 
             AppInfo.setOAuthInfo(result);
         } catch (Exception ex) {
