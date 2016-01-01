@@ -223,31 +223,7 @@ public final class Utils {
 
 
 
-    
-    public static Bundle addAccount(Activity activity) {
-        mBundle = null;
-        AccountManager accountManager = AccountManager.get(mContext);
-        String accountType = GlobalUserInfo.MOMO_ACCOUNT_TYPE;
-        String accountName = GlobalUserInfo.getPhoneNumber();
-        Bundle bundle = new Bundle();
-        bundle.putString(AccountManager.KEY_ACCOUNT_NAME, accountName);
-        String[] features = new String[] {
-                GlobalUserInfo.getUID()
-        };
-        accountManager.addAccount(accountType, GlobalUserInfo.getOAuthKey(), features, bundle,
-                activity,
-                new AccountManagerCallback<Bundle>() {
-                    @Override
-                    public void run(AccountManagerFuture<Bundle> amfuture) {
-                        try {
-                            mBundle = amfuture.getResult();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, null);
-        return bundle;
-    }
+
 
 
 

@@ -349,11 +349,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
                 GlobalUserInfo.openMoMoUrl(this, RequestUrl.HELP_URL, false);
                 break;
             case R.id.btn_quit:
-                if (GlobalUserInfo.isNetSyncDoing()) {
-                    String tips = getString(R.string.msg_exit_wait_sync);
-                    cn.com.nd.momo.api.util.Utils.displayToast(tips, 0);
-                    break;
-                }
                 dlgLogout = ProgressDialog.show(this, "退出登录", "正在退出登录，请稍等...");
                 dlgLogout.setCancelable(false);
                 Thread tQuit = new Thread() {

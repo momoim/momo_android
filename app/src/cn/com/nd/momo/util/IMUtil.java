@@ -425,25 +425,6 @@ public class IMUtil {
     }
 
 
-
-
-    /**
-     * 打开momo需要认证的url
-     * 
-     * @param context
-     * @param url
-     */
-    public static void openMomoUrl(Context context, String url) {
-        String all = url + (url.indexOf("?") >= 0 ? "&" : "?") + "oauth_token="
-                + GlobalUserInfo.getOAuthKey()
-                + "&oauth_token_secret="
-                + GlobalUserInfo.getOAuthSecret() + "&timestamp="
-                + (new Date().getTime() / 1000);
-        Log.i(TAG, "show momo url" + all);
-        GlobalUserInfo.openMoMoUrl(context, all, false);
-    }
-
-
     /**
      * 显示地图详细信息
      * 
@@ -463,9 +444,6 @@ public class IMUtil {
     private static final CharSequence[] locationItems = new CharSequence[] {
             LOCATION_AMAP, LOCATION_GMAP, LOCATION_OTHER, LOCATION_KCODE
     };
-
-
-
 
     /**
      * 拍照选照片完统一处理生成本地缩略图

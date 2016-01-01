@@ -52,19 +52,9 @@ public class GlobalUserInfo {
 
 
 
-
-    // ToDo Zgx 20120731
     static private String mSessionID = ""; // session id
 
     static private String mZoneCode = DEFAULT_ZONE_CODE;
-
-    static private String mOAuthKey = "";
-
-    static private String mOAuthSecret = "";
-
-    static private int mResetPassword = 0;
-
-    static private String mQName = "";
 
     static public int STATUS_UNACTIVE = 1;
 
@@ -81,19 +71,6 @@ public class GlobalUserInfo {
 
     static public volatile int mLoginStatus = 0; // read only, unlogin 0,
 
-    // logined 1
-
-    // parameters for net sync
-    static public final int NET_SYNC_OK = 0;
-
-    static public final int NET_SYNC_DOING = 1;
-
-    static public int mNetSyncStatus = 0; // net sync OK 0, net sync is doing 1
-
-    // 用户信息缓存时间，15天有效期
-    static public final long USER_CACHE_TIME = 15 * 24 * 60 * 60 * 1000;
-
-    public static final long MOMO_XIAOMI_USER_ID = 353;
 
     public static final int STATUSES_IMAGE_MODE_SMALL = 0;
     public static final int STATUSES_IMAGE_MODE_BIG = 1;
@@ -103,8 +80,7 @@ public class GlobalUserInfo {
      */
     public static int statuses_image_mode = STATUSES_IMAGE_MODE_SMALL;
     
-    static public final String MOMO_ACCOUNT_TYPE = "cn.com.nd.momo";
-    
+
     public static String getPhoneNumber() {
         if (mPhoneNumber == null || mPhoneNumber.length() < 1) {
             mPhoneNumber = ConfigHelper.getInstance(mAppContext).loadKey(
@@ -157,50 +133,6 @@ public class GlobalUserInfo {
         cHelper.commit();
     }
 
-    public static void setTempOAuth(int resetPassword, String OAuthKey, String OAuthSecret,
-            String zoneCode,
-            String mobile) {
-        mResetPassword = resetPassword;
-        if (OAuthKey != null && !"".equals(OAuthKey)) {
-            mOAuthKey = OAuthKey;
-            Log.d(TAG, "OAuthKey: " + OAuthKey);
-        }
-        if (OAuthSecret != null && !"".equals(OAuthSecret)) {
-            mOAuthSecret = OAuthSecret;
-            Log.d(TAG, "OAuthSecret: " + OAuthSecret);
-        }
-        if (zoneCode != null && !"".equals(zoneCode)) {
-            mZoneCode = zoneCode;
-        }
-        if (mobile != null && !"".equals(mobile)) {
-            mPhoneNumber = mobile;
-        }
-    }
-
-    public static void cancelResetPassword() {
-        mResetPassword = 0;
-    }
-
-    public static int getNeedResetPassword() {
-        return mResetPassword;
-    }
-
-    public static String getOAuthKey() {
-        return mOAuthKey;
-    }
-
-    public static String getOAuthSecret() {
-        return mOAuthSecret;
-    }
-
-    public static String getQName() {
-        if (mQName == null || "".equals(mQName)) {
-            return "momoim_" + mUID;
-        } else {
-            return mQName;
-        }
-    }
-
     public static int getUserStatus() {
         if (mStatus == null || "".equals(mStatus)) {
             return -1;
@@ -226,12 +158,7 @@ public class GlobalUserInfo {
         mZoneCode = DEFAULT_ZONE_CODE;
     }
 
-    public static String getDeviceIMEI() {
-        TelephonyManager tm = (TelephonyManager)mAppContext
-                .getSystemService(Context.TELEPHONY_SERVICE);
-        String imei = tm.getDeviceId();
-        return imei;
-    }
+
 
     public static void setOAuthToken(OAuthInfo authInfo) {
         ConfigHelper cHelper = ConfigHelper.getInstance(mAppContext);
@@ -275,9 +202,7 @@ public class GlobalUserInfo {
             mNAME = cHelper.loadKey(ConfigHelper.CONFIG_KEY_REALNAME);
             mUID = cHelper.loadKey(ConfigHelper.CONFIG_KEY_UID);
 
-            mOAuthKey = cHelper.loadKey(ConfigHelper.CONFIG_OAUTH_KEY);
-            mOAuthSecret = cHelper.loadKey(ConfigHelper.CONFIG_OAUTH_SECRET);
-            mQName = cHelper.loadKey(ConfigHelper.CONFIG_QNAME);
+
 
             mStatus = cHelper.loadKey(ConfigHelper.CONFIG_USER_STATUS);
 
@@ -348,12 +273,11 @@ public class GlobalUserInfo {
         mZoneCode = DEFAULT_ZONE_CODE;
         mNAME = "";
         mAvatarName = "";
-        mSessionID = "";
+
         mStatus = "";
         mAvatarMap = null;
-        mOAuthKey = "";
-        mOAuthSecret = "";
-        mQName = "";
+
+
 
 
 
@@ -380,6 +304,9 @@ public class GlobalUserInfo {
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_MESSAGE_VIBRATE);
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_GPRS_IMAGE);
 
+        cHelper.removeKey(ConfigHelper.CONFIG_ACCESS_TOKEN);
+        cHelper.removeKey(ConfigHelper.CONFIG_REFRESH_TOKEN);
+        cHelper.removeKey(ConfigHelper.CONFIG_ACCESS_TOKEN_EXPIRE);
         // 去除主引导
         cHelper.removeKey(ConfigHelper.TAB_CONTACTS);
         cHelper.removeKey(ConfigHelper.TAB_IM);
@@ -429,14 +356,9 @@ public class GlobalUserInfo {
         mZoneCode = DEFAULT_ZONE_CODE;
         mNAME = "";
         mAvatarName = "";
-        mSessionID = "";
+
         mStatus = "";
         mAvatarMap = null;
-        mOAuthKey = "";
-        mOAuthSecret = "";
-        mQName = "";
-
-
 
         // clear all configuration
         Log.d(TAG, "logout step1");
@@ -446,25 +368,8 @@ public class GlobalUserInfo {
         // tell service to stop
         Log.d(TAG, "logout step2");
         context.sendBroadcast(new Intent(context.getString(R.string.action_message_destroy)));
-
-
-
     }
 
-    /**
-     * check net sync status
-     * 
-     * @return true: net sync is now in processing
-     */
-    public static boolean isNetSyncDoing() {
-        if (mNetSyncStatus == NET_SYNC_DOING) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private static Thread mSyncThread = null;
 
 
 

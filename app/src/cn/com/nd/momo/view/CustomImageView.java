@@ -75,38 +75,7 @@ public class CustomImageView extends ImageView {
         // setBitmapUri(url);
     }
 
-    /**
-     * 通过url获取图片填充ImageView
-     * 
-     * @param url 图片url
-     */
-    public void setBitmapUri(final String url) {
-        new Thread() {
-            @Override
-            public void run() {
-                BitmapToolkit bt = new BitmapToolkit(
-                        BitmapToolkit.DIR_MOMO_PHOTO, url, "", "");
-                bt.setSid(GlobalUserInfo.getSessionID());
-                Bitmap tempBmp = bt.loadBitmapNetOrLocal();
-                if (tempBmp != null) {
-                    tempBmp = BitmapToolkit.compress(tempBmp, 80);
-                    tempBmp = BitmapToolkit.cornerBitmap(tempBmp, 8);
-                }
-                final Bitmap bitmap = tempBmp;
-                if (bitmap == null) {
-                    Log.e(TAG, "could not get the bitmap:" + url);
-                    return;
-                }
-                CustomImageView.this.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        CustomImageView.this.setImageBitmapSafe(bitmap);
-                    }
-                });
-            }
-        }.start();
 
-    }
 
     /**
      * 通过uid，或者uri设置用户头像
