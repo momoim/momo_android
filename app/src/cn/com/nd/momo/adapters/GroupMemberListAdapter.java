@@ -201,7 +201,7 @@ public class GroupMemberListAdapter extends BaseAdapter {
     public long getItemId(int position) {
         GroupMember groupMember = (GroupMember)getItem(position);
         if (null == groupMember)
-            return GlobalUserInfo.MY_CONTACT_ID;
+            return 0;
         else
             return groupMember.getId();
 

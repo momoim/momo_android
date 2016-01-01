@@ -36,9 +36,6 @@ public class GlobalUserInfo {
     // application context
     static public Context mAppContext = null;
 
-    // contact id for myself
-    static public long MY_CONTACT_ID = 0;
-
     // my avatar
     private static Bitmap mAvatarMap = null;
 
@@ -60,13 +57,6 @@ public class GlobalUserInfo {
 
     static private String mZoneCode = DEFAULT_ZONE_CODE;
 
-    static public int STATUS_UNACTIVE = 1;
-
-    static public int STATUS_NORMAL_USER = 2;
-
-    static public int STATUS_VERIFY_USER = 3;
-
-    static private String mStatus = ""; // value should be: 1 or 2 or 3
 
     // parameters for login
     static public final int LOGIN_STATUS_UNLOGIN = 0;
@@ -137,18 +127,7 @@ public class GlobalUserInfo {
         cHelper.commit();
     }
 
-    public static int getUserStatus() {
-        if (mStatus == null || "".equals(mStatus)) {
-            return -1;
-        } else {
-            return Integer.valueOf(mStatus);
-        }
 
-    }
-
-    public static void setUserStatus(int status) {
-        mStatus = String.valueOf(status);
-    }
 
     public static String getZoneCode() {
         return mZoneCode;
@@ -234,8 +213,6 @@ public class GlobalUserInfo {
             mAvatarName = cHelper.loadKey(ConfigHelper.CONFIG_KEY_AVATAR);
 
 
-            mStatus = cHelper.loadKey(ConfigHelper.CONFIG_USER_STATUS);
-
             // 已成功登录，需设置Api认证信息
             OAuthInfo oAuthInfo = new OAuthInfo();
             oAuthInfo.setUid(mUID);
@@ -306,7 +283,6 @@ public class GlobalUserInfo {
         mNAME = "";
         mAvatarName = "";
 
-        mStatus = "";
         mAvatarMap = null;
 
 
@@ -385,8 +361,6 @@ public class GlobalUserInfo {
         mZoneCode = DEFAULT_ZONE_CODE;
         mNAME = "";
         mAvatarName = "";
-
-        mStatus = "";
         mAvatarMap = null;
 
         // clear all configuration

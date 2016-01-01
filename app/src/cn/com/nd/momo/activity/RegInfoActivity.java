@@ -131,7 +131,6 @@ public class RegInfoActivity extends Activity implements OnClickListener {
                             user_status = MoMoHttpApi.updateUserInfo(name, password);
                             // user_status > 0 方表示完善成功
                             if (user_status > 0) {
-                                GlobalUserInfo.setUserStatus(user_status);
                                 ConfigHelper configHelper = ConfigHelper
                                         .getInstance(RegInfoActivity.this);
                                 configHelper.saveKey(ConfigHelper.CONFIG_USER_STATUS, String

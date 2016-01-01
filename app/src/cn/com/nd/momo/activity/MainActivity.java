@@ -52,15 +52,6 @@ public class MainActivity extends ActivityGroup {
         Log.d(TAG, "onCreate");
         Intent intent = getIntent();
         Log.d(TAG, "intent action:" + intent.getAction());
-        if (intent.getAction() != null
-                && intent.getAction().equals(getString(R.string.action_message_income))) {
-            if (GlobalUserInfo.getUserStatus() < GlobalUserInfo.STATUS_VERIFY_USER) {
-                Intent i = new Intent(this, RegInfoActivity.class);
-                startActivity(i);
-                finish();
-                return;
-            }
-        }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_activity);
 

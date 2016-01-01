@@ -559,7 +559,6 @@ public class OAuthHelper {
             result.setFinalKey(jsonResponse.optString("oauth_token"));
             result.setFinalSecret(jsonResponse.optString("oauth_token_secret"));
             result.setQueueName(jsonResponse.optString("qname"));
-            result.setStatus(GlobalUserInfo.STATUS_VERIFY_USER + "");
             result.setMobile(mobile);
 
             AppInfo.setOAuthInfo(result);

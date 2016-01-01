@@ -4,6 +4,7 @@ package cn.com.nd.momo.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -41,15 +42,13 @@ public class LauncherActivity extends Activity {
             public void run() {
                 Intent i = null;
                 GlobalUserInfo.checkLoginStatus(getApplicationContext());
-                boolean isMain = false;
                 if (!GlobalUserInfo.hasLogined()) {
                     Log.d(TAG, "login called");
                     i = new Intent(getApplicationContext(), LoginActivity.class);
-                } else if (GlobalUserInfo.getUserStatus() < GlobalUserInfo.STATUS_VERIFY_USER) {
+                } else if (TextUtils.isEmpty(GlobalUserInfo.getName())) {
                     i = new Intent(getApplicationContext(), RegInfoActivity.class);
                 } else {
                     i = new Intent(getApplicationContext(), MainActivity.class);
-                    isMain = true;
                 }
                 startActivity(i);
                 Log.d(TAG, "launcher end");
