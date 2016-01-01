@@ -51,6 +51,10 @@ public class GlobalUserInfo {
     static private String mAvatarName = ""; // avatar
 
 
+    static private String mAccessToken;
+    static private String mRefreshToken;
+    static private int mExpireTS;
+
 
     static private String mSessionID = ""; // session id
 
@@ -159,8 +163,30 @@ public class GlobalUserInfo {
     }
 
 
+    public static String getAccessToken() {
+        return mAccessToken;
+    }
 
-    public static void setOAuthToken(OAuthInfo authInfo) {
+    public static String getRefreshToken() {
+        return mRefreshToken;
+    }
+
+    public static int getExpireTS() {
+        return mExpireTS;
+    }
+
+    public static void setOAuthToken(String accessToken, String refreshToken, int expireTS) {
+        mAccessToken = accessToken;
+        mRefreshToken = refreshToken;
+        mExpireTS = expireTS;
+        ConfigHelper cHelper = ConfigHelper.getInstance(mAppContext);
+        cHelper.saveKey(ConfigHelper.CONFIG_ACCESS_TOKEN, mAccessToken);
+        cHelper.saveKey(ConfigHelper.CONFIG_REFRESH_TOKEN, mRefreshToken);
+        cHelper.saveIntKey(ConfigHelper.CONFIG_ACCESS_TOKEN_EXPIRE, mExpireTS);
+        cHelper.commit();
+    }
+
+    public static void setOAuthInfo(OAuthInfo authInfo) {
         ConfigHelper cHelper = ConfigHelper.getInstance(mAppContext);
 
         cHelper.saveKey(ConfigHelper.CONFIG_ACCESS_TOKEN, authInfo.mAccessToken);
@@ -193,9 +219,9 @@ public class GlobalUserInfo {
         if (strStatus.equals(String.valueOf(LOGIN_STATUS_LOGINED))) {
             mLoginStatus = LOGIN_STATUS_LOGINED;
 
-            String mAccessToken = cHelper.loadKey(ConfigHelper.CONFIG_ACCESS_TOKEN);
-            String mRefreshToken = cHelper.loadKey(ConfigHelper.CONFIG_REFRESH_TOKEN);
-            int mExpireTS = cHelper.loadIntKey(ConfigHelper.CONFIG_ACCESS_TOKEN_EXPIRE, 0);
+            mAccessToken = cHelper.loadKey(ConfigHelper.CONFIG_ACCESS_TOKEN);
+            mRefreshToken = cHelper.loadKey(ConfigHelper.CONFIG_REFRESH_TOKEN);
+            mExpireTS = cHelper.loadIntKey(ConfigHelper.CONFIG_ACCESS_TOKEN_EXPIRE, 0);
 
             mPhoneNumber = cHelper.loadKey(ConfigHelper.CONFIG_KEY_PHONE_NUMBER);
             mZoneCode = cHelper.loadKey(ConfigHelper.CONFIG_KEY_ZONE_CODE);
@@ -276,9 +302,6 @@ public class GlobalUserInfo {
 
         mStatus = "";
         mAvatarMap = null;
-
-
-
 
 
         // clear all configuration

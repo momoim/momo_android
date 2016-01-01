@@ -157,6 +157,11 @@ public final class MoMoHttpApi {
         return OAuthHelper.registerVerify(zoneCode, mobile, verifyCode);
     }
 
+    public static OAuthInfo refreshAccessToken(String refreshToken)
+            throws MoMoException {
+        return OAuthHelper.refreshAccessToken(refreshToken);
+    }
+
     /**
      * 完善个人信息
      * 

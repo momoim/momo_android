@@ -163,6 +163,35 @@ public class OAuthHelper {
         return result;
     }
 
+    public static OAuthInfo refreshAccessToken(String refreshToken) throws MoMoException {
+
+        OAuthInfo result = null;
+
+        HttpTool http = new HttpTool(RequestUrl.REGIST_VERIFY_URL);
+        JSONObject param = new JSONObject();
+        try {
+            param.put("refresh_token", refreshToken);
+
+            http.DoPost(param, null);
+            String responseContent = http.GetResponse();
+            JSONObject jsonResponse = new JSONObject(responseContent);
+
+            result = new OAuthInfo();
+            result = new OAuthInfo();
+            result.mAccessToken = jsonResponse.optString("access_token");
+            result.mRefreshToken = jsonResponse.optString("refresh_token");
+            result.mUid = "" + jsonResponse.optLong("id");
+            result.mExpireTS = getNow() + jsonResponse.optInt("expires_in");
+
+//        result.setZoneCode(zoneCode);
+//        result.setMobile(mobile);
+
+            AppInfo.setOAuthInfo(result);
+        } catch (Exception ex) {
+            throw new MoMoException(ex);
+        }
+        return result;
+    }
 
     private static String RndString(int strLength) {
 

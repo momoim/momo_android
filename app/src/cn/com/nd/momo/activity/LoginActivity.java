@@ -98,7 +98,7 @@ public class LoginActivity extends Activity {
                         mPWD);
                 if (mOAuthInfo != null) {
                     // 不需要重置密码
-                    GlobalUserInfo.setOAuthToken(mOAuthInfo);
+                    GlobalUserInfo.setOAuthInfo(mOAuthInfo);
                     // set login status
                     GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
                     nRet = HttpStatus.SC_OK;

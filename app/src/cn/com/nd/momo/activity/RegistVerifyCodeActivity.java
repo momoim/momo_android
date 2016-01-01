@@ -188,7 +188,7 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
                             GlobalUserInfo.getZoneCode(), mMobile, mverifyCode);
                     if (mOAuthInfo != null) {
                         nRet = HttpStatus.SC_OK;
-                        GlobalUserInfo.setOAuthToken(mOAuthInfo);
+                        GlobalUserInfo.setOAuthInfo(mOAuthInfo);
 
                         GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
                         ConfigHelper configHelper = ConfigHelper

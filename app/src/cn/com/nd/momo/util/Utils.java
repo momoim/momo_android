@@ -447,4 +447,10 @@ public final class Utils {
         return content;
     }
 
+    public static int getNow() {
+        Date date = new Date();
+        long t = date.getTime();
+        return (int)(t/1000);
+    }
+
 }

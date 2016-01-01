@@ -38,7 +38,7 @@ import android.util.TypedValue;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.types.UserList;
-import cn.com.nd.momo.manager.GlobalUserInfo;
+
 
 /**
  * 通用工具类，以static方式提供，调用者不能继承使用，也不能实例化。
