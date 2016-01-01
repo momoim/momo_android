@@ -70,9 +70,9 @@ public class LoginActivity extends Activity {
                     switch (nRet) {
                         case HTTP_LOGIN_OK:
                             Log.i(TAG, "login ok");
-                            FlurryAgent.logEvent(FLURRY_LOGIN_SUCCESS);
-                            // let loginPreActivity to start main activity
                             setResult(RESULT_OK);
+                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(i);
                             finish();
                             break;
                         default:

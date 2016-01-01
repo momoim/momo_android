@@ -56,7 +56,7 @@ public class RegInfoActivity extends Activity implements OnClickListener {
                 case REG_PERSONAL_INFO_SUCCESS:
                     sendBroadcast(new Intent(getString(R.string.action_message_login)));
                     // start lead to sync activity
-                    Intent i = new Intent(RegInfoActivity.this, LeadToSyncActivity.class);
+                    Intent i = new Intent(RegInfoActivity.this, MainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
@@ -138,7 +138,6 @@ public class RegInfoActivity extends Activity implements OnClickListener {
                                         .valueOf(user_status));
                                 GlobalUserInfo.setName(name);
                                 configHelper.commit();
-                                FlurryAgent.logEvent(FLURRY_LOGIN_SUCCESS);
                                 mHandler.sendEmptyMessage(REG_PERSONAL_INFO_SUCCESS);
                             } else {
                                 Message msg = new Message();

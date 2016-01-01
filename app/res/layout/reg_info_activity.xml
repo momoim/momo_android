@@ -32,7 +32,8 @@
 		    	android:layout_height="wrap_content"
 		    	android:layout_marginTop="5dip"
 		    	android:background="@drawable/login_edit_background"
-		    	android:hint="姓名"/>
+		    	android:hint="姓名"
+				android:textColor="#000000" />
 		    	
 		    <TextView android:layout_width="fill_parent"
 		    	android:layout_height="wrap_content"
@@ -45,7 +46,8 @@
 		    	android:layout_height="wrap_content"
 		    	android:layout_marginTop="5dip"
 		    	android:background="@drawable/login_edit_background"
-		    	android:hint="密码"/>
+		    	android:hint="密码"
+				android:textColor="#000000" />
 		    
 		    <Button android:id="@+id/btn_regist_now"
 		    	android:layout_width="fill_parent"

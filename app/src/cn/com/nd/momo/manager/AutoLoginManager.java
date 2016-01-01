@@ -78,7 +78,7 @@ public class AutoLoginManager {
 
                     @Override
                     public void onAssetAutoLoginGot(String url) {
-                        login(url);
+
                         if (!mResult) {
                             // smsSearch();
                         }
@@ -157,50 +157,5 @@ public class AutoLoginManager {
     // Log.d(TAG, "search SMS end");
     // }
 
-    /**
-     * 登录
-     * 
-     * @param strUrl
-     */
-    private void login(String strUrl) {
-        try {
-            OAuthInfo mOAuthInfo = MoMoHttpApi.loginByUrl(strUrl);
-            if (mOAuthInfo != null) {
-                mBundle = new Bundle();
-                mBundle.putString(UID, mOAuthInfo.getUid());
-                mBundle.putString(NAME, mOAuthInfo.getUserName());
-                mBundle.putString(ZONE_CODE, mOAuthInfo.getZoneCode());
-                mBundle.putString(MOBILE, mOAuthInfo.getMobile());
-                mBundle.putString(AVATAR, mOAuthInfo.getAvatarName());
-                mBundle.putString(OTOKEN, mOAuthInfo.getFinalKey());
-                mBundle.putString(OSECRET, mOAuthInfo.getFinalSecret());
-                mBundle.putString(QNAME, mOAuthInfo.getQueueName());
-                mBundle.putString(STATUS, mOAuthInfo.getStatus());
 
-                if (mAutoLogin) {
-                    GlobalUserInfo.setOAuthToken(mOAuthInfo.getUid(), mOAuthInfo.getFinalKey(),
-                            mOAuthInfo.getFinalSecret(), mOAuthInfo.getUserName(),
-                            mOAuthInfo.getAvatarName(), mOAuthInfo.getQueueName(),
-                            mOAuthInfo.getStatus(), mOAuthInfo.getZoneCode(),
-                            mOAuthInfo.getMobile());
-                    // download avatar
-                    Bitmap bmp = AvatarManager.getAvaterBitmap(Long.valueOf(mOAuthInfo.getUid()),
-                            mOAuthInfo.getAvatarName());
-                    GlobalUserInfo.setMyAvatar(bmp);
-                    ConfigHelper.getInstance(mContext).saveKey(
-                            ConfigHelper.CONFIG_KEY_LOGIN_STATUS,
-                            String.valueOf(GlobalUserInfo.LOGIN_STATUS_LOGINED));
-                    ConfigHelper.getInstance(mContext).removeKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
-                    ConfigHelper.getInstance(mContext).commit();
-                    GlobalUserInfo.checkLoginStatus(mContext.getApplicationContext());
-                }
-                mResult = true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            mResult = false;
-            mBundle = null;
-        } finally {
-        }
-    }
 }

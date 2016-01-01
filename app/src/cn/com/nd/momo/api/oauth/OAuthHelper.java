@@ -3,6 +3,7 @@ package cn.com.nd.momo.api.oauth;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -12,6 +13,8 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+
 import cn.com.nd.momo.api.AppInfo;
 import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.RequestUrl;
@@ -40,17 +43,19 @@ public class OAuthHelper {
      * @return
      */
     public static String getAuthHeader(String url, String httpMethod) {
-        OAuth a = new OAuth(CONSUMER_KEY, CONSUMER_SECRET);
-        String strToken = a.generateAuthorizationHeader(httpMethod,
-                url,
-                null,
-                // OAUTH_NONCE,
-                RndString(5),
-                String.valueOf(Calendar.getInstance().getTimeInMillis() / 1000),
-                null,
-                AppInfo.getOAuthToken());
+        OAuthInfo authInfo = AppInfo.getOAuthInfo();
+        if (authInfo != null) {
+            if (!TextUtils.isEmpty(authInfo.mAccessToken)) {
+                return "Bearer " + authInfo.mAccessToken;
+            }
+        }
+        return "";
+    }
 
-        return strToken;
+    private static int getNow() {
+        Date date = new Date();
+        long t = date.getTime();
+        return (int)(t/1000);
     }
 
     /**
@@ -69,28 +74,20 @@ public class OAuthHelper {
         HttpTool http = new HttpTool(RequestUrl.LOGIN);
         JSONObject param = new JSONObject();
         try {
-            param.put("consumer_key", OAuthHelper.CONSUMER_KEY);
             param.put("zone_code", zoneCode);
             param.put("mobile", mobile);
             param.put("password", pwd);
-            param.put("client_id", MoMoHttpApi.APP_ID);
-            param.put("device_id", getDeviceIMEI());
-            param.put("phone_model", android.os.Build.MODEL);
-            param.put("os", android.os.Build.VERSION.RELEASE);
 
             http.DoPost(param, null);
             String responseContent = http.GetResponse();
             JSONObject jsonResponse = new JSONObject(responseContent);
 
             result = new OAuthInfo();
-            result.setNeedResetPassword(jsonResponse.optInt("reset_password"));
-            result.setUid(jsonResponse.optString("uid"));
-            result.setUserName(jsonResponse.optString("name"));
-            result.setAvatarName(jsonResponse.optString("avatar"));
-            result.setFinalKey(jsonResponse.optString("oauth_token"));
-            result.setFinalSecret(jsonResponse.optString("oauth_token_secret"));
-            result.setQueueName(jsonResponse.optString("qname"));
-            result.setStatus(jsonResponse.optString("status"));
+            result.mAccessToken = jsonResponse.optString("access_token");
+            result.mRefreshToken = jsonResponse.optString("refresh_token");
+            result.mUid = "" + jsonResponse.optLong("id");
+            result.mExpireTS = getNow() + jsonResponse.optInt("expires_in");
+
             result.setZoneCode(zoneCode);
             result.setMobile(mobile);
 
@@ -102,49 +99,6 @@ public class OAuthHelper {
         return result;
     }
 
-    /**
-     * 通过带验证信息的url完成登录
-     * 
-     * @param url
-     * @return OAuthInfo
-     * @throws MoMoException
-     */
-    public static OAuthInfo loginByUrl(String url) throws MoMoException {
-        OAuthInfo result = null;
-
-        HttpTool http = new HttpTool(RequestUrl.LOGIN_BY_URL);
-        JSONObject param = new JSONObject();
-        try {
-            param.put("consumer_key", OAuthHelper.CONSUMER_KEY);
-            param.put("url", url);
-            param.put("secret_key", CONSUMER_KEY);
-            param.put("client_id", MoMoHttpApi.APP_ID);
-            param.put("phone_model", android.os.Build.MODEL);
-            param.put("os", android.os.Build.VERSION.RELEASE);
-
-            http.DoPost(param, null);
-            String responseContent = http.GetResponse();
-            JSONObject jsonResponse = new JSONObject(responseContent);
-
-            result = new OAuthInfo();
-            result.setNeedResetPassword(jsonResponse.optInt("reset_password"));
-            result.setUid(jsonResponse.optString("uid"));
-            result.setUserName(jsonResponse.optString("name"));
-            result.setAvatarName(jsonResponse.optString("avatar"));
-            result.setFinalKey(jsonResponse.optString("oauth_token"));
-            result.setFinalSecret(jsonResponse.optString("oauth_token_secret"));
-            result.setQueueName(jsonResponse.optString("qname"));
-            result.setStatus(jsonResponse.optString("status"));
-            result.setZoneCode(jsonResponse.optString("zone_code"));
-            result.setMobile(jsonResponse.optString("mobile"));
-
-            AppInfo.setOAuthInfo(result);
-        } catch (Exception ex) {
-            throw new MoMoException(ex);
-        }
-
-        return result;
-    }
 
     /**
      * 发送注册信息
@@ -160,10 +114,6 @@ public class OAuthHelper {
         try {
             param.put("mobile", mobile);
             param.put("zone_code", zoneCode);
-
-            param.put("device_id", getDeviceIMEI());
-            param.put("source", MoMoHttpApi.APP_ID);
-            param.put("phone_model", android.os.Build.MODEL);
             param.put("os", android.os.Build.VERSION.RELEASE);
 
             http.DoPost(param, null);
@@ -187,21 +137,21 @@ public class OAuthHelper {
         HttpTool http = new HttpTool(RequestUrl.REGIST_VERIFY_URL);
         JSONObject param = new JSONObject();
         try {
-            param.put("consumer_key", OAuthHelper.CONSUMER_KEY);
             param.put("zone_code", zoneCode);
             param.put("mobile", mobile);
-            param.put("verifycode", verifyCode);
+            param.put("code", verifyCode);
 
             http.DoPost(param, null);
             String responseContent = http.GetResponse();
             JSONObject jsonResponse = new JSONObject(responseContent);
 
             result = new OAuthInfo();
-            result.setUid(jsonResponse.optString("uid"));
-            result.setFinalKey(jsonResponse.optString("oauth_token"));
-            result.setFinalSecret(jsonResponse.optString("oauth_token_secret"));
-            result.setQueueName(jsonResponse.optString("qname"));
-            result.setStatus(jsonResponse.optString("user_status"));
+            result = new OAuthInfo();
+            result.mAccessToken = jsonResponse.optString("access_token");
+            result.mRefreshToken = jsonResponse.optString("refresh_token");
+            result.mUid = "" + jsonResponse.optLong("id");
+            result.mExpireTS = getNow() + jsonResponse.optInt("expires_in");
+
             result.setZoneCode(zoneCode);
             result.setMobile(mobile);
 
@@ -213,23 +163,6 @@ public class OAuthHelper {
         return result;
     }
 
-    //
-    // public String getAuthHeader(String url, String httpMethod) {
-    // OAuthToken t = new OAuthToken(GlobalUserInfo.getOAuthKey(),
-    // GlobalUserInfo.getOAuthSecret());
-    //
-    // OAuth a = new OAuth(CONSUMER_KEY, CONSUMER_SECRET);
-    // String strToken = a.generateAuthorizationHeader(httpMethod,
-    // url,
-    // null,
-    // // OAUTH_NONCE,
-    // RndString(5),
-    // String.valueOf(Calendar.getInstance().getTimeInMillis() / 1000),
-    // null,
-    // t);
-    //
-    // return strToken;
-    // }
 
     private static String RndString(int strLength) {
 

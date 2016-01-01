@@ -8,7 +8,6 @@ import android.telephony.TelephonyManager;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.activity.WebViewActivity;
 import cn.com.nd.momo.api.MoMoHttpApi;
-import cn.com.nd.momo.api.sync.SyncManager;
 import cn.com.nd.momo.api.types.OAuthInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
@@ -35,12 +34,6 @@ public class GlobalUserInfo {
 
     public static final String DEFAULT_ZONE_CODE = "86";
 
-    // 程序是否未退出（拦截短信用）
-    public static boolean appAlive = false;
-
-    // 程序是在前台（拦截短信用）
-    public static boolean inFront = false;
-
     // application context
     static public Context mAppContext = null;
 
@@ -57,6 +50,9 @@ public class GlobalUserInfo {
     static private String mNAME = ""; // name
 
     static private String mAvatarName = ""; // avatar
+
+
+
 
     // ToDo Zgx 20120731
     static private String mSessionID = ""; // session id
@@ -110,15 +106,6 @@ public class GlobalUserInfo {
     
     static public final String MOMO_ACCOUNT_TYPE = "cn.com.nd.momo";
     
-    /**
-     * 91U调用时传递过来的参数
-     */
-    // public static boolean isCalledFrom91U = false;
-    //    
-    // public static String param_91U_session_id = "";
-    //    
-    // public static String param_91U_func = "";
-    
     public static String getPhoneNumber() {
         if (mPhoneNumber == null || mPhoneNumber.length() < 1) {
             mPhoneNumber = ConfigHelper.getInstance(mAppContext).loadKey(
@@ -135,7 +122,6 @@ public class GlobalUserInfo {
     }
 
     public static String getUID() {
-        // return "11890616";
         return mUID;
     }
 
@@ -248,52 +234,17 @@ public class GlobalUserInfo {
         return imei;
     }
 
-    public static void setOAuthToken(String uid, String OAuthKey, String OAuthSecret,
-            String userName, String avatar, String qName, String status, String zoneCode,
-            String mobile) {
+    public static void setOAuthToken(OAuthInfo authInfo) {
         ConfigHelper cHelper = ConfigHelper.getInstance(mAppContext);
 
-        if (uid != null && !"".equals(uid)) {
-            mUID = uid;
-            cHelper.saveKey(ConfigHelper.CONFIG_KEY_UID, uid);
-        }
-        if (OAuthKey != null && !"".equals(OAuthKey)) {
-            mOAuthKey = OAuthKey;
-            cHelper.saveKey(ConfigHelper.CONFIG_OAUTH_KEY, OAuthKey);
-            Log.d(TAG, "OAuthKey: " + OAuthKey);
-        }
-        if (OAuthSecret != null && !"".equals(OAuthSecret)) {
-            mOAuthSecret = OAuthSecret;
-            cHelper.saveKey(ConfigHelper.CONFIG_OAUTH_SECRET, OAuthSecret);
-            Log.d(TAG, "OAuthSecret: " + OAuthSecret);
-        }
-        if (userName != null && !"".equals(userName)) {
-            mNAME = userName;
-            cHelper.saveKey(ConfigHelper.CONFIG_KEY_REALNAME, userName);
-        }
-        /**
-         * fix avatar remains after logout
-         */
-        if (avatar != null && avatar.length() > 0) {
-            setAvatar(avatar);
-        }
+        cHelper.saveKey(ConfigHelper.CONFIG_ACCESS_TOKEN, authInfo.mAccessToken);
+        cHelper.saveKey(ConfigHelper.CONFIG_REFRESH_TOKEN, authInfo.mRefreshToken);
+        cHelper.saveIntKey(ConfigHelper.CONFIG_ACCESS_TOKEN_EXPIRE, authInfo.mExpireTS);
+        cHelper.saveKey(ConfigHelper.CONFIG_KEY_PHONE_NUMBER, authInfo.getMobile());
+        cHelper.saveKey(ConfigHelper.CONFIG_KEY_ZONE_CODE, authInfo.getZoneCode());
+        cHelper.saveKey(ConfigHelper.CONFIG_KEY_UID, authInfo.mUid);
 
-        if (qName != null && !"".equals(qName)) {
-            mQName = qName;
-            cHelper.saveKey(ConfigHelper.CONFIG_QNAME, qName);
-        }
-        if (status != null && !"".equals(status)) {
-            mStatus = status;
-            cHelper.saveKey(ConfigHelper.CONFIG_USER_STATUS, status);
-        }
-        if (zoneCode != null && !"".equals(zoneCode)) {
-            mZoneCode = zoneCode;
-            cHelper.saveKey(ConfigHelper.CONFIG_KEY_ZONE_CODE, zoneCode);
-        }
-        if (mobile != null && !"".equals(mobile)) {
-            mPhoneNumber = mobile;
-            cHelper.saveKey(ConfigHelper.CONFIG_KEY_PHONE_NUMBER, mobile);
-        }
+        mUID = authInfo.mUid;
         cHelper.commit();
     }
 
@@ -316,7 +267,12 @@ public class GlobalUserInfo {
         if (strStatus.equals(String.valueOf(LOGIN_STATUS_LOGINED))) {
             mLoginStatus = LOGIN_STATUS_LOGINED;
 
+            String mAccessToken = cHelper.loadKey(ConfigHelper.CONFIG_ACCESS_TOKEN);
+            String mRefreshToken = cHelper.loadKey(ConfigHelper.CONFIG_REFRESH_TOKEN);
+            int mExpireTS = cHelper.loadIntKey(ConfigHelper.CONFIG_ACCESS_TOKEN_EXPIRE, 0);
+
             mPhoneNumber = cHelper.loadKey(ConfigHelper.CONFIG_KEY_PHONE_NUMBER);
+            mZoneCode = cHelper.loadKey(ConfigHelper.CONFIG_KEY_ZONE_CODE);
             mNAME = cHelper.loadKey(ConfigHelper.CONFIG_KEY_REALNAME);
             mUID = cHelper.loadKey(ConfigHelper.CONFIG_KEY_UID);
 
@@ -329,12 +285,12 @@ public class GlobalUserInfo {
             // 已成功登录，需设置Api认证信息
             OAuthInfo oAuthInfo = new OAuthInfo();
             oAuthInfo.setUid(mUID);
-            oAuthInfo.setFinalKey(mOAuthKey);
-            oAuthInfo.setFinalSecret(mOAuthSecret);
+            oAuthInfo.mAccessToken = mAccessToken;
+            oAuthInfo.mRefreshToken = mRefreshToken;
+            oAuthInfo.mExpireTS = mExpireTS;
             oAuthInfo.setMobile(mPhoneNumber);
-            oAuthInfo.setStatus(mStatus);
-            oAuthInfo.setUserName(mNAME);
-            oAuthInfo.setQueueName(mQName);
+            oAuthInfo.setZoneCode(mZoneCode);
+
             MoMoHttpApi.setOAuthInfo(oAuthInfo);
 
         } else {
@@ -364,11 +320,7 @@ public class GlobalUserInfo {
         }
     }
 
-    public static String getSyncMode(Context c) {
-        ConfigHelper config = ConfigHelper.getInstance(c.getApplicationContext());
-        String syncMode = config.loadKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
-        return syncMode;
-    }
+
 
     /**
      * 获取当前登录用户手机区号
@@ -475,13 +427,11 @@ public class GlobalUserInfo {
         DynamicMgr.getInstance().reset();        
         DraftMgr.instance().deleteAll();
         
-        // stop sync thread
-        Log.d(TAG, "logout step4");
-        stopSyncThread();
+
 
         // clear database
         Log.d(TAG, "logout step5");
-        SyncManager.getInstance().emptyAllMoMoDatabase();
+        //SyncManager.getInstance().emptyAllMoMoDatabase();
 
         // delete user cache
         CardManager.getInstance().deleteAllUserCache();
@@ -517,9 +467,7 @@ public class GlobalUserInfo {
         Log.d(TAG, "logout step2");
         context.sendBroadcast(new Intent(context.getString(R.string.action_message_destroy)));
 
-        // stop sync thread
-        Log.d(TAG, "logout step4");
-        stopSyncThread();
+
 
     }
 
@@ -538,26 +486,9 @@ public class GlobalUserInfo {
 
     private static Thread mSyncThread = null;
 
-    private static boolean mStopSync = false;
 
-    /**
-     * should only be called in logout
-     */
-    private static void stopSyncThread() {
 
-        mStopSync = true;
-        if (null != mSyncThread && SyncManager.getInstance().isSyncInProgress()) {
-            Log.i(TAG, "stop sync thread.");
 
-            SyncManager.getInstance().stopSync();
-        }
-    }
-
-    public static void startSyncThread(Thread t) {
-        mStopSync = false;
-        mSyncThread = t;
-        t.start();
-    }
 
     public static void setAppContext(Context c) {
         mAppContext = c.getApplicationContext();

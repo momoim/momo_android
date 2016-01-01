@@ -7,7 +7,14 @@ package cn.com.nd.momo.api.types;
  * @author 曾广贤 (muroqiu@sina.com)
  */
 public class OAuthInfo {
-    private String mUid;
+    public String mUid;
+
+    public String mAccessToken;
+
+    public String mRefreshToken;
+
+    public int mExpireTS;
+
 
     private String mFinalKey;
 

@@ -140,16 +140,6 @@ public final class MoMoHttpApi {
         return OAuthHelper.login(zoneCode, phoneNum, pwd);
     }
 
-    /**
-     * 通过带验证信息的url完成登录
-     * 
-     * @param url
-     * @return OAuthInfo
-     * @throws MoMoException
-     */
-    public static OAuthInfo loginByUrl(String url) throws MoMoException {
-        return OAuthHelper.loginByUrl(url);
-    }
 
     /**
      * 发送注册信息
@@ -189,13 +179,10 @@ public final class MoMoHttpApi {
         HttpTool http = new HttpTool(RequestUrl.USER_UPDATE);
         JSONObject param = new JSONObject();
         try {
-            param.put("realname", realName);
+            param.put("username", realName);
             param.put("password", pwd);
-
-            http.DoPost(param);
-            String responseContent = http.GetResponse();
-            JSONObject jsonResponse = new JSONObject(responseContent);
-            result = jsonResponse.optInt("user_status");
+            int statusCode = http.DoPost(param);
+            result = statusCode;
         } catch (JSONException e) {
             throw new MoMoException(e);
         }
@@ -378,34 +365,6 @@ public final class MoMoHttpApi {
         return robotList;
     }
 
-    /**
-     * 获取应用详情
-     * 
-     * @param robotId
-     * @return
-     * @deprecated
-     */
-    @Deprecated
-    public static Robot getRobotDetailsFromServer(long robotId) throws MoMoException {
-        Robot robot = null;
-        if (robotId < 1) {
-            return robot;
-        }
-        StringBuilder url = new StringBuilder(RequestUrl.GET_ROBOT_URL).append(robotId).append(
-                ".json");
-        HttpTool httpTool = new HttpTool(url.toString());
-        int responseCode = httpTool.DoGet();
-        String response = httpTool.GetResponse();
-        Log.d("code:" + responseCode + " response:" + response);
-        RobotParser psr = new RobotParser();
-        try {
-            robot = psr.parse(new JSONObject(response));
-        } catch (JSONException e) {
-            e.printStackTrace();
-            throw new MoMoException(e);
-        }
-        return robot;
-    }
 
     /**
      * 更新头像

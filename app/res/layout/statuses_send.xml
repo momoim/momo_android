@@ -60,7 +60,8 @@
             android:layout_weight="1"
             android:gravity="left|top"
             android:maxLength="9900"
-            android:padding="10dip" />
+            android:padding="10dip"
+            android:textColor="#000000" />
     </RelativeLayout>
 
     <LinearLayout

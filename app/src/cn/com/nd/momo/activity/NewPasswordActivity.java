@@ -152,11 +152,7 @@ public class NewPasswordActivity extends Activity implements OnClickListener {
                     OAuthInfo mOAuthInfo = MoMoHttpApi.resetPwd(GlobalUserInfo.getZoneCode(),
                             GlobalUserInfo.getPhoneNumber(), mPassword);
                     if (mOAuthInfo != null) {
-                        GlobalUserInfo.setOAuthToken(mOAuthInfo.getUid(), mOAuthInfo.getFinalKey(),
-                                mOAuthInfo.getFinalSecret(), mOAuthInfo.getUserName(),
-                                mOAuthInfo.getAvatarName(), mOAuthInfo.getQueueName(),
-                                mOAuthInfo.getStatus(), mOAuthInfo.getZoneCode(),
-                                mOAuthInfo.getMobile());
+                        GlobalUserInfo.setOAuthToken(mOAuthInfo);
 
                         Bitmap bmp = AvatarManager.getAvaterBitmap(
                                 Long.valueOf(mOAuthInfo.getUid()), mOAuthInfo.getAvatarName());

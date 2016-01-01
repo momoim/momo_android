@@ -13,17 +13,8 @@ import cn.com.nd.momo.api.types.OAuthInfo;
 public final class AppInfo {
     private static OAuthInfo m_OAuthInfo = null;
 
-    private static OAuthToken m_OAuthToken = null;
-
     private static Context m_Context = null;
 
-    public static OAuthToken getOAuthToken() {
-        return m_OAuthToken;
-    }
-
-    // public static void setOAuthToken(OAuthToken token) {
-    // m_OAuthToken = token;
-    // }
     public static Context getContext() {
         return m_Context;
     }
@@ -38,7 +29,5 @@ public final class AppInfo {
 
     public static void setOAuthInfo(OAuthInfo oAuthInfo) {
         m_OAuthInfo = oAuthInfo;
-        m_OAuthToken = new OAuthToken(m_OAuthInfo.getFinalKey(), m_OAuthInfo.getFinalSecret());
-
     }
 }

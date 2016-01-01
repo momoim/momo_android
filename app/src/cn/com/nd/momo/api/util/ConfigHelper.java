@@ -24,6 +24,11 @@ public class ConfigHelper {
 
     protected SharedPreferences.Editor mEditor;
 
+
+    static public final String CONFIG_ACCESS_TOKEN = "auth_access_token";
+    static public final String CONFIG_REFRESH_TOKEN = "auth_refresh_token";
+    static public final String CONFIG_ACCESS_TOKEN_EXPIRE = "auth_expires";
+
     // uid use CONFIG_KEY_UID
     static public final String CONFIG_OAUTH_KEY = "oauth_key";
 

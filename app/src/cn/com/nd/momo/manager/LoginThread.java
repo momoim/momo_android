@@ -43,32 +43,15 @@ public class LoginThread extends Thread {
     public void run() {
         int nRet = 0;
         String exceptMsg = "";
-
-        // use oauth login
-        // OAuthHelper oHelper = new OAuthHelper();
-        // nRet = oHelper.OAuthLogin(GlobalUserInfo.getZoneCode(), mPhoneNum,
-        // mPWD, GlobalUserInfo.getDeviceIMEI());
-
         // 需保存认证信息，处理重置密码
         try {
             OAuthInfo mOAuthInfo = MoMoHttpApi.login(GlobalUserInfo.getZoneCode(), mPhoneNum,
                     mPWD);
             if (mOAuthInfo != null) {
-                if (mOAuthInfo.getNeedResetPassword() == 0) {
-                    // 不需要重置密码
-                    GlobalUserInfo.setOAuthToken(mOAuthInfo.getUid(), mOAuthInfo.getFinalKey(),
-                            mOAuthInfo.getFinalSecret(), mOAuthInfo.getUserName(),
-                            mOAuthInfo.getAvatarName(), mOAuthInfo.getQueueName(),
-                            mOAuthInfo.getStatus(), mOAuthInfo.getZoneCode(),
-                            mOAuthInfo.getMobile());
-                    // set login status
-                    GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
-                } else {
-                    // 需要重置密码
-                    GlobalUserInfo.setTempOAuth(mOAuthInfo.getNeedResetPassword(),
-                            mOAuthInfo.getFinalKey(), mOAuthInfo.getFinalSecret(),
-                            mOAuthInfo.getZoneCode(), mOAuthInfo.getMobile());
-                }
+                // 不需要重置密码
+                GlobalUserInfo.setOAuthToken(mOAuthInfo);
+                // set login status
+                GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
                 nRet = HttpStatus.SC_OK;
             }
         } catch (MoMoException ex) {

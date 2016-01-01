@@ -143,11 +143,7 @@ public class BindVerifyCodeActivity extends Activity implements OnClickListener 
                 try {
                     OAuthInfo oauthInfo = MoMoHttpApi.bindMobile(OAuthHelper.CONSUMER_KEY, mMobile,
                             verifyCode);
-                    GlobalUserInfo.setOAuthToken(oauthInfo.getUid(), oauthInfo.getFinalKey(),
-                            oauthInfo.getFinalSecret(), oauthInfo.getUserName(),
-                            oauthInfo.getAvatarName(), oauthInfo.getQueueName(),
-                            oauthInfo.getStatus(), oauthInfo.getZoneCode(),
-                            oauthInfo.getMobile());
+                    GlobalUserInfo.setOAuthToken(oauthInfo);
                     GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
                     mHandler.sendEmptyMessage(MSG_CHECK_VERIFYCODE_SUCCESS);
                 } catch (MoMoException e) {

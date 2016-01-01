@@ -35,7 +35,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.activity.ChangeMobileActivity;
 import cn.com.nd.momo.api.parsers.json.ChatContentParser;
 import cn.com.nd.momo.api.types.ChatContent;
 import cn.com.nd.momo.api.types.ChatContent.Audio;

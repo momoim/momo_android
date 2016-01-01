@@ -25,8 +25,6 @@ import android.widget.Toast;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.RequestUrl;
-import cn.com.nd.momo.api.SyncContactApi;
-import cn.com.nd.momo.api.parsers.json.UserParser;
 import cn.com.nd.momo.api.types.MyAccount;
 import cn.com.nd.momo.api.types.UpgradeInfo;
 import cn.com.nd.momo.api.types.User;
@@ -229,7 +227,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        SyncContactApi.getInstance(getApplicationContext()).setAdditionalHandler(mHSyncListener);
 
         m_msgRing = configHelper.loadBooleanKey(ConfigHelper.CONFIG_KEY_MESSAGE_RING, true);
         CheckBox messageRing = (CheckBox)findViewById(R.id.chk_option_ring);
@@ -260,18 +257,7 @@ public class OptionActivity extends TabActivity implements OnClickListener {
         } else {
             m_txtLoginUser.setText("体验者：设置个人名片");
         }
-        if (ConfigHelper.SYNC_MODE_TWO_WAY.equals(syncModel)) {
-            m_btnImportContacts.setVisibility(View.VISIBLE);
-            MarqueeTextView accountView = (MarqueeTextView)findViewById(R.id.txt_opt_account);
-            if (SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-                Log.d(TAG, "tag1");
-                accountView.setText("正在同步中...");
-            } else {
-                Log.d(TAG, "tag2");
-                accountView.setText("同步帐号:" + getCurrentAccountName(true, ""));
-            }
-            m_btnAccount.setVisibility(View.VISIBLE);
-        }
+
 
     }
 
@@ -281,33 +267,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
 
     }
 
-    private Handler mHSyncListener = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            MarqueeTextView accountView = (MarqueeTextView)findViewById(R.id.txt_opt_account);
-            switch (msg.what) {
-                case SyncContactApi.MSG_SYNC_PROCESS_START:
-                    accountView.setText("正在同步中...");
-                    Log.d(TAG, "tag3");
-                    break;
-                case SyncContactApi.MSG_SYNC_PROCESS_FINISHED:
-                    accountView.setText("同步帐号:" + getCurrentAccountName(true, ""));
-                    break;
-                case MSG_GET_CONTACT_COUNT_BY_ACCOUNT:
-                    Log.d(TAG, "tag4");
-                    cn.com.nd.momo.util.Utils.mIsContactCount = false;
-                    if (SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-                        accountView.setText("正在同步中...");
-                    } else {
-                        int count = Integer.valueOf(msg.obj.toString());
-                        String suffix = "(" + count + ")";
-                        accountView.setText("同步帐号:" + getCurrentAccountName(false, suffix));
-                    }
-                    break;
-            }
-        }
-
-    };
 
     private Handler hLogout = new Handler() {
 
@@ -322,7 +281,7 @@ public class OptionActivity extends TabActivity implements OnClickListener {
                     }
 
                     // after logout lead to login activity
-                    Intent iLogin = new Intent(OptionActivity.this, LoginPreActivity.class);
+                    Intent iLogin = new Intent(OptionActivity.this, LoginActivity.class);
                     startActivity(iLogin);
                     finish();
 
@@ -399,14 +358,7 @@ public class OptionActivity extends TabActivity implements OnClickListener {
             case R.id.btn_opt_account:
                 break;
             case R.id.btn_opt_import_contacts:
-                if (SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-                    cn.com.nd.momo.api.util.Utils.displayToast("正在同步中，请稍后...", 0);
-                    break;
-                }
-                Log.d(TAG, "go to AccountsBindActivity");
-                i = new Intent(this, AccountsBindActivity.class);
-                i.putExtra(AccountsBindActivity.NEED_LEAD_TO_SYNC, false);
-                startActivityForResult(i, ACCOUNT_BIND_REQUEST_ID);
+
                 Log.d(TAG, "go to AccountsBindActivity end");
                 break;
             case R.id.btn_opt_about:
@@ -438,41 +390,10 @@ public class OptionActivity extends TabActivity implements OnClickListener {
 
                 break;
             case R.id.layout_robot:
-                i = new Intent(OptionActivity.this, RobotListActivity.class);
-                startActivity(i);
+
                 break;
             case R.id.layout_sync_mode_check:
-                if (SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-                    cn.com.nd.momo.api.util.Utils.displayToast("正在同步中，请稍后再进行同步模式切换", 0);
-                    return;
-                }
-                if (mChkAutoSync.isChecked()) {
-                    changeSyncMode(ConfigHelper.SYNC_MODE_LOCAL_ONLY);
-                    resetSyncOptionView(ConfigHelper.SYNC_MODE_LOCAL_ONLY, true);
-                } else {
-                    if (null == Utils.getActiveNetWorkName(Utils.getContext())) {
-                        cn.com.nd.momo.api.util.Utils.displayToast("请检查网络连接", Toast.LENGTH_SHORT);
-                        return;
-                    }
-                    boolean importAccounts = configHelper.loadBooleanKey(
-                            ConfigHelper.CONFIG_KEY_IMPORT_ACCOUNTS, false);
-                    if (!Utils.isBindedAccountExist(Utils.getCurrentAccount())) {
-                        Utils.resetAccount(this);
-                        configHelper.saveBooleanKey(ConfigHelper.CONFIG_KEY_IMPORT_ACCOUNTS, false);
-                        configHelper.commit();
-                        importAccounts = false;
-                    }
-                    if (!importAccounts) {
-                        i = new Intent(this, AccountsBindActivity.class);
-                        i.putExtra(AccountsBindActivity.NEED_LEAD_TO_SYNC, false);
-                        i.putExtra(AccountsBindActivity.FIRST_SYNC_AFTER_LOGIN, true);
-                        startActivityForResult(i, ACCOUNT_BIND_SYNC_REQUEST_ID);
-                        return;
-                    }
 
-                    changeSyncMode(ConfigHelper.SYNC_MODE_TWO_WAY);
-                    beginSync(true);
-                }
                 break;
             case R.id.btn_opt_upgrade:
                 Log.d(TAG, "phone_model:" + android.os.Build.MODEL);
@@ -615,11 +536,7 @@ public class OptionActivity extends TabActivity implements OnClickListener {
         if (ConfigHelper.SYNC_MODE_TWO_WAY.equals(strModeKey)) {
             mChkAutoSync.setChecked(true);
             MarqueeTextView accountView = (MarqueeTextView)findViewById(R.id.txt_opt_account);
-            if (SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-                accountView.setText("正在同步中...");
-            } else {
-                accountView.setText("同步帐号:" + getCurrentAccountName(showContactCount, ""));
-            }
+            accountView.setText("同步帐号:" + getCurrentAccountName(showContactCount, ""));
             m_btnAccount.setVisibility(View.VISIBLE);
             m_btnImportContacts.setVisibility(View.VISIBLE);
             m_btnSync.setBackgroundDrawable(getResources().getDrawable(
@@ -656,31 +573,7 @@ public class OptionActivity extends TabActivity implements OnClickListener {
     }
 
     private String getCurrentAccountName(boolean showCount, String suffix) {
-        String strAccountName = "";
-        final Account currAccount = Utils.getCurrentAccount();
-
-        if (currAccount == null) {
-            return strAccountName;
-        }
-        if (showCount && !cn.com.nd.momo.util.Utils.mIsContactCount) {
-            new Thread() {
-                @Override
-                public void run() {
-                    cn.com.nd.momo.util.Utils.mIsContactCount = true;
-                    int count = Utils.getContactCountByAccount(currAccount);
-                    Message msg = new Message();
-                    msg.what = MSG_GET_CONTACT_COUNT_BY_ACCOUNT;
-                    msg.obj = count;
-                    mHSyncListener.sendMessage(msg);
-                }
-            }.start();
-        }
-        if (currAccount.name.equals(MyAccount.ACCOUNT_MOBILE_NAME)) {
-            strAccountName = getString(R.string.txt_phone) + suffix;
-        } else {
-            strAccountName = currAccount.name + suffix;
-        }
-        return strAccountName;
+        return "";
     }
 
     @Override
@@ -715,39 +608,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
     }
 
     private void beginSync(final boolean needDelete) {
-        if (SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-            cn.com.nd.momo.api.util.Utils.displayToast("正在同步中，请稍后...", 0);
-            return;
-        }
-        if (null == Utils.getActiveNetWorkName(Utils.getContext())) {
-            cn.com.nd.momo.api.util.Utils.displayToast("请检查网络连接", Toast.LENGTH_SHORT);
-            return;
-        }
-        final String syncMode = GlobalUserInfo.getSyncMode(getApplicationContext());
-        resetSyncOptionView(syncMode, false);
-        cn.com.nd.momo.api.util.Utils.displayToast("开始同步...", Toast.LENGTH_SHORT);
-        if (!SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-            // begin sync
-            Thread tSync = new Thread() {
-                @Override
-                public void run() {
-                    if (needDelete) {
-                        SyncContactApi.getInstance(getApplicationContext())
-                                .deleteMoMoDatabaseContacts();
-                    }
-                    Log.d(TAG, "start sync");
-                    if (ConfigHelper.SYNC_MODE_TWO_WAY.equals(syncMode)) {
-                        SyncContactApi.getInstance(getApplicationContext()).serverSync();
-                    } else if (ConfigHelper.SYNC_MODE_LOCAL_ONLY.equals(syncMode)) {
-                        SyncContactApi.getInstance(getApplicationContext()).localSync();
-                    }
-                    GlobalContactList.getInstance().loadDisplayContactList();
-                    CardManager.getInstance().batchGetCard(getApplicationContext());
-                }
-            };
-            // tSync.start();
-            GlobalUserInfo.startSyncThread(tSync);
-        }
     }
 
 }

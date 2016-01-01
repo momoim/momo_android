@@ -7,7 +7,7 @@ package cn.com.nd.momo.api;
  * @author 曾广贤 (muroqiu@sina.com)
  */
 public final class RequestUrl {
-    static public String URL_API = MoMoHttpApi.getApi();
+    static public String URL_API = "http://api.momo.im";
 
     static public final String IN_API = "http://192.168.94.26";
 
@@ -20,21 +20,25 @@ public final class RequestUrl {
     static public final String OUT_API_SIMULATE = "http://api.simulate.momo.im";
 
     // 注册
-    static public final String REGIST_SEND_VERIFY_CODE_URL = URL_API + "/register/create.json";
+    static public final String REGIST_SEND_VERIFY_CODE_URL = URL_API + "/auth/verify_code.json";
+    static public final String REGIST_VERIFY_URL = URL_API + "/auth/token";
 
-    static public final String REGIST_VERIFY_URL = URL_API + "/register/verify.json";
+    // 登录
+    static public final String LOGIN = URL_API + "/user/login.json";
+
+
+
+
 
     static public final String APPLY_VERIFYCODE = URL_API + "/user/apply_verifycode.json";
     static public final String BIND_MOBILE = URL_API + "/user/bind_mobile.json";
     static public final String CHECK_OAP = URL_API + "/user/check_oap.json";
     static public final String TOKEN_LOGIN = URL_API + "/user/token_login.json";
-    
-    // 登录
-    static public final String LOGIN = URL_API + "/user/login.json";
+
 
     static public final String LOGIN_BY_URL = URL_API + "/user/auto_verify.json";
 
-    static public final String USER_UPDATE = URL_API + "/user/personal.json";
+    static public final String USER_UPDATE = URL_API + "/user/init.json";
 
     static public final String IMAGE_URL = URL_API + "/photo/update_avatar.json";
 

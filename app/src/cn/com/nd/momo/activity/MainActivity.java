@@ -36,17 +36,12 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.activity.guide.GuideActivity;
-import cn.com.nd.momo.api.SyncContactApi;
 import cn.com.nd.momo.api.types.UpgradeInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.api.util.Utils;
-import cn.com.nd.momo.manager.CardManager;
 import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.manager.RobotManager;
 import cn.com.nd.momo.manager.UpgradeMgr;
-import cn.com.nd.momo.mention.model.MentionInfo;
+
 
 
 public class MainActivity extends ActivityGroup {
@@ -60,32 +55,16 @@ public class MainActivity extends ActivityGroup {
 
     private TabHost mTabHost;
 
-    public static String TAB_CONTACTS = "contacts";
-
-    public static String TAB_IM = "im";
 
     public static String TAB_DYNAMIC = "dynamic";
-
     public static String TAG_OPTION = "option";
-
-    public static String ALL_ACCOUNT_NAME;
-
-    public static String MOBILE_ACCOUNT_NAME;
-
     public static String DELETE_MOMO_DB = "delete_momo_db";
-
-    // this is for tab toggle status
-    public static int TAB_NORMAL = 1;
-
     public static int TAB_TOGGLED = 2;
 
     private boolean mHasInited = false;
 
     private AlertDialog mUpgradeDialog = null;
 
-    private int mUnReadMentionCount;
-
-    ConfigHelper ch = ConfigHelper.getInstance(MainActivity.this);
 
     /** Called when the activity is first created. */
     @Override
@@ -96,26 +75,8 @@ public class MainActivity extends ActivityGroup {
         Log.d(TAG, "intent action:" + intent.getAction());
         if (intent.getAction() != null
                 && intent.getAction().equals(getString(R.string.action_message_income))) {
-            ConfigHelper ch = ConfigHelper.getInstance(getApplicationContext());
-            String strSyncMode = ch.loadKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
-            boolean importAccounts = ch.loadBooleanKey(ConfigHelper.CONFIG_KEY_IMPORT_ACCOUNTS,
-                    false);
             if (GlobalUserInfo.getUserStatus() < GlobalUserInfo.STATUS_VERIFY_USER) {
                 Intent i = new Intent(this, RegInfoActivity.class);
-                startActivity(i);
-                finish();
-                return;
-            } else if ("".equals(strSyncMode)) {
-                Intent i = new Intent(this, LeadToSyncActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
-                return;
-            } else if ((ConfigHelper.SYNC_MODE_TWO_WAY.equals(strSyncMode) && (!Utils
-                    .isBindedAccountExist(Utils.getCurrentAccount()) || !importAccounts))) {
-                // 非体验者用户，并且未选择同步帐号跳转至引导同步页面
-                Intent i = new Intent(this, AccountsBindActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
                 return;
@@ -124,53 +85,10 @@ public class MainActivity extends ActivityGroup {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_activity);
 
-        // 检查升级
-        checkUpgrade();
-
-        int tabIndex = ConfigHelper.getInstance(this).loadIntKey(ConfigHelper.CONFIG_KEY_LAST_TAB, 0);
-
-        if (intent != null) {
-            Bundle bundle = intent.getExtras();
-            if (bundle != null) {
-                String param = bundle.getString("callFrom91U");
-                if (param != null && !param.equals("")) {
-                    try {
-                        JSONObject json = new JSONObject(param);
-                        // 目前支持3个页面调用 私聊 "im"，联系人 "contact"，分享 "statuses"
-                        String func = json.getString("func");
-                        if (func.equalsIgnoreCase("im")) {
-                            tabIndex = 0;
-                        } else if (func.equalsIgnoreCase("contact")) {
-                            tabIndex = 1;
-                        } else if (func.equalsIgnoreCase("statuses")) {
-                            tabIndex = 2;
-                        }
-                    } catch (JSONException e) {
-                        // 91U调用参数错误，不做特殊处理
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-
-        // 初始视图
+        int tabIndex = 0;
         initActivity(tabIndex);
 
-        Log.d(TAG, "step4: init MQ service");
-
-        // if not logined, show login activity
-        if (!GlobalUserInfo.hasLogined()) {
-            Log.d(TAG, "login called");
-            Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
-            finish();
-        } else {
-            sendBroadcast(new Intent(getString(R.string.action_message_launch)));
-        }
-
-        // 启动时刷新应用机器人列表
-        RobotManager.getInstance(this.getApplicationContext()).reloadRobotList();
-
+        sendBroadcast(new Intent(getString(R.string.action_message_launch)));
         Log.d(TAG, "On Create end");
     }
 
@@ -178,9 +96,6 @@ public class MainActivity extends ActivityGroup {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        // // make sure service is running
-        // sendBroadcast(new Intent(getString(R.string.action_message_launch)));
-
     }
 
     @Override
@@ -199,32 +114,6 @@ public class MainActivity extends ActivityGroup {
             initActivity(0);
         } else {
             finish();
-        }
-    }
-
-    public void hideTab(boolean bHide) {
-        if (bHide) {
-            mTabHost.getTabWidget().setVisibility(View.GONE);
-        } else {
-            mTabHost.getTabWidget().setVisibility(View.VISIBLE);
-        }
-    }
-
-    public void setAboutMeCount(int nCount) {
-
-    }
-
-    public void setIMCount(int nCount) {
-        View v = mTabHost.getTabWidget().getChildTabViewAt(0);
-        if (v != null) {
-            TextView txt = (TextView)v.findViewById(R.id.txt_about_me_cout);
-
-            txt.setVisibility(View.GONE);
-            /*
-             * if (nCount > 0) { txt.setVisibility(View.VISIBLE);
-             * txt.setText(String.valueOf(nCount)); } else {
-             * txt.setVisibility(View.GONE); }
-             */
         }
     }
 
@@ -299,112 +188,14 @@ public class MainActivity extends ActivityGroup {
         Log.w(TAG, "begin bind service task");
 
         mHasInited = true;
-        Intent intent = getIntent();
-        final boolean needDelete;
-        if (intent != null && intent.hasExtra(DELETE_MOMO_DB)) {
-            needDelete = intent.getBooleanExtra(DELETE_MOMO_DB, false);
-        } else {
-            needDelete = false;
-        }
-        // do sync when application start
-        if (!SyncContactApi.getInstance(getApplicationContext()).isSyncInProgress()) {
-            // begin sync
-            Thread tSync = new Thread() {
-
-                @Override
-                public void run() {
-                    Log.d(TAG, "start sync");
-                    if (needDelete) {
-                        SyncContactApi.getInstance(getApplicationContext())
-                                .deleteMoMoDatabaseContacts();
-                    }
-                    String syncMode = GlobalUserInfo.getSyncMode(getApplicationContext());
-                    if (ConfigHelper.SYNC_MODE_TWO_WAY.equals(syncMode)) {
-                        if (null != Utils.getActiveNetWorkName(Utils.getContext())) {
-                            SyncContactApi.getInstance(getApplicationContext()).serverSync();
-                        } else {
-                            Account currentAccount = Utils.getCurrentAccount();
-                            Account momoAccount = Utils.getMoMoAccount();
-                            if(currentAccount != null 
-                                && momoAccount != null 
-                                && momoAccount.equals(currentAccount)
-                                && !Utils.isBindedAccountExist(currentAccount)) {
-                                Log.i(TAG, "add momo account");
-                                //会写momo自定义帐号联系人
-                                try {
-                                    String accountName = GlobalUserInfo.getPhoneNumber();
-                                    if(!TextUtils.isEmpty(accountName)) {
-                                        Utils.addAccount(null);
-                                        Log.i(TAG, "begin back add momo account sync");
-                                        try {
-                                            //等待一秒创建完成momo帐号
-                                            sleep(1000);
-                                        } catch(Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                        Log.i(TAG, "back add momo account sync");
-                                        SyncContactApi.getInstance(getApplicationContext()).backAddMoMoAcountSync();
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                    
-                                }
-                            }
-                        }
-                    } else if (ConfigHelper.SYNC_MODE_LOCAL_ONLY.equals(syncMode)) {
-                        SyncContactApi.getInstance(getApplicationContext()).localSync();
-                    }
-                    GlobalContactList.getInstance().loadDisplayContactList();
-                    CardManager.getInstance().batchGetCard(getApplicationContext());
-                }
-
-            };
-            // tSync.start();
-            GlobalUserInfo.startSyncThread(tSync);
-        }
     }
 
-    public void toGuide(String flag) {
-        Boolean isFirst = ch.loadBooleanKey(flag, true);
-        if (isFirst) {
-            Intent intent = new Intent(MainActivity.this, GuideActivity.class);
-            intent.putExtra("flag", flag);
-            startActivity(intent);
-            ch.saveBooleanKey(flag, false);
-            ch.commit();
-        }
-    }
+
 
     @Override
     protected void onNewIntent(Intent intent) {
         Log.d(TAG, "onNewIntent called");
         super.onNewIntent(intent);
-
-        ConfigHelper ch = ConfigHelper.getInstance(getApplicationContext());
-        String strSyncMode = ch.loadKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
-        boolean importAccounts = ch.loadBooleanKey(ConfigHelper.CONFIG_KEY_IMPORT_ACCOUNTS,
-                false);
-
-        if (GlobalUserInfo.getUserStatus() < GlobalUserInfo.STATUS_VERIFY_USER) {
-            Intent i = new Intent(getApplicationContext(), RegInfoActivity.class);
-            startActivity(i);
-            finish();
-        } else if ("".equals(strSyncMode)) {
-            Intent i = new Intent(this, LeadToSyncActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
-        } else if ((ConfigHelper.SYNC_MODE_TWO_WAY.equals(strSyncMode) && (!Utils
-                .isBindedAccountExist(Utils.getCurrentAccount()) || !importAccounts))) {
-
-            // clear momo database
-            SyncContactApi.getInstance(getApplicationContext()).deleteMoMoDatabaseContacts();
-            // start lead to sync activity
-            Intent i = new Intent(getApplicationContext(), AccountsBindActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
-        }
     }
 
     private View inflaterTab(Drawable icon, String strText) {
@@ -468,20 +259,6 @@ public class MainActivity extends ActivityGroup {
         System.gc();
     }
 
-    private ArrayList<IMentionInitCallback> lstCallback = new ArrayList<IMentionInitCallback>();
-
-    /**
-     * 注册一个回调，程序初始化的的时候去网络更新数据，当数据更新完并写入数据库时调用此回调， 用于更新关于我的界面，以及TabHost显示的关于我的数量
-     * 
-     * @param callback
-     */
-    public void registerMentionInitCallback(IMentionInitCallback callback) {
-        lstCallback.add(callback);
-    }
-
-    public interface IMentionInitCallback {
-        void onMessage(ArrayList<MentionInfo> lstMentionInfo);
-    }
 
 
     private Handler mHandler = new Handler() {
