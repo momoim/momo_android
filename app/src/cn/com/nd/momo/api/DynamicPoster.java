@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
+
+import cn.com.nd.momo.activity.SelectorActivity;
 import cn.com.nd.momo.activity.Statuses_Activity;
 import cn.com.nd.momo.activity.Statuses_Comment_Activity.CommentItemInfo;
 import cn.com.nd.momo.api.exception.MoMoException;
@@ -378,9 +380,6 @@ public class DynamicPoster {
         new Thread() {
             @Override
             public void run() {
-                //// TODO
-
-                /*
                 if (SelectorActivity.getAtSize() > 0) {
                     ConfigHelper.getInstance(mActivity).saveKey("mome_viewed", "0");
                     ConfigHelper.getInstance(mActivity).commit();
@@ -403,7 +402,7 @@ public class DynamicPoster {
                 msg.what = DynamicMgr.MSG_POST_COMMENT;
                 msg.obj = result;
 
-                mHandler.sendMessage(msg);*/
+                mHandler.sendMessage(msg);
 
 
             }
