@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:gravity="center">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="300dip" android:padding="10dip"
+		android:background="@drawable/about_me_slide_bg">
+
+		<!-- 作为滑动的缓冲区部分 -->
+		<RelativeLayout android:id="@+id/slide_tmp"
+			android:layout_width="fill_parent" android:layout_height="200dip"
+			android:background="#f1f1f1">
+
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+
+				<LinearLayout android:layout_width="wrap_content"
+					android:layout_height="fill_parent" android:orientation="vertical">
+
+					<!-- avatar -->
+					<cn.com.nd.momo.view.CustomImageView
+						android:id="@+id/avatar_tmp" android:src="@drawable/ic_contact_picture"
+						android:layout_width="50dip" android:layout_height="50dip" />
+					<!-- skip to feed -->
+					<ImageButton android:id="@+id/skip_to_feed_tmp"
+						android:src="@drawable/about_me_ic_dynamic_detail"
+						android:background="#00000000" android:layout_width="50dip"
+						android:layout_height="50dip" android:layout_marginTop="10dip" />
+
+				</LinearLayout>
+
+				<!-- content -->
+				<LinearLayout android:layout_width="1dip"
+					android:layout_height="fill_parent" android:orientation="vertical"
+					android:layout_weight="1" android:layout_marginLeft="3dip">
+
+					<LinearLayout android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:gravity="center_vertical">
+
+						<TextView android:id="@+id/avatar_name_temp"
+							android:layout_width="1dip" android:layout_weight="1"
+							android:layout_height="wrap_content" android:text="潇洒哥:"
+							android:textColor="@color/black" android:textSize="25sp" />
+
+						<TextView android:id="@+id/time_tmp"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:text="12-10 10:38" />
+
+					</LinearLayout>
+
+					<TextView android:id="@+id/comment_tmp"
+						android:layout_width="fill_parent" android:layout_height="wrap_content"
+						android:text="@+id/comment_tmp" />
+
+					<TextView android:id="@+id/src_comment_tmp"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:background="@drawable/comment_bg" android:text="@+id/src_comment_tmp" />
+
+					<TextView android:id="@+id/reply_comment_tmp"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:background="#00fffafa" android:visibility="gone" />
+
+				</LinearLayout>
+			</LinearLayout>
+		</RelativeLayout>
+
+		<!-- 作为滑动的主显示部分 -->
+		<RelativeLayout android:id="@+id/slide"
+			android:layout_width="fill_parent" android:layout_height="200dip"
+			android:background="#f1f1f1">
+
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+
+				<LinearLayout android:layout_width="wrap_content"
+					android:layout_height="fill_parent" android:orientation="vertical">
+
+					<cn.com.nd.momo.view.CustomImageView
+						android:id="@+id/avatar" android:src="@drawable/ic_contact_picture"
+						android:layout_width="50dip" android:layout_height="50dip" />
+
+					<!-- skip to feed -->
+					<ImageButton android:id="@+id/skip_to_feed"
+						android:src="@drawable/about_me_ic_dynamic_detail"
+						android:background="#00000000" android:layout_width="50dip"
+						android:layout_height="50dip" android:layout_marginTop="10dip" />
+				</LinearLayout>
+
+				<!-- content -->
+				<LinearLayout android:layout_width="1dip"
+					android:layout_height="fill_parent" android:orientation="vertical"
+					android:layout_weight="1" android:layout_marginLeft="3dip">
+
+					<LinearLayout android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:gravity="center_vertical">
+
+						<TextView android:id="@+id/avatar_name"
+							android:layout_width="1dip" android:layout_weight="1"
+							android:layout_height="wrap_content" android:textColor="@color/black"
+							android:textSize="25sp" />
+
+						<TextView android:id="@+id/time" android:layout_width="wrap_content"
+							android:layout_height="wrap_content" />
+
+					</LinearLayout>
+
+					<TextView android:id="@+id/comment"
+						android:layout_toRightOf="@id/avatar" android:layout_width="fill_parent"
+						android:layout_height="wrap_content" />
+
+					<TextView android:id="@+id/src_comment"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:background="@drawable/comment_bg" />
+
+					<TextView android:id="@+id/reply_comment"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:background="#00fffafa" android:visibility="gone" />
+
+				</LinearLayout>
+
+			</LinearLayout>
+		</RelativeLayout>
+
+		<!-- input bar -->
+		<RelativeLayout android:minHeight="65dip"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:background="@drawable/user_details_bg"
+			android:layout_alignParentBottom="true" android:layout_marginBottom="10dip"
+			android:gravity="center">
+
+			<ImageButton android:layout_alignParentLeft="true"
+				android:id="@+id/at" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_centerVertical="true"
+				android:src="@drawable/about_me_ic_at" android:background="@drawable/ic_null" />
+
+			<Button android:id="@+id/mention_relay_send"
+				android:layout_marginLeft="5dip" android:gravity="center"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true" android:padding="5dip"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:textSize="18dip"
+				android:background="@drawable/about_me_ic_send" />
+			<!-- android:text="@string/im_btn_send" -->
+
+			<EditText android:id="@+id/reply" android:layout_marginLeft="5dip"
+				android:layout_centerVertical="true" android:layout_toRightOf="@id/at"
+				android:layout_toLeftOf="@id/mention_relay_send"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:minHeight="46dip" android:maxLength="140"
+				android:singleLine="false" android:maxLines="5" android:text="" />
+
+		</RelativeLayout>
+
+	</RelativeLayout>
+</LinearLayout>

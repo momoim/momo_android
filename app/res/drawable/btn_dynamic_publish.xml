@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:state_pressed="true"
+		android:state_enabled="true"
+		android:drawable="@drawable/about_me_basebar_send_pressed" />
+				
+	<item
+	android:state_enabled="true" 
+	android:state_focused="false" android:state_pressed="false"
+		android:drawable="@drawable/about_me_basebar_send" />
+		
+	<item android:state_enabled="false" 
+		android:drawable="@drawable/about_me_basebar_send_pressed" />
+		
+	<item android:drawable="@drawable/about_me_basebar_send" />
+</selector>

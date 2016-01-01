@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<RelativeLayout android:layout_width="fill_parent"
+		android:padding="0dip" android:layout_height="wrap_content"
+		android:background="@drawable/title_background">
+		<ImageButton android:id="@+id/change_view" style="@style/image_rect_bg_button"
+			android:src="@drawable/ic_have_read" android:padding="5dip"
+			android:layout_centerVertical="true" android:layout_alignParentRight="true" />
+
+		<ImageButton android:id="@+id/set_all_mention_read"
+			style="@style/image_rect_bg_button" android:layout_centerVertical="true"
+			android:paddingLeft="10dip" android:paddingRight="10dip"
+			android:paddingTop="5dip" android:paddingBottom="5dip"
+			android:layout_alignParentLeft="true" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/ic_have_read" />
+
+		<TextView 
+			android:layout_toRightOf="@+id/refresh"
+			android:layout_centerInParent="true" android:gravity="center"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textSize="18dip" android:text="@string/tab_txt_mention"
+			android:textColor="@color/white" />
+
+	</RelativeLayout>
+	
+    <android.support.v4.view.ViewPager
+		android:id="@+id/mention_pager"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		/>    
+    
+    
+</LinearLayout>

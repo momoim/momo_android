@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/layout_total_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/title_background"
+            android:padding="0dip" >
+
+            <ImageButton
+                android:id="@+id/btn_contact_sync"
+                style="@style/image_rect_bg_button"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:padding="5dip"
+                android:src="@drawable/group_contact_refresh" />
+
+            <ImageButton
+                android:id="@+id/btn_contact_add"
+                style="@style/image_rect_bg_button"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="5dip"
+                android:src="@drawable/btn_contact_add_momo" />
+
+            <RadioGroup
+                android:id="@+id/radio_button_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:orientation="horizontal"
+
+
+     	        android:layout_toLeftOf="@+id/btn_contact_add"
+	            android:layout_toRightOf="@+id/btn_contact_sync" >
+
+
+                <RadioButton
+                    android:id="@+id/radio_contact"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_selector_left"
+                    android:checked="true"
+                    android:text="@string/contact_lis_title_contact"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_mo"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_selector_right"
+                    android:text="@string/contact_lis_title_group"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_weight="1" >
+
+            <!-- contact layout -->
+
+            <LinearLayout
+                android:id="@+id/layout_contact_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <!-- category -->
+
+                <ListView
+                    android:id="@+id/listGroup"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/list_category_bg"
+                    android:cacheColorHint="@color/transparent"
+                    android:headerDividersEnabled="false"
+                    android:listSelector="@drawable/list_selector_category"
+                    android:scrollbars="none" />
+
+                <!-- contact -->
+
+                <ListView
+                    android:id="@+id/listContacts"
+                    android:layout_width="1dip"
+                    android:layout_height="fill_parent"
+                    android:visibility="visible"
+                    android:layout_weight="1" />
+                    
+                <ListView
+                    android:id="@+id/listGroups"
+                    android:layout_width="1dip"
+                    android:layout_height="fill_parent"
+                    android:visibility="gone"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <!-- letter indexer -->
+
+            <LinearLayout
+                android:id="@+id/llayout_letter_index"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#00000000"
+                android:gravity="right" >
+
+                <LinearLayout
+                    android:id="@+id/layout_letter_index"
+                    android:layout_width="1dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingLeft="100dip" >
+
+                    <TextView
+                        android:id="@+id/txt_letter_index"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="15dip"
+                        android:background="@drawable/letter_indexer_bg"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="#4f4f4f"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <cn.com.nd.momo.view.AlphabeticBar
+                    android:id="@+id/alphabetic_bar"
+                    android:layout_width="30dip"
+                    android:layout_height="fill_parent"
+                    android:background="#00000000" />
+            </LinearLayout>
+
+            <!-- group layout -->
+
+            <LinearLayout
+                android:id="@+id/layout_contact_list_group"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:visibility="gone" >
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- bottom button bar -->
+
+        <LinearLayout
+            android:id="@+id/llayout_category_button_bar"
+            style="@android:style/ButtonBar"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:background="#808080"
+            android:gravity="center"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/btn_contact_list_remove"
+                android:layout_width="1dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_contact_list_remove_from_category" />
+
+            <Button
+                android:id="@+id/btn_contact_list_move"
+                android:layout_width="1dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_contact_list_move_to_category" />
+
+            <Button
+                android:id="@+id/btn_contact_list_cancel"
+                android:layout_width="1dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_contact_list_return" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

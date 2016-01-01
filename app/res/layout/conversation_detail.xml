@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@color/background_color"
+	android:gravity="top">
+	<!--标题 -->
+	<LinearLayout android:gravity="center"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/title_background">
+		<TextView android:textColor="#ffffffff" android:id="@+id/txt_title"
+			android:gravity="center" android:text="@string/system_msg"
+			android:background="@drawable/btn_group_select" android:minWidth="90dip"
+			android:layout_centerInParent="true" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<!-- avatar and name -->
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_margin="10dip">
+		<!--头像 -->
+		<cn.com.nd.momo.view.CustomImageView
+			android:id="@+id/img_friend_home_page_image" android:layout_width="52dip"
+			android:layout_height="52dip" android:scaleType="fitCenter"
+			android:layout_margin="2dip" android:layout_centerVertical="true"
+			android:layout_alignParentLeft="true" android:src="@drawable/ic_contact_picture" />
+
+
+		<!--昵称 -->
+		<TextView android:id="@+id/txt_friend_home_page_nick_name"
+			android:layout_toRightOf="@id/img_friend_home_page_image"
+			android:gravity="center_vertical" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_marginBottom="3dip"
+			android:textSize="18sp" android:layout_marginLeft="3dip"
+			android:layout_alignTop="@id/img_friend_home_page_image"
+			android:textAppearance="?android:attr/textAppearanceMedium" />
+		<!--签名 -->
+		<TextView android:id="@+id/txt_friend_home_page_signature"
+			android:layout_toRightOf="@id/img_friend_home_page_image"
+			android:layout_alignTop="@id/img_friend_home_page_image"
+			android:gravity="center_vertical" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:inputType="textMultiLine"
+			android:textColor="@color/font_gray_small" android:layout_marginLeft="3dip"
+			android:textAppearance="?android:attr/textAppearanceSmall" />
+
+		<!--时间 -->
+		<TextView android:id="@+id/txt_friend_home_page_time"
+			android:layout_alignParentRight="true" android:layout_alignTop="@id/img_friend_home_page_image"
+			android:text="time" android:gravity="center_vertical"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:inputType="textMultiLine" android:textColor="@color/font_gray_small"
+			android:layout_marginLeft="3dip" android:textAppearance="?android:attr/textAppearanceSmall" />
+	</RelativeLayout>
+
+	<View android:id="@+id/view_divider_line" android:layout_width="fill_parent"
+		android:layout_height="1px" android:layout_marginBottom="10dip"
+		android:background="@color/divider_color" />
+
+	<!--警告 -->
+	<TextView android:id="@+id/txt_warn"
+		android:text="@string/warn_phone_number_may_leak_after_agree"
+		android:paddingLeft="10dip" android:textSize="18sp" android:textColor="@color/orangle_small"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+	<!--群组介绍 -->
+	<LinearLayout android:orientation="vertical"
+		android:gravity="left" android:paddingLeft="10dip"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<TextView android:id="@+id/txt_warn"
+			android:text="@string/warn_phone_number_may_leak_after_agree"
+			android:paddingLeft="10dip" android:textSize="18sp"
+			android:textColor="@color/black" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+		<TextView android:id="@+id/txt_introduce"
+			android:text="@string/warn_phone_number_may_leak_after_agree"
+			android:paddingLeft="10dip" android:textSize="14sp"
+			android:textColor="@color/gray" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+
+
+	<!-- friend information -->
+	<LinearLayout android:id="@+id/layout_friend_home_page_info"
+		android:orientation="vertical" android:gravity="center_vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_marginLeft="10dip" android:layout_marginRight="10dip"
+		android:layout_marginBottom="10dip" android:paddingLeft="10dip"
+		android:visibility="visible" android:background="@drawable/user_details_bg">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:gravity="center_vertical">
+			<LinearLayout android:layout_width="1dip"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:gravity="center_vertical">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="3dip"
+					android:text="@string/home_page_user_sex" android:textColor="@color/font_gray_small"
+					android:textSize="16sp" />
+				<!--性别 -->
+				<TextView android:id="@+id/txt_user_info_sex"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textColor="@color/font_gray_small" android:textSize="16sp" />
+			</LinearLayout>
+			<LinearLayout android:layout_width="1dip"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:gravity="center_vertical">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="@string/home_page_user_hometown"
+					android:layout_marginRight="3dip" android:textColor="@color/font_gray_small"
+					android:textSize="16sp" />
+				<!--家乡 -->
+				<cn.com.nd.momo.view.widget.MMScrollTextView
+					android:id="@+id/txt_user_info_hometown" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:ellipsize="marquee"
+					android:textColor="@color/font_gray_small" android:textSize="16sp" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+	<!-- common friends -->
+	<TextView android:id="@+id/txt_common_friend"
+		android:layout_weight="1" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_marginLeft="10dip"
+		android:layout_marginTop="10dip" android:textColor="#A1824C" />
+	<LinearLayout android:layout_height="60dip"
+		android:layout_width="fill_parent">
+		<Button android:textColor="@color/white" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:text="@string/agree" android:background="@drawable/btn_blue_bar" />
+		<Button android:textColor="@color/white" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:text="@string/ignore" android:background="@drawable/btn_blue_bar" />
+	</LinearLayout>
+</LinearLayout>

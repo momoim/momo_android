@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="@color/user_card_background_color"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  	<RelativeLayout
+  		android:id="@+id/layout_user_card_top_bar"
+  		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minHeight="30dip"
+		android:background="@drawable/switch_nav">
+		
+		<TextView android:id="@+id/txt_user_card_center_title" 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:gravity="center"
+    		android:layout_centerInParent="true"
+    		android:visibility="visible"
+    		android:textColor="@color/user_card_item_label_color"
+    		android:textSize="18sp"
+    		android:text="@string/txt_navigation_user_card"/>
+
+    	<TextView android:id="@+id/txt_user_card_left_title" 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:gravity="center"
+    		android:layout_centerVertical="true"
+    		android:layout_toLeftOf="@id/txt_user_card_center_title"
+    		android:visibility="invisible"
+    		android:textColor="@color/user_card_nav_text_color"
+    		android:text="@string/txt_navigation_conversation"/>
+    		
+    	<TextView android:id="@+id/txt_user_card_right_title" 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:gravity="center"
+    		android:layout_centerVertical="true"
+    		android:layout_toRightOf="@id/txt_user_card_center_title"
+    		android:visibility="invisible"
+    		android:textColor="@color/user_card_nav_text_color"
+    		android:text="@string/txt_navigation_dynamic"/>
+	</RelativeLayout>
+	
+	<LinearLayout
+		android:id="@+id/layout_no_card"
+		android:orientation="vertical"
+		android:visibility="gone"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="fill_parent">
+	  	<ScrollView 
+	    	android:scrollbars="none"
+	    	android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<LinearLayout
+				android:layout_height="fill_parent" 
+				android:layout_width="fill_parent"
+				android:paddingLeft="10dip"
+				android:paddingRight="10dip"
+				android:paddingBottom="10dip"
+				android:orientation="vertical">
+				
+				 <LinearLayout android:id="@+id/layout_invite"
+				 	android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:gravity="center"
+					android:layout_gravity="center"
+					android:visibility="gone"
+					android:layout_marginTop="70dip"
+					android:layout_marginLeft="30dip"
+					android:layout_marginRight="30dip">
+					
+					<ImageView
+						android:layout_width="wrap_content" 
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_horizontal"
+						android:src="@drawable/card_momo" 
+						android:scaleType="fitCenter" />
+					<TextView
+						android:id="@+id/invite_tip"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:layout_gravity="center_horizontal"
+						android:textSize="16sp"
+						android:text="@string/txt_invite_to_momo"
+						 />
+	
+				</LinearLayout>
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+  
+ 	<LinearLayout
+		android:id="@+id/layout_user_card"
+		android:visibility="gone"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="fill_parent">
+  	</LinearLayout>
+  
+  
+ 	<LinearLayout
+		android:id="@+id/layout_my_card"
+		android:orientation="vertical"
+		android:visibility="gone"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="fill_parent">
+  
+	    <ScrollView 
+	    	android:scrollbars="none"
+	    	android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<LinearLayout
+				android:layout_height="fill_parent" 
+				android:layout_width="fill_parent"
+				android:paddingLeft="10dip"
+				android:paddingRight="10dip"
+				android:paddingBottom="10dip"
+				android:orientation="vertical">
+				
+				<RelativeLayout
+					android:id="@+id/layout_user_card_completed"
+					android:layout_height="wrap_content" 
+					android:layout_width="fill_parent"
+					android:minHeight="26dip"
+					android:background="@drawable/shape_bg_user_card"
+					android:gravity="center_vertical"
+					android:layout_marginTop="10dip">
+					<TextView
+						android:id="@+id/txt_user_card_completed_bg"
+						android:layout_width="0dip"
+						android:layout_height="wrap_content"
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:background="@drawable/shape_bg_user_card_completed" />
+					<TextView
+						android:id="@+id/txt_user_card_completed"
+						android:text="@string/txt_contact"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true" 
+						android:gravity="center_vertical|center_horizontal"
+						android:textSize="16sp"
+						android:layout_centerInParent="true"
+						android:visibility="gone" />
+				</RelativeLayout>
+				
+				<RelativeLayout
+					android:id="@+id/user_card_header"
+					android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:background="@drawable/mm_frame_set_whole"
+					android:paddingTop="5dip"
+					android:paddingBottom="5dip"
+					android:layout_marginTop="10dip">
+					
+					<cn.com.nd.momo.view.CustomImageView
+						android:id="@+id/img_user_avatar" 
+						android:layout_width="@dimen/user_card_avatar_size" 
+						android:layout_height="@dimen/user_card_avatar_size"
+						android:scaleType="fitXY" 
+						android:layout_alignParentLeft="true"
+						android:layout_margin="5dip"
+						android:layout_centerVertical="true"
+						android:src="@drawable/card_default_avatar" />
+					<ImageView android:id="@+id/img_user_info_arrow"
+						android:layout_width="wrap_content" 
+						android:layout_height="wrap_content"
+						android:layout_marginRight="15dip"
+						android:layout_alignParentRight="true" 
+						android:layout_centerVertical="true"
+						android:visibility="gone"
+						android:src="@drawable/user_card_item_edit_arrow" 
+						android:scaleType="fitCenter" />
+					<LinearLayout 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:orientation="vertical"
+						android:layout_toLeftOf="@id/img_user_info_arrow"
+						android:layout_toRightOf="@id/img_user_avatar">
+						<TextView
+							android:id="@+id/txt_edit_avatar_tip"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/txt_user_card_eidt_avatar_tip"
+							android:visibility="gone"
+							android:textColor="@color/user_card_item_label_color"
+							android:layout_marginTop="5dip"
+							android:layout_marginBottom="5dip"
+							android:textSize="18sp" />
+						<TextView
+							android:id="@+id/txt_sync_to_contacts_count"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:visibility="gone"
+							android:textColor="@color/user_card_item_value_color"
+							android:textSize="12sp"/>
+						<TextView
+							android:id="@+id/txt_sex"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:visibility="gone"
+							android:textColor="@color/user_card_item_value_color"
+							android:textSize="14sp"/>
+					</LinearLayout>
+	
+				</RelativeLayout>
+					
+				 <LinearLayout android:id="@+id/layout_mine_sms_count"
+				 	android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:visibility="gone"
+					android:layout_gravity="center_vertical"
+					android:background="@drawable/mm_frame_set_whole"
+					android:layout_marginTop="10dip">
+					<TextView
+						android:id="@+id/txt_mine_sms_count"
+				  		android:layout_width="fill_parent"
+				  		android:layout_height="wrap_content"
+				  		android:layout_gravity="center_vertical"
+				  		android:gravity="center"
+				  		android:textSize="16sp"
+				  		android:textColor="@color/user_card_item_label_color"
+				  		android:text="" />
+				 </LinearLayout>
+					
+					<LinearLayout android:id="@+id/layout_user_weibo"
+					 	android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip">
+					 </LinearLayout>
+					
+					<LinearLayout android:id="@+id/layout_user_basic_info"
+						android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip">
+					 </LinearLayout>
+					 
+					 <LinearLayout android:id="@+id/layout_user_phone_and_email"
+					 	android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip">
+					 </LinearLayout>
+					
+					<LinearLayout android:id="@+id/layout_user_location"
+						android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip">
+					 </LinearLayout>
+					 
+					 <LinearLayout android:id="@+id/layout_user_note"
+					 	android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip">
+					 </LinearLayout>
+					 
+					 <LinearLayout android:id="@+id/layout_add_more"
+					 	android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:minHeight="45dip"
+						android:gravity="center"
+						android:visibility="gone"
+						android:background="@drawable/btn_bg_blue"
+						android:layout_marginTop="10dip">
+						<TextView
+					  		android:layout_width="fill_parent"
+					  		android:layout_height="wrap_content"
+					  		android:layout_gravity="center_vertical"
+					  		android:gravity="center"
+					  		android:textSize="16sp"
+					  		android:text="@string/txt_user_card_add_more"/>
+					 </LinearLayout>
+					 <LinearLayout android:id="@+id/layout_change_mobile"
+					 	android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:minHeight="45dip"
+						android:gravity="center"
+						android:visibility="gone"
+						android:layout_gravity="center_vertical"
+						android:background="@drawable/btn_bg_red"
+						android:layout_marginTop="10dip">
+						<TextView
+					  		android:layout_width="fill_parent"
+					  		android:layout_height="wrap_content"
+					  		android:layout_gravity="center_vertical"
+					  		android:gravity="center"
+					  		android:textSize="16sp"
+					  		android:text="@string/txt_user_card_change_mobile"/>
+					 </LinearLayout>
+				</LinearLayout>	
+		</ScrollView>
+	</LinearLayout>
+</LinearLayout>

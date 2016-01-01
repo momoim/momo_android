@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/layout_main"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login_background">
+	 
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:background="@drawable/title_background"
+		android:textColor="@color/white"
+		android:textSize="18sp"
+		android:text="@string/title_upgrade"/>
+		
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<LinearLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" 
+		android:orientation="vertical"
+		android:gravity="center">
+			<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:text="@string/title_upgrade_hint"/>
+			<TextView 
+			android:id="@+id/txt_upgrade_info"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/title_upgrade_hint"/>
+			<Button android:id="@+id/btn_upgrade_client"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:text="@string/title_upgrade_client"/>
+			<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:gravity="bottom|center_horizontal">
+				<TextView 
+				android:text="@string/title_upgrade_url"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

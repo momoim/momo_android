@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:gravity="center_vertical"
+	android:orientation="vertical">
+
+<RelativeLayout
+	android:id="@+id/user_card_item"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:minHeight="45dip"
+	android:layout_gravity="center"
+	android:orientation="horizontal">
+
+  	<TextView
+  		android:id="@+id/txt_label"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:textSize="16sp"
+  		android:minWidth="80dip"
+  		android:layout_centerVertical="true"
+  		android:gravity="right"
+  		android:textColor="@color/user_card_item_label_color"
+  		android:layout_alignParentLeft="true" />
+  	<ImageView android:id="@+id/img_edit_arrow"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_marginRight="15dip"
+		android:layout_alignParentRight="true" 
+		android:layout_centerVertical="true"
+		android:visibility="gone"
+		android:src="@drawable/user_card_item_edit_arrow" 
+		android:scaleType="fitCenter" />
+  	<TextView
+  		android:id="@+id/txt_verified_tip"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_toLeftOf="@id/img_edit_arrow"
+  		android:layout_centerVertical="true"
+  		android:textSize="16sp"
+  		android:textColor="@color/user_card_item_verified_tip_color"
+  		android:visibility="gone"
+  		android:layout_marginRight="10dip"/>
+  	<TextView
+  		android:id="@+id/txt_value"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:layout_toRightOf="@id/txt_label"
+  		android:layout_toLeftOf="@id/img_edit_arrow"
+  		android:layout_centerVertical="true"
+  		android:textSize="16sp"
+  		android:textColor="@color/user_card_item_value_color"
+  		android:layout_marginLeft="5dip"
+  		android:layout_marginRight="5dip"/>
+
+  		
+</RelativeLayout>
+</LinearLayout>

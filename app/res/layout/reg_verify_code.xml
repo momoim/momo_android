@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical"
+  android:background="#e0e8ec">
+  
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:background="@drawable/title_background"
+		android:textColor="@color/white"
+		android:textSize="20sp"
+		android:text="@string/txt_reg_title"/>
+			
+    <ScrollView android:fillViewport="true"
+    	android:layout_width="fill_parent"
+		android:layout_height="1dip"
+		android:layout_weight="1">
+			
+		<LinearLayout android:id="@+id/reg_info_container"
+			style="@style/LoginContainer">
+					
+			<TextView
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="15dip"
+				android:layout_marginBottom="5dip"
+				android:textSize="16sp"
+				android:text="@string/txt_login_input_verify"
+				/>
+				
+			<LinearLayout 
+				android:id="@+id/layout_reg_verify_code"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:layout_marginBottom="12dip">
+				
+				<EditText android:id="@+id/txt_reg_verify_code" 
+					android:layout_width="1dip"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:phoneNumber="true"
+					android:inputType="number"
+					android:background="@drawable/login_edit_background"
+					android:hint="@string/txt_reg_verify_code"/>
+			</LinearLayout>
+			
+			<TextView android:id="@+id/txt_reg_verify_code_response"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:visibility="gone"
+				android:layout_marginBottom="20dip"/>
+						
+			<Button android:id="@+id/btn_verify"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="立即注册"
+				android:layout_marginBottom="12dip"
+				style="@style/WhiteButtonView"/>
+			
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/layout_card_item"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:paddingTop="5dip"
+	android:paddingBottom="5dip"
+	android:layout_marginTop="10dip">
+	
+	<cn.com.nd.momo.view.CustomImageView
+		android:id="@+id/img_user_avatar" 
+		android:layout_width="@dimen/user_card_avatar_size" 
+		android:layout_height="@dimen/user_card_avatar_size"
+		android:scaleType="fitXY" 
+		android:layout_alignParentLeft="true"
+		android:layout_margin="5dip"
+		android:layout_centerVertical="true"
+		android:src="@drawable/card_default_avatar" />
+	<ImageView android:id="@+id/img_user_info_arrow"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_marginRight="15dip"
+		android:layout_alignParentRight="true" 
+		android:layout_centerVertical="true"
+		android:src="@drawable/user_card_item_edit_arrow" 
+		android:scaleType="fitCenter" />
+	<LinearLayout 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:orientation="vertical"
+		android:layout_toLeftOf="@id/img_user_info_arrow"
+		android:layout_toRightOf="@id/img_user_avatar">
+		<TextView
+			android:id="@+id/txt_card_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/black"
+			android:layout_marginTop="5dip"
+			android:layout_marginBottom="5dip"
+			android:textSize="18sp" />
+		<TextView
+			android:id="@+id/txt_card_register_mobile"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/user_card_item_value_color"
+			android:textSize="12sp"/>
+	</LinearLayout>
+</RelativeLayout>

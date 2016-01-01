@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="60dip"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+	<LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical">
+
+        <cn.com.nd.momo.view.CustomImageView android:id="@+id/img_contact_item_presence"
+	        android:layout_width="56dip"
+	        android:layout_height="56dip"
+	        android:scaleType="fitCenter"
+			android:layout_margin="2dip"
+			android:src="@drawable/ic_contact_picture"
+            android:layout_gravity="center_vertical" />
+		
+		<LinearLayout 
+			android:orientation="vertical"
+			android:layout_width="1dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginLeft="5dip"
+			android:layout_marginRight="5dip"
+			android:gravity="center_vertical">
+	        <TextView 
+	        	android:id="@+id/txt_contact_item_name"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:textSize="20sp"/>
+	        <TextView
+	        	android:id="@+id/txt_contact_item_signature"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:ellipsize="marquee"
+	            android:focusableInTouchMode="true"
+	            android:scrollHorizontally="true"
+	            android:marqueeRepeatLimit="marquee_forever"
+	            android:layout_gravity="left|center_vertical"
+	            android:textSize="15sp"/>
+		</LinearLayout>
+		<CheckBox 
+			android:id="@+id/chk_contact_item_select" 
+			android:focusable="false"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			android:layout_marginRight="43dip"/>
+		 <TextView 
+        	android:id="@+id/txt_user_is_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_page_user_is_friend"
+            android:layout_marginRight="5dip"
+            android:textColor="@color/orangle_small"
+            android:textSize="16sp"/>
+		<ImageView 
+			android:id="@+id/btn_add_friend" 
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content"
+			android:paddingTop="7dip"
+			android:paddingBottom="7dip"
+			android:layout_marginRight="5dip"
+			android:scaleType="fitCenter"
+			android:src="@drawable/btn_add_friend" />
+		<ImageView 
+			android:id="@+id/btn_uninterest" 
+			android:text="@string/user_may_know_user_uninterest" 
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content"
+			android:paddingTop="7dip"
+			android:paddingBottom="7dip"
+			android:layout_marginRight="5dip"
+			android:visibility="gone"
+			android:scaleType="fitCenter"
+			android:src="@drawable/btn_ignore_friend" />
+		<Button 
+			android:id="@+id/btn_add_to_friend"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/home_page_add_friend"
+			android:background="@drawable/add_friend_bg"
+			android:gravity="center"
+			android:layout_marginRight="7dip"
+			android:paddingTop="7dip"
+			android:paddingBottom="5dip"
+			android:visibility="gone"
+		/>
+    </LinearLayout>
+
+</LinearLayout>

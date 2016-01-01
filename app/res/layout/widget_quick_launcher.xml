@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:gravity="center" android:background="@drawable/widget_bg">
+		<ImageButton android:id="@+id/ImageButton01"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:src="@drawable/widget_icon_contact" android:layout_weight="1" android:background="#00000000"></ImageButton>
+		<ImageButton android:id="@+id/ImageButton02"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:src="@drawable/widget_icon_dial" android:layout_weight="1"  android:background="#00000000"></ImageButton>
+		<ImageButton android:id="@+id/ImageButton03"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:src="@drawable/widget_icon_fav" android:layout_weight="1" android:background="#00000000"></ImageButton>
+		<ImageButton android:id="@+id/ImageButton04"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:src="@drawable/widget_icon_log" android:layout_weight="1" android:background="#00000000"></ImageButton>
+</LinearLayout>

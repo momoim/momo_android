@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/one_key_register"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="10dip"
+    android:paddingBottom="10dip"
+    android:paddingLeft="7dip"
+    android:paddingRight="7dip"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/txt_one_key_register_notice"
+        android:textColor="@color/font_one_key_register_info"
+        android:textSize="18sp" />
+    <LinearLayout
+	    android:id="@+id/select_operator_layout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:visibility="gone"
+	    android:gravity="center"
+	    android:orientation="vertical" >
+	     <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_marginTop="7dip"
+			android:layout_marginBottom="4dip"
+	        android:text="选择您的手机号码所属运营商:"
+	        android:textColor="@color/font_one_key_register_info"
+	        android:textSize="18sp" />
+	        <RadioGroup
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+			    android:orientation="horizontal"
+			    android:checkedButton="@+id/china_mobile"
+			    android:id="@+id/mobile_operator">
+			    <RadioButton 
+			    	android:text="移动"
+			    	android:layout_weight="1"
+			    	android:id="@id/china_mobile"
+			    />
+			     <RadioButton 
+			    	android:text="联通"
+			    	android:layout_weight="1"
+			    	android:id="@+id/china_unicom"
+			    />
+			     <RadioButton 
+			    	android:text="电信"
+			    	android:layout_weight="1"
+			    	android:id="@+id/china_telecom"
+			    />
+			</RadioGroup>
+		</LinearLayout>
+
+</LinearLayout>

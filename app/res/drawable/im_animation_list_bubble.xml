@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:drawable="@drawable/bubble1" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble2" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble3" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble4" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble5" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble6" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble7" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble8" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble9" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble10" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble11" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble12" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble13" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble14" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble15" android:duration="@integer/im_animation_duration" />
+	<item android:drawable="@drawable/bubble16" android:duration="@integer/im_animation_duration" />
+</animation-list>

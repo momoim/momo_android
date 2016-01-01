@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+		android:id="@+id/bar_statuses_title"        
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background" >
+
+        <LinearLayout
+            android:id="@+id/btn_group_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/txt_title"
+                style="@style/txt_title_bar"
+                android:text="@string/statuses_all_send" />
+
+            <CheckBox
+                android:id="@+id/icon_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/arrow_down"
+                android:clickable="false"
+                android:focusable="false" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/dynamic_image_btn_style"
+            android:enabled="false"
+            android:paddingBottom="5dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="5dip"
+            android:src="@drawable/btn_dynamic_publish" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+
+        <cn.com.nd.momo.im.view.EditTextEx
+            android:id="@+id/dynamic_comment_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left|top"
+            android:maxLength="9900"
+            android:padding="10dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/layout_bottom_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <!-- 好友@ -->
+
+            <ImageButton
+                android:id="@+id/btn_friend"
+                style="@style/image_blue_bg_button"
+                android:layout_weight="1"
+                android:paddingTop="10dip"
+                android:src="@drawable/btn_dynamic_at" />
+            <!-- 表情 -->
+
+            <cn.com.nd.momo.im.view.SmileySelector
+                android:id="@+id/smiley_selector"
+                style="@style/image_blue_bg_button"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:paddingTop="10dip"
+                android:src="@drawable/btn_dynamic_face" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <!-- 本地相册 -->
+
+                <ImageButton
+                    android:id="@+id/btn_ablum_pic"
+                    style="@style/image_blue_bg_button"
+                    android:layout_width="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="10dip"
+                    android:src="@drawable/btn_dynamic_album" />
+                <!-- 本地相册 -->
+
+                <TextView
+                    android:id="@+id/upload_attach"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="5dip"
+                    android:textColor="@color/white" />
+            </FrameLayout>
+
+            <!-- 相机 -->
+
+            <ImageButton
+                android:id="@+id/btn_ablum_camera"
+                style="@style/image_blue_bg_button"
+                android:layout_weight="1"
+                android:paddingTop="10dip"
+                android:src="@drawable/btn_dynamic_camera" />
+            
+            <!-- 新浪 -->
+
+            <ImageButton
+                android:id="@+id/btn_sync_sina"
+                style="@style/image_blue_bg_button"
+                android:layout_weight="1"
+                android:paddingTop="10dip"
+                android:src="@drawable/btn_dynamic_sina" />
+            
+            <TextView
+                android:id="@+id/btn_keyboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingRight="20dip"
+                android:text="140"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:visibility="gone" >
+
+            <!-- 地理位置 -->
+
+            <ImageButton
+                android:id="@+id/btn_location"
+                style="@style/image_blue_bg_button"
+                android:layout_weight="1"
+                android:src="@drawable/dynamic_prise"
+                android:visibility="invisible" />
+
+            <ImageButton
+                style="@style/image_blue_bg_button"
+                android:layout_weight="1"
+                android:src="@drawable/btn_dynamic_camera"
+                android:visibility="invisible" />
+
+            <ImageButton
+                style="@style/image_blue_bg_button"
+                android:layout_weight="1"
+                android:src="@drawable/btn_dynamic_camera"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

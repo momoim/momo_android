@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	  xmlns:android="http://schemas.android.com/apk/res/android"
+	  android:layout_width="fill_parent"
+	  android:layout_height="wrap_content">
+	  
+	  <!-- <ImageView android:id="@+id/img_sync_source_icon"
+	  			android:layout_width="wrap_content"
+	  			android:layout_height="wrap_content"
+	  			android:paddingLeft="4dip"
+	  			android:paddingRight="4dip"
+	  			android:paddingTop="15dip"
+	  			android:paddingBottom="15dip"
+	  			android:src="@drawable/icon_contacts"/>
+	   -->
+	   
+	  <LinearLayout android:layout_width="wrap_content"
+	  				android:layout_height="wrap_content"
+	  				android:orientation="vertical"
+	  				android:gravity="center_horizontal"
+	  				android:layout_centerInParent="true">
+	  				
+		<TextView android:id="@+id/txt_sync_source_title"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:textColor="@color/font_gray"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			style="@style/sync_title"/>
+			  			
+			  <!-- <TextView android:id="@+id/txt_sync_title_click_me"
+			  			android:layout_width="wrap_content"
+			  			android:layout_height="wrap_content"
+			  			android:text="click_me"
+			  			style="@style/sync_message"/>
+				-->				
+	  
+		<TextView android:id="@+id/txt_sync_source_status"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/font_gray"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:text="@+id/txt_sync_source_status"
+			style="@style/sync_message"/>
+	  
+	  </LinearLayout>
+	  
+	  <ImageView android:id="@+id/img_sync_source_status"
+	  			android:layout_width="wrap_content"
+	  			android:layout_height="wrap_content"
+	  			android:layout_alignParentRight="true"
+	  			android:layout_centerVertical="true"
+	  			android:src="@drawable/icon_complete"/>
+</RelativeLayout>

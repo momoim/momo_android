@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" >
+	<ImageSwitcher android:id="@+id/switcher"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+	
+	<ProgressBar android:id="@+id/txt_loadimg" android:layout_width="wrap_content"
+					android:visibility="gone"
+					android:layout_height="wrap_content"  
+					android:layout_centerInParent="true"/>
+	<TextView android:id="@+id/txt_index" android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:textColor="#ffffffff"
+					android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+	<WebView android:id="@+id/webView" android:layout_width="fill_parent" android:layout_height="fill_parent" android:visibility="gone"/>
+</RelativeLayout>

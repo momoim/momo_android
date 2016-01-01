@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/conv_viewing"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
+        android:padding="0dip" >
+
+        <ImageButton
+            android:id="@+id/friend_select_btn"
+            style="@style/image_rect_bg_button"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dip"
+            android:src="@drawable/chat" />
+
+        <cn.com.nd.momo.view.DrawView
+            android:id="@+id/refresh"
+            style="@style/image_rect_bg_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="5dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="5dip"
+            android:src="@drawable/ic_title_refresh"
+            android:visibility="visible" />
+
+        <!-- contact/group radio -->
+
+        <RadioGroup
+            android:id="@+id/radio_button_group"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:layout_toLeftOf="@+id/friend_select_btn"
+            android:layout_toRightOf="@+id/refresh"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <RadioButton
+                android:id="@+id/radio_contact"
+                style="@style/RadioButton"
+                android:layout_width="1dip"
+                android:layout_height="30dip"
+                android:layout_marginBottom="5dip"
+                android:layout_marginTop="5dip"
+                android:layout_weight="1"
+                android:background="@drawable/radio_selector_left"
+                android:checked="true"
+                android:text="@string/im_title_contact" />
+
+            <RadioButton
+                android:id="@+id/radio_stranger"
+                style="@style/RadioButton"
+                android:layout_width="1dip"
+                android:layout_height="30dip"
+                android:layout_marginBottom="5dip"
+                android:layout_marginTop="5dip"
+                android:layout_weight="1"
+                android:background="@drawable/radio_selector_right"
+                android:text="@string/im_title_stranger" />
+        </RadioGroup>
+
+        <TextView
+            style="@style/txt_title_bar"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/friend_select_btn"
+            android:layout_toRightOf="@+id/refresh"
+            android:gravity="center"
+            android:text="MO短信" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/conv_editing"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
+        android:padding="0dip"
+        android:visibility="gone" >
+
+        <ImageButton
+            android:id="@+id/btn_delete"
+            style="@style/image_rect_bg_button"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dip"
+            android:src="@drawable/topbar_ic_dustbin_disable" />
+
+        <Button
+            android:id="@+id/edit_or_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dip"
+            android:layout_marginRight="6dip"
+            android:background="@drawable/btn_bg_blue"
+            android:gravity="center"
+            android:paddingBottom="4dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="4dip"
+            android:text="@string/im_btn_cancel"
+            android:visibility="visible" />
+
+        <TextView
+            style="@style/txt_title_bar"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/btn_delete"
+            android:layout_toRightOf="@+id/edit_or_cancel"
+            android:gravity="center"
+            android:text="批量编辑" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/conversation_history_list_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/conversations"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:fillViewport="true"
+        android:listSelector="@drawable/list_selector_lighter"
+        android:scrollingCache="false" />
+
+</LinearLayout>

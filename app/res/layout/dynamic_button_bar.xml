@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:background="@drawable/dynamic_button_bar"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:paddingTop="7dip"
+	android:clickable="false" android:focusable="false"
+	android:gravity="center">
+	<LinearLayout android:layout_width="fill_parent" android:visibility="gone"
+		android:id="@+id/contain_download"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical" 
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_download" android:id="@+id/btn_download" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+		<TextView android:text="下载" style="@style/txt_bommton_bar"/>
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:id="@+id/contain_readall"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical" 
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_readall" android:id="@+id/btn_fullcontent" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+		<TextView android:text="看全文" style="@style/txt_bommton_bar"/>
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical" 
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_comment" android:id="@+id/btn_comment" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" /> 
+		<TextView android:text="评论" style="@style/txt_bommton_bar"/>
+	</LinearLayout>
+	
+	<LinearLayout android:layout_width="fill_parent" android:visibility="gone"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical"
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_mo" android:id="@+id/btn_message" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+		<TextView android:text="推短信" style="@style/txt_bommton_bar"/>
+	</LinearLayout>
+	
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical"
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_prise" android:id="@+id/btn_prise" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+		<TextView android:text="赞" style="@style/txt_bommton_bar"/>
+	</LinearLayout>
+	
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone"
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_homepage" android:id="@+id/btn_homepage"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+	</LinearLayout>
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical"
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_resend" android:id="@+id/btn_resend" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+			<TextView android:text="转发" style="@style/txt_bommton_bar"/>
+	</LinearLayout>
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical"
+		android:layout_weight="1">
+		<cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center" 
+			android:src="@drawable/btn_dynamic_more" android:id="@+id/btn_more" android:layout_weight="1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+			
+		<TextView android:text="更多" style="@style/txt_bommton_bar"/>
+
+	</LinearLayout>
+	<!-- <LinearLayout android:layout_width="fill_parent" -->
+	<!-- android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical" -->
+	<!-- android:layout_weight="1"> -->
+	<!-- <cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center"  android:layout_margin="0dip" 
+		android:background="@null" -->
+	<!-- android:gravity="center" android:orientation="vertical" android:src="@drawable/btn_dynamic_collect" -->
+	<!-- android:id="@+id/btn_fav" android:focusable="false" -->
+	<!-- android:layout_width="80dip" android:layout_weight="1" -->
+	<!-- android:layout_height="fill_parent" /> -->
+
+	<!-- </LinearLayout> -->
+	<!-- <LinearLayout android:layout_width="fill_parent" android:visibility="gone" -->
+	<!-- android:layout_height="fill_parent" android:gravity="center" android:orientation="vertical" -->
+	<!-- android:layout_weight="1"> -->
+	<!-- <cn.com.nd.momo.dynamic.ui.DontPressWithParentImageView android:scaleType="center"  android:layout_margin="0dip" 
+		android:background="@null" -->
+	<!-- android:gravity="center" android:orientation="vertical" android:src="@drawable/dynamic_delete" -->
+	<!-- android:id="@+id/btn_delete" android:focusable="false" -->
+	<!-- android:layout_width="80dip" android:layout_weight="1" -->
+	<!-- android:layout_height="fill_parent" /> -->
+	<!-- </LinearLayout> -->
+</LinearLayout>

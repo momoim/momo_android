@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:background="@drawable/title_background">
+
+	<ImageButton android:id="@+id/img_btn_left"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+		android:visibility="invisible" style="@style/image_rect_bg_button"
+		android:src="@drawable/chat_edit" android:scaleType="fitCenter"
+		android:padding="5dip" />
+
+	<ImageButton android:id="@+id/img_btn_right"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_alignParentRight="true" android:layout_centerVertical="true"
+		android:visibility="invisible" style="@style/image_rect_bg_button"
+		android:src="@drawable/topbar_ic_more" android:scaleType="fitCenter"
+		android:padding="5dip" />
+
+	<TextView android:id="@+id/txt_user_name" android:gravity="center"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_centerInParent="true" android:textColor="#ffffffff"
+		android:textSize="18sp" android:layout_centerVertical="true"
+		android:text="" android:padding="5dip" android:singleLine="true"
+		android:layout_toLeftOf="@id/img_btn_right" android:layout_toRightOf="@id/img_btn_left" />
+</RelativeLayout>

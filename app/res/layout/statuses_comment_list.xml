@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 评论列表item -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/dynamic_list_item_wrap"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip" >
+
+        <!-- 头像 -->
+
+        <FrameLayout
+            android:id="@+id/dynamic_list_item_avatar_frame_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left_list_item"
+            android:layout_marginTop="0dip"
+            android:clickable="false"
+            android:paddingRight="@dimen/padding_left_list_item" >
+
+            <cn.com.nd.momo.view.CustomImageView
+                android:id="@+id/dynamic_list_item_avatar"
+                android:layout_width="@dimen/avatar_small_rect"
+                android:layout_height="@dimen/avatar_small_rect"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/dynamic_thumb_image" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/dynamic_list_item_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dip"
+            android:layout_toRightOf="@id/dynamic_list_item_avatar_frame_content"
+            android:clickable="false"
+            android:paddingRight="5dp" >
+
+            <RelativeLayout
+                android:id="@+id/dynamic_list_item_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal" >
+
+                <!-- 姓名 -->
+
+                <TextView
+                    android:id="@+id/dynamic_list_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:drawablePadding="3dip"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:textColor="@color/blue_big"
+                    android:textSize="18sp" />
+
+                <!-- 时间 -->
+
+                <TextView
+                    android:id="@+id/dynamic_list_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="5dip"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:paddingLeft="3dip"
+                    android:paddingRight="5dip"
+                    android:textColor="#9c9d9d"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <!-- 内容 -->
+
+            <TextView
+                android:id="@+id/dynamic_list_item_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dynamic_list_item_source"
+                android:focusable="false"
+                android:paddingRight="3dip"
+                android:textColor="@color/statuses_content"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

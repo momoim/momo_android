@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2006 The Android Open Source Project Licensed under the 
+	Apache License, Version 2.0 (the "License"); you may not use this file except 
+	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+	<!-- application use -->
+	<string name="version_id">1.0.0</string>
+
+	<!-- General use -->
+	<string name="app_name">momo</string>
+	<string name="txt_confirm">亲，确定吗？</string>
+	<string name="txt_done">完成</string>
+	<string name="txt_ok">确定</string>
+	<string name="txt_send">发送</string>
+	<string name="txt_cancel">取消</string>
+	<string name="txt_exchange">替换</string>
+	<string name="txt_save">保存</string>
+	<string name="txt_nosave">不保存</string>
+	<string name="txt_return">返回</string>
+	<string name="txt_phone">电话</string>
+	<string name="txt_delete">删除</string>
+	<string name="txt_contact">联系人</string>
+	<string name="txt_unit_ge">个</string>
+	<string name="txt_failed">失败</string>
+	<string name="txt_wait">请稍等</string>
+	<string name="txt_mulit_select">多选</string>
+	<string name="msg_sdcard_full">存储卡已满</string>
+	<string name="error_net_work">请检查网络链接</string>
+	<string name="click_to_reg">您有%d条免费短信, 激活获取更多</string>
+
+	<!-- labe for edit entry -->
+	<string name="errorDialogTitle">"没有照片"</string>
+	<string name="photoPickerNotFoundText">"手机上没有照片。"</string>
+	<string name="menu_deleteContact">"删除联系人"</string>
+	<string name="menu_done">"完成"</string>
+	<string name="menu_doNotSave">"取消"</string>
+	<string name="deleteConfirmation_title">"删除"</string>
+	<string name="deleteConfirmation">"确定删除此联系人?"</string>
+	<string name="customLabelPickerTitle">"自定义标签名称"</string>
+	<string name="selectLabel">"选择标签"</string>
+
+	<string-array name="ghostData">
+		<item>"电话号码"</item>
+		<item>"电子邮件地址"</item>
+		<item>"网址"</item>
+		<item>"关系"</item>
+		<item>"邮政地址"</item>
+		<item>"纪念日"</item>
+		<item>"即时消息"</item>
+	</string-array>
+
+	<string-array name="IMLabel">
+		<item>"91u"</item>
+		<item>"AIM"</item>
+		<item>"MSN"</item>
+		<item>"YAHOO"</item>
+		<item>"SKYPE"</item>
+		<item>"QQ"</item>
+		<item>"GTALK"</item>
+		<item>"ICQ"</item>
+		<item>"JABBER"</item>
+	</string-array>
+	<!-- <item>"未知类型"</item> <string-array name="IMType"> <item>"家庭"</item> 
+		<item>"工作"</item> <item>"其他"</item> </string-array> -->
+
+	<string-array name="anniversary">
+		<item>"周年纪念日"</item>
+		<item>"其他"</item>
+	</string-array>
+
+	<string-array name="related">
+		<item>"助手"</item>
+		<item>"兄弟"</item>
+		<item>"子女"</item>
+		<item>"国内合作伙伴"</item>
+		<item>"父亲"</item>
+		<item>"好友"</item>
+		<item>"经理"</item>
+		<item>"母亲"</item>
+		<item>"父母"</item>
+		<item>"合作伙伴"</item>
+		<item>"介绍人"</item>
+		<item>"亲属"</item>
+		<item>"姐妹"</item>
+		<item>"配偶"</item>
+		<item>"其他"</item>
+	</string-array>
+
+	<string-array name="website">
+		<item>"个人主页"</item>
+		<item>"博客"</item>
+		<item>"个人资料"</item>
+		<item>"家庭"</item>
+		<item>"工作"</item>
+		<item>"FTP"</item>
+		<item>"其他"</item>
+	</string-array>
+
+	<string-array name="phoneTypes">
+		<item>"固话(家庭）"</item>
+		<item>"手机"</item>
+		<item>"固话（工作）"</item>
+		<item>"传真（工作）"</item>
+		<item>"传真（家庭）"</item>
+		<item>"传呼"</item>
+		<item>"其他"</item>
+		<item>"自定义"</item>
+	</string-array>
+
+	<string-array name="email">
+		<item>家庭</item>
+		<item>工作</item>
+		<item>其他</item>
+		<item>自定义</item>
+	</string-array>
+
+	<string-array name="postal">
+		<item>家庭</item>
+		<item>工作</item>
+		<item>其他</item>
+		<item>自定义</item>
+	</string-array>
+
+
+	<string name="ghostData_birthday">"生日"</string>
+	<string name="ghostData_nickname">"昵称"</string>
+
+	<string name="ghostData_anniversary">"纪念日"</string>
+	<string name="ghostData_website">"网址"</string>
+	<string name="ghostData_related">"关系"</string>
+
+	<string name="listSepartorNickname_edit">"昵称"</string>
+	<string name="listSepartorAnniversary_edit">"纪念日"</string>
+	<string name="listSepartorRelate_edit">"关系"</string>
+	<string name="listSepartorWebSite_edit">"网址"</string>
+
+	<string name="label_nickname">"昵称"</string>
+	<string name="label_birthday">"生日"</string>
+	<string name="label_catagory">"分组"</string>
+	<string name="label_org">"组织机构"</string>
+	<string name="download_big_avatar_alert_title">下载大头像</string>
+	<string name="download_big_avatar_alert_msg">确定使用当前网络下载大头像？</string>
+
+	<!-- mainActivity.java -->
+	<string name="tab_txt_contacts">联系人</string>
+	<string name="tab_txt_call_log">通话记录</string>
+	<string name="tab_txt_dialer">拨号</string>
+	<string name="tab_txt_option">设置</string>
+	<string name="tab_txt_dynamic">分享</string>
+	<string name="tab_txt_mention">MO我的</string>
+	<string name="tab_txt_im">短信</string>
+	<string name="radio_main_contact">我的联系人</string>
+	<string name="radio_main_group">群联系人</string>
+	<string name="main_activity_account_choose">选择MOMO绑定的账号</string>
+	<string name="main_activity_msg_no_account">获取不到任何账号</string>
+
+	<string name="main_activity_menu_new_contact">新建联系人</string>
+	<string name="main_activity_menu_edit_member">编辑分组成员</string>
+	<string name="main_activity_menu_delete_contact">删除联系人</string>
+	<string name="main_activity_menu_sync_group">同步群组</string>
+	<string name="main_activity_menu_option">设置</string>
+	<string name="main_activity_menu_exit">退出</string>
+
+	<string name="main_activity_menu_draft">草稿箱</string>
+
+	<!-- UpgradeActivity.java -->
+	<string name="title_upgrade">升级</string>
+	<string name="title_upgrade_hint">您在使用的momo客户端版本太低，需要升级后才能继续使用。</string>
+	<string name="title_upgrade_client">升级客户端</string>
+	<string name="title_upgrade_url">http://momo.im</string>
+
+	<!-- LoginActivity.java -->
+	<string name="title_login">登录</string>
+	<string name="btn_login">立即登录</string>
+	<string name="btn_regist">注册MOMO</string>
+	<string name="btn_login_return">返回</string>
+	<string name="txt_reg_num">手机号码</string>
+	<string name="txt_reg_pwd">密码</string>
+	<string name="txt_forget_pwd">忘记密码</string>
+	<string name="txt_reg_verify_code">验证码</string>
+	<string name="btn_reg_active">激活账号</string>
+	<string name="btn_reg_verify">立即注册</string>
+	<string name="btn_reg_have_verify">我有验证码</string>
+	<string name="btn_reg_cancel_active">放弃激活此账号</string>
+	<string name="txt_login_input_verify">请输入手机接收到的验证码:</string>
+	<string name="txt_force_change_password_tip">为了您的帐号安全，请马上修改密码</string>
+	<string name="txt_old_password_hint">原密码</string>
+	<string name="txt_new_password_hint">新密码</string>
+	<string name="txt_old_password_tip">请输入旧密码</string>
+	<string name="txt_new_password_tip">请输入新密码</string>
+	<string name="txt_new_password_lenght_tip">密码长度不得小于6位</string>
+	<string name="chk_save_pwd">保存密码</string>
+	<string name="msg_login_progress_title">登录</string>
+	<string name="msg_login_unknow_error">登录失败</string>
+	<string name="msg_login_progress_info">登录中，请稍等...</string>
+	<string name="msg_login_regist_success">已注册成功，请登录。</string>
+	<string name="msg_login_pwd_error">用户名或者密码错误</string>
+	<string name="msg_login_not_found_error">服务器未找到</string>
+	<string name="msg_login_phone_num_empty">请输入手机号</string>
+	<string name="msg_login_password_empty">请输入登录密码</string>
+	<string name="msg_reg_verify_code_null">请输入验证码</string>
+	<string name="txt_change_pwd">修改密码</string>
+	<string name="txt_change_pwd_waiting">修改密码进行中...</string>
+	<string name="txt_change_mobile">更换手机号</string>
+	<string name="txt_international_regist">非中国大陆地区注册</string>
+
+	<!-- RegistInfoActivity.java -->
+	<string name="btn_reg_info_OK">确定</string>
+	<string name="btn_get_verify_code">获取验证码</string>
+	<string name="btn_msg_verify">好</string>
+	<string name="txt_confirm_pwd">再次输入密码</string>
+	<string name="txt_real_f_name">您的姓（请输入真实姓名）</string>
+	<string name="txt_real_name">您的名（请输入真实姓名）</string>
+	<string name="txt_phone_number">手机号: </string>
+	<string name="txt_birthday">生日</string>
+	<string name="txt_sex">性别:</string>
+	<string name="btn_reg_ok">注册</string>
+	<string name="btn_reg_cancel">重新验证</string>
+	<string name="radio_female">女</string>
+	<string name="radio_male">男</string>
+	<string name="msg_get_sms_password_request">提交请求中...</string>
+	<string name="msg_reg_info_process_title">注册用户</string>
+	<string name="txt_reg_title">用户注册</string>
+	<string name="msg_reg_info_get_verify_code">获取验证码中，请稍等...</string>
+	<string name="msg_reg_info_process_info">注册中，请稍等...</string>
+	<string name="msg_reg_info_sennding_sms">正在等待接收注册短信...</string>
+	<string name="msg_reg_info_do_active">开始注册账号...</string>
+	<string name="msg_reg_info_error_exist">注册信息中尚有不正确的格式</string>
+	<string name="msg_reg_info_mobile_error">请输入手机号码</string>
+	<string name="msg_reg_info_verify_code_error">请输入验证码</string>
+	<string name="msg_reg_info_find_verify_timeout">等待注册短信超时，请手动输入验证码注册账号</string>
+
+	<string name="msg_get_verify">我们将以短信形式发送给您验证码，请查收。</string>
+	<string name="msg_get_sms_password">获取短信密码</string>
+	<string name="msg_reg_info_verify_empty">验证码未输入</string>
+	<string name="msg_reg_info_phone_null">手机号不能为空</string>
+	<string name="msg_reg_info_phone_format">手机号码格式不对</string>
+	<string name="msg_reg_info_phone_length">号码须为数字，至少需要3位以上</string>
+	<string name="msg_reg_info_too_much_try">一天的验证码请求不能超过3次</string>
+	<string name="msg_reg_info_server_busy">系统异常，请稍候再试</string>
+	<string name="msg_reg_info_send_sms_fail">短信发送失败</string>
+	<string name="msg_reg_info_already_exist">该手机号码已注册</string>
+	<string name="msg_reg_info_already_verify">该手机号码未注册，不能激活</string>
+	<string name="msg_reg_info_already_regist">该手机号码已验证过</string>
+	<string name="msg_reg_info_verify_null">验证码为空</string>
+	<string name="msg_reg_info_verify_illegal">验证码不正确</string>
+	<string name="msg_reg_info_verify_expired">该验证码已过期</string>
+	<string name="msg_reg_info_no_phone_for_verify_found">未查到该手机号对应的验证码</string>
+	<string name="msg_reg_info_regist_fail">帐号激活失败</string>
+	<string name="msg_reg_info_pwd_empty">请填写密码</string>
+	<string name="msg_reg_info_pwd_length">密码需要至少6位</string>
+	<string name="msg_reg_info_verify_format">验证码格式不对</string>
+	<string name="msg_reg_info_pwd_incorrect">重复输入的密码不一致</string>
+	<string name="msg_reg_info_name_empty">请填写姓名</string>
+	<string name="msg_reg_info_name_illegal">姓名不是中文或者长度不合法</string>
+	<string name="msg_reg_info_birthday_empty">请填写生日信息</string>
+	<string name="msg_reg_info_sex_not_choose">请选择性别</string>
+	<string name="msg_reg_info_phone_already_regist">手机号码已注册过</string>
+
+	<!-- LeadToSyncActivity.java -->
+	<string name="msg_lead_sync">马上同步联系人吧，将您的通讯录安全备份至网络，方便恢复到本地或新手机，您还可以通过momo.im网站更新管理通讯录或与联系人消息互通。第一次同步需要多花点时间，别急，下次就飞快了！</string>
+	<string name="msg_lead_sync_account">选择您要同步的本地联系人帐号</string>
+	<string name="msg_lead_sync_set_sync_mode">设置默认同步方式</string>
+	<string name="msg_lead_sync_sync_begin">立即同步</string>
+	<string name="msg_lead_sync_sync_click_begin">(点击开始同步)</string>
+	<string name="msg_lead_sync_sync_cancel">暂不同步</string>
+	<string name="msg_lead_sync_sync_cancel_title">确定不同步吗？</string>
+	<string name="msg_lead_sync_cancel_confirm">不同步联系人无法获取好友最新分享，也不能在电脑上发短信，确定不开启同步？</string>
+	<string name="msg_lead_sync_confirm">现在就同步联系人到服务器？</string>
+	<string name="msg_sync_account">同步帐号:</string>
+
+	<!-- SyncMainActivity.java -->
+	<string name="tab_sync_main">同步</string>
+	<string name="tab_sync_setting">设置</string>
+
+	<string name="btn_sync_all">开始同步</string>
+	<string name="spner_sync_manual">手动同步</string>
+	<string name="spner_sync_auto">自动同步</string>
+	<string name="txt_no_sync">不同步</string>
+	<string name="txt_sync">立即同步</string>
+
+	<string name="sync_mode_choose_title">选择同步方式</string>
+	<string name="sync_mode_two_way">本地和网站互相同步</string>
+	<string name="sync_mode_one_way">仅从网站同步到本地</string>
+	<string name="sync_mode_no_sync">不同步</string>
+	<string name="sync_mode_msg">您同步方式选了"不同步"，请选择此次同步的方式</string>
+
+	<string name="msg_sync_contact">联系人</string>
+	<string name="msg_sync_click_to_sync">(点击开始同步)</string>
+	<string name="msg_sync_sync_time">同步时间:</string>
+	<string name="msg_sync_unsync">尚未同步</string>
+	<string name="msg_sync_connecting">正在连接...</string>
+	<string name="msg_sync_prepare_data">数据准备中...</string>
+	<string name="msg_sync_begin">开始同步...</string>
+	<string name="msg_sync_sending">上传数据</string>
+	<string name="msg_sync_receiving">下载数据</string>
+	<string name="msg_sync_download_group">同步群组列表...</string>
+	<string name="msg_sync_upload_img">上传头像...</string>
+	<string name="msg_sync_download_img">下载头像...</string>
+	<string name="msg_sync_end">完成同步</string>
+	<string name="msg_sync_err_not_connect">未连接网络</string>
+	<string name="msg_sync_err_no_signal">没有信号</string>
+	<string name="msg_sync_err_complete_failure">同步失败</string>
+	<string name="msg_sync_time_today">今天</string>
+	<string name="msg_sync_time_yesterday">昨天</string>
+	<string name="msg_sync_progress_title">同步群联系人</string>
+	<string name="msg_sync_activity_progress_title">同步活动联系人</string>
+	<string name="msg_sync_progress_info">正在同步群联系人，请稍等...</string>
+	<string name="msg_sync_activity_progress_info">正在同步活动联系人，请稍等...</string>
+	<string name="msg_status_partial_failure">部分联系人信息同步失败</string>
+	<string name="msg_status_network_error">网络异常中断</string>
+	<string name="msg_status_forbidden_error">服务器认证失败</string>
+	<string name="msg_status_connection_blocked">网络连接被禁止</string>
+	<string name="msg_status_invalid_credentials">服务端无效的认证</string>
+
+	<!-- CallLogInfo.java -->
+	<string name="txt_calllog_info_type_out">已拨电话</string>
+	<string name="txt_calllog_info_type_in">已接来电</string>
+	<string name="txt_calllog_info_type_miss">未接来电</string>
+	<string name="txt_calllog_info_duration">通话时间:</string>
+	<string name="txt_calllog_info_call_back">呼叫</string>
+	<string name="txt_calllog_info_sms">发送短信</string>
+	<string name="txt_calllog_info_add_contact">添加到联系人</string>
+	<string name="txt_calllog_info_view_contact">进入详细信息</string>
+
+	<!-- ContactsListActivity -->
+	<string name="item_contact_wo">我</string>
+	<string name="btn_contact_item_detail">详细</string>
+	<string name="contact_group_all">全部</string>
+	<string name="contact_group_favor">收藏夹</string>
+	<string name="contact_group_friend">好友</string>
+	<string name="contact_group_family">家人</string>
+	<string name="contact_group_coworkers">同事</string>
+	<string name="btn_contact_list_remove_from_category">从该组移除</string>
+	<string name="btn_contact_list_move_to_category">移动到...</string>
+	<string name="btn_contact_list_return">返回</string>
+	<string name="btn_contact_list_ok">确定</string>
+	<string name="btn_contact_list_cancel">取消</string>
+	<string name="title_contact_group">分组</string>
+	<string name="btn_category_add_category">添加新分组</string>
+	<string name="btn_category_add_member">添加</string>
+	<string name="btn_category_del_member">移除</string>
+	<string name="menu_category_add_member">添加组员</string>
+	<string name="menu_category_remove_member">移除组员</string>
+	<string name="menu_category_rename">重命名</string>
+	<string name="menu_category_delete_category">删除该组</string>
+	<string name="menu_contact_view">查看联系人</string>
+	<string name="menu_contact_edit">编辑联系人</string>
+	<string name="menu_contact_edit_failed">编辑联系人失败</string>
+	<string name="menu_contact_add_cate">添加到分组...</string>
+	<string name="menu_contact_remove_cate">从该组移除此联系人</string>
+	<string name="menu_contact_delete">删除联系人</string>
+	<string name="menu_card_refresh">刷新名片信息</string>
+	<string name="msg_confirm_delete">确定删除</string>
+	<string name="msg_deleting_contact">正在删除联系人...</string>
+	<string name="msg_delete_contact_fail">删除联系人失败</string>
+	<string name="msg_confirm_delete_category">确定删除该分组？</string>
+	<string name="msg_delete_category_failed">删除分组失败。</string>
+	<string name="msg_refresh_category_failed">修改分组名失败。</string>
+	<string name="msg_add_group_success">添加分组成功</string>
+	<string name="msg_add_group_fail">添加分组失败</string>
+	<string name="msg_remove_contact_from_category_fail">移除失败</string>
+	<string name="msg_add_contact_from_category_fail">添加失败</string>
+	<string name="msg_contact_item_select_null">请选择执行操作的联系人</string>
+	<string name="msg_group_sync_not_login">同步群组需要登录，是否进入登录界面？</string>
+	<string name="msg_group_sync_no_connection_found">未找到可用的网络连接。</string>
+	<string name="txt_send_contact">您是否允许momo挖掘您通讯录中的好友，方便你们更好的沟通联系？（您可以在设置中随时关闭）</string>
+	<string name="msg_not_allow_select_account">只有设置了“同步联系人到服务器”才能选择帐号</string>
+
+	<!-- MyHomePageActivity -->
+	<string name="btn_my_home_page_photo_draft">草稿箱</string>
+	<string name="txt_my_home_page_photo_title">更换头像</string>
+	<string name="btn_my_home_page_photo_from_camera">相机拍摄</string>
+	<string name="btn_my_home_page_photo_from_album">手机相册</string>
+	<string name="btn_my_home_page_signature_default">我的签名内容...</string>
+	<string name="title_my_home_page_signature">个性签名</string>
+	<string name="title_my_home_page_edit_signature">编辑签名</string>
+	<string name="title_my_home_page_edit_signature_hint">签名内容写在这里...</string>
+	<string name="title_my_home_page_refresh_signature">修改签名...</string>
+	<string name="msg_my_home_page_refresh_signature_success">修改签名成功</string>
+	<string name="msg_my_home_page_refresh_signature_failed">修改签名失败</string>
+	<string name="msg_my_home_page_photo_waiting_upload">正在上传头像...</string>
+	<string name="msg_my_home_page_photo_upload_success">上传头像成功。</string>
+	<string name="msg_my_home_page_photo_upload_failed">上传头像失败</string>
+	<string name="msg_my_home_page_photo_pick_failed">获取图像失败</string>
+	<string name="msg_my_home_page_photo_note">步骤1：拍摄或者选取上传的图片 \n步骤2：选取需要作为自己头像的区域</string>
+	<string name="msg_my_home_page_refresh">正在获取数据...</string>
+	<string name="msg_my_home_page_refresh_done">更新完成</string>
+	<string name="msg_my_home_page_refresh_failed">更新失败</string>
+
+	<!-- SearchContactActivity -->
+	<string name="txt_search_contact">搜索联系人</string>
+	<string name="txt_search_friend">搜索好友</string>
+
+	<!-- OptionActivity -->
+	<string name="txt_option_version_check">检查新版本</string>
+	<string name="txt_option_version_no">没有发现新版本</string>
+	<string name="txt_option_version_yes">发现新版本,是否更新?</string>
+	<string name="txt_option_title">MOMO设置</string>
+	<string name="txt_option_status_unlogin">未登录</string>
+	<string name="txt_option_status_logined">已登录</string>
+	<string name="txt_option_status_sync">同步</string>
+	<string name="txt_option_sync_report">同步历史</string>
+	<string name="txt_option_first_screen_option">首界面设置</string>
+	<string name="txt_option_first_screen">首界面:</string>
+	<string name="txt_option_first_screen_contacts">联系人</string>
+	<string name="txt_option_first_screen_call_log">通话记录</string>
+	<string name="txt_option_first_screen_dailer">拨号</string>
+	<string name="txt_option_first_screen_dynamic">MO分享</string>
+	<string name="txt_option_first_screen_mention">MO我的</string>
+	<string name="txt_option_first_screen_im">MO私信</string>
+	<string name="txt_option_dail_pad_settings">按键效果设置</string>
+	<string name="txt_option_dail_pad">按键效果</string>
+	<string name="txt_option_dail_pad_vibrate">按键震动</string>
+	<string name="txt_option_dail_pad_touch_tones">按键声音</string>
+	<string name="txt_option_account">账户设置</string>
+	<string name="txt_option_filter">搜索支持模糊音</string>
+	<string name="txt_option_call_in_screen">显示来电界面</string>
+	<string name="txt_option_group_sync_download_avatar">群联系人同步下载头像</string>
+	<string name="txt_option_activity_sync_download_avatar">活动联系人同步下载头像</string>
+	<string name="txt_option_autosync">同步联系人到服务器</string>
+	<string name="txt_option_ring">消息铃声提示</string>
+	<string name="txt_option_vibration">消息震动提示</string>
+	<string name="txt_option_system">使用系统短信铃声</string>
+	<string name="txt_option_getimage">GPRS下读取缩略图</string>
+	<string name="txt_option_no_mq_after_exit">退出程序后打开推送</string>
+	<string name="txt_option_upgrade">更新</string>
+	<string name="txt_option_feed_back">反馈</string>
+	<string name="txt_option_help">帮助</string>
+	<string name="txt_option_about">关于</string>
+	<string name="txt_option_upgrade_size">大小</string>
+	<string name="txt_option_upgrade_version">版本</string>
+	<string name="txt_option_upgrade_remark">备注</string>
+	<string name="txt_option_upgrade_date">日期</string>
+	<string name="btn_option_return">返回</string>
+	<string name="btn_option_into_login">登录</string>
+	<string name="btn_option_logout">注销</string>
+	<string name="btn_option_quit">退出登录</string>
+	<string name="btn_option_into_sync">点击进入同步界面...</string>
+	<string name="btn_option_choose_account">重新选择绑定账户</string>
+	<string name="txt_option_all_account_name">全部</string>
+	<string name="txt_option_mobile_account_name">手机</string>
+	<string name="txt_option_all_account_type">cn.com.nd.allAccount</string>
+	<string name="chk_option_sync_main_group">同时同步群组信息</string>
+	<string name="chk_option_sync_main_original_photo">同时下载来电大图</string>
+	<string name="txt_option_sync_main_mode">同步模式</string>
+	<string name="txt_option_sync_main_photo">头像</string>
+	<string name="btn_option_sync_main_photo">同步来电大头像</string>
+	<string name="btn_option_sync_main_photo_note">此操作使用流量较大，建议在3G或wifi网络使用</string>
+	<string name="btn_option_sync_main_type_two_way">正常同步</string>
+	<string name="btn_option_sync_main_type_slow">强制比对同步</string>
+	<string name="btn_option_sync_main_type_slow_note">此同步方式速度较慢，且可能导致联系人数据重复，请只在手机联系人和网站联系人多次正常同步仍不一致时，使用此功能。</string>
+	<string name="msg_option_sync_main_confirm_slow">在手机联系人和网站联系人多次正常同步后仍不一致时，可使用此功能进行联系人数据比对，此过程耗时较长，程序会将手机端联系人数据上传到服务端，在服务端进行自动比对后，再下载到手机上，可能造成联系人数据重复，但不会造成数据丢失，如果出现联系人数据重复的情况，您可以登录到www.momo.im，在联系人管理页面，使用自动去重功能进行去重处理，再在手机上使用正常同步功能同步一次联系人，即可消除联系人重复问题。</string>
+	<string name="msg_option_about">
+		版权 © 2009-2012 \n
+		网龙公司 保留所有权利。\n
+		网站：www.momo.im \n
+		版本号：
+	</string>
+	<string name="msg_option_sync_start">开始: </string>
+	<string name="msg_option_sync_end">结束: </string>
+	<string name="msg_option_sync_server">服务端下载: </string>
+	<string name="msg_option_sync_client">客户端上传: </string>
+	<string name="msg_option_sync_add">新增 </string>
+	<string name="msg_option_sync_mod">修改 </string>
+	<string name="msg_option_sync_del">删除 </string>
+	<string name="msg_option_sync_failed">失败 </string>
+	<string name="msg_option_account_note">
+		帐号变更确认后，如果您打开了自动同步，momo会将服务器上同步过的数据同步到您选定的新帐号里。
+	</string>
+	<string name="msg_option_account_only_one">手机内只有一个账户</string>
+	<string name="msg_option_account_copy_contact">正在拷贝联系人</string>
+	<string name="msg_option_account_binding_success">账户设置成功</string>
+
+	<!-- ContactInfoActivity -->
+	<string name="txt_contact_info_call_log">通话记录</string>
+	<string name="txt_contact_info_tel">电话</string>
+	<string name="txt_contact_info_email">Email</string>
+	<string name="txt_contact_info_relation">关系</string>
+	<string name="txt_contact_info_address">地址:</string>
+	<string name="txt_contact_info_date">纪念日</string>
+	<string name="txt_contact_info_im">即使通讯</string>
+	<string name="txt_contact_info_sms">短信</string>
+	<string name="txt_contact_info_group">分组</string>
+	<string name="txt_contact_info_ringtone">铃声</string>
+	<string name="txt_contact_info_ringtone_default">默认</string>
+	<string name="txt_contact_info_website">网址:</string>
+
+	<string name="txt_contact_info_ungrouped">未分组</string>
+	<string name="txt_contact_info_group_default">默认</string>
+	<string name="txt_contact_info_nickname">昵称</string>
+
+	<!-- 待整理 -->
+	<string name="txt_contact_info_cell">手机</string>
+	<string name="txt_contact_info_family">家庭</string>
+	<string name="txt_contact_info_work">工作</string>
+	<string name="txt_contact_info_other">其他</string>
+	<string name="txt_contact_info_tel_other">其他号码</string>
+	<string name="txt_contact_info_fax">传真</string>
+	<string name="txt_contact_info_pager">传呼机</string>
+	<string name="txt_contact_info_company">公司:</string>
+	<string name="txt_contact_info_department">部门:</string>
+	<string name="txt_contact_info_birthday">生日</string>
+	<string name="txt_contact_info_job_title">职位:</string>
+	<string name="txt_contact_info_note">个人说明</string>
+	<string name="menu_contact_info_edit">编辑</string>
+	<string name="menu_contact_info_add_to_contact">添加到个人通讯簿</string>
+
+	<!-- 我的名片 -->
+	<string name="txt_my_contact_card_hide_year">隐藏年份</string>
+	<string name="txt_my_contact_card_lunar_birthday">我过农历生日</string>
+	<string name="txt_my_contact_card_email_tip">请输入完整的邮箱地址</string>
+	<string name="txt_my_contact_card_email_error">邮箱地址不合法</string>
+	<string name="txt_my_contact_card_weibo_account_label">帐号：</string>
+	<string name="txt_my_contact_card_weibo_password_label">密码：</string>
+	<string name="txt_my_contact_card_weibo_tip">已通过新浪微博应用官方认证，请放心使用。</string>
+	<string name="txt_my_contact_card_bind_weibo_waitting">正在绑定微博...</string>
+	<string name="txt_my_contact_card_sina_weibo_tip">进入新浪微博绑定</string>
+	<string name="txt_my_contact_card_sina_weibo_title">绑定新浪微博</string>
+	<string name="txt_my_contact_card_tencent_weibo_title">绑定腾讯微博</string>
+	<string name="txt_my_contact_card_weibo_account_error">请输入微博帐号</string>
+	<string name="txt_my_contact_card_weibo_password_error">请输入微博密码</string>
+
+	<!-- 来电显示，测试用字符 -->
+	<string name="answer_caller">接听</string>
+	<string name="refuse_caller">挂断</string>
+	<string name="silence_caller">静音</string>
+	<string name="finish_caller">结束通话</string>
+
+	<string name="signature">
+		人生最大的幸福不是走平坦的路，而是在坎坷的路上
+		有位患难与共的朋友；人生最大的快乐不是没有眼泪
+		的生活，而是有位为你擦眼泪的知己
+	</string>
+
+	<string name="sProvince">云南</string>
+	<string name="sCity">昆明</string>
+	<string name="sServiceProvider">移动全球通</string>
+
+	<string name="s_anoymous_caller">未知来电</string>
+
+	<!-- 通话记录界面中用到的strings 开始 -->
+	<string name="recentCallsIconLabel">"通话记录"</string>
+	<string name="call_log_see_all">全部</string>
+	<string name="call_log_see_unanswer">未接</string>
+	<string name="call_log_see_answer">已接电话</string>
+	<string name="call_log_label">通话记录</string>
+	<string name="call_log_phone_label">电话</string>
+	<string name="call_log_mail_label">邮箱</string>
+	<string name="call_log_im_label">即时通讯</string>
+	<string name="call_log_delete_all">删除全部</string>
+	<string name="call_log_delete_select">选择删除</string>
+	<string name="call_log_delete_the_log">删除</string>
+	<string name="call_log_escape">取消</string>
+	<string name="call_log_add_to_contacts">添加到联系人</string>
+	<string name="call_log_to_see">查看</string>
+	<string name="call_log_see_all_phones">所有通话</string>
+	<string name="confirm_to_del_all_call_log_prefix">确定要删除所有</string>
+	<string name="confirm_to_del_call_log_suffix">通话记录?</string>
+	<string name="there_is_no_call_log">无通话记录</string>
+	<string name="there_is_no_answered_call_log">无已接电话记录</string>
+	<string name="there_is_no_come_out_call_log">无已拨电话记录</string>
+	<string name="there_is_no_missed_call_log">无未接电话</string>
+	<string name="manual_input_ip_prefix">手动输入</string>
+	<string name="the_contact_is_not_exist_in_the_contacts_book">通讯簿中无该联系人</string>
+
+	<string-array name="call_log_see_all_items">
+		<item>所有通话</item>
+		<item>已接电话</item>
+		<item>已拨电话</item>
+		<item>未接电话</item>
+		<item>取消</item>
+	</string-array>
+	<string-array name="call_log_add_to_contacts_list">
+		<item>创建联系人</item>
+		<item>添加到已有的联系人</item>
+		<item>取消</item>
+	</string-array>
+	<!--通话记录界面中用到的strings 结束 -->
+
+	<!-- 群联系人界面中用到的strings 开始 -->
+	<string name="group_contacts_menu_item_sms_group">群发消息</string>
+	<string name="group_contacts_menu_item_see_group_details">查看群信息</string>
+	<string name="group_contacts_menu_item_sync_this_group">同步此群</string>
+	<string name="group_contacts_menu_item_sync_msg_fail">同步此群失败</string>
+	<string name="group_contacts_menu_item_sync_contacts">同步联系人</string>
+	<string name="group_contacts_msg_sync_success">群联系人已同步完成</string>
+	<string name="activity_contacts_msg_sync_success">活动联系人已同步完成</string>
+	<string name="group_contacts_msg_sync_fail">群联系人同步失败</string>
+	<string name="activity_contacts_msg_sync_fail">活动联系人同步失败</string>
+	<string name="group_contacts_group_notice">群公告</string>
+	<string name="group_contacts_group_creator">建立人：</string>
+	<string name="group_contacts_group_create_date">建立时间：</string>
+	<string name="group_contacts_group_manager">管理员：</string>
+	<string name="group_contacts_group_current_count">现有群成员人数：</string>
+	<string name="group_contacts_group_total_count">群联系人总数：</string>
+	<string name="the_group_has_been_dismiss">该群已被解散</string>
+	<string name="phone_number_not_valid">电话号码为空</string>
+	<string name="group_sms_range">群发范围:</string>
+	<string name="group_sms_sending">短信发送中...</string>
+	<string name="group_sms_failed">群发短信失败，请重新再试试...</string>
+	<string name="group_sms_success">群发短信成功</string>
+
+	<string name="group_contacts_menu_item_see_activty_details">查看活动信息</string>
+	<string name="group_contacts_menu_item_sync_this_activity">同步此活动</string>
+	<string name="activity_apply_type">活动报名类型</string>
+	<string name="activity_apply_type_all">全部成员</string>
+	<string name="activity_apply_type_join">参加</string>
+	<string name="activity_apply_type_not_join">不参加</string>
+	<string name="activity_apply_type_interest">感兴趣</string>
+	<string name="activity_apply_type_unconfirm">未确认</string>
+	<string name="activity_apply_type_wait_confirm">待确认</string>
+	<string name="group_sms_tip">将通过momo%1$s发送给 %2$s个人</string>
+	<string name="group_sms_tip_party">免费</string>
+
+
+	<!--群联系人界面中用到的strings 结束 -->
+	<!-- 短信部分字串开始 -->
+
+	<string name="sms_sending_to">短信正发送给...</string>
+	<string name="sms_result_sent_succeed">短信已成功发送到：</string>
+	<string name="sms_result_sent_failure">短信发送失败</string>
+	<string name="sms_result_error_generic_failure">短信发送失败</string>
+	<string name="sms_result_no_service">因相应的邮件网关服务暂不可用，短信发送失败</string>
+	<string name="sms_result_error_null_pdu">因不存在有效的PDU，短信发送失败</string>
+	<string name="sms_result_error_radio_off">因无线电广播被关闭，短信发送失败</string>
+
+	<string name="sms_result_deliver_succeed">短信已发送到对方</string>
+	<string name="sms_result_deliver_canceled">短信发送已取消</string>
+	<string name="sms_speak_string_format">来自 "%1$s": %2$s的短信</string>
+	<string name="sms_reply">马上回复</string>
+	<string name="sms_view_history">查看其过往短信</string>
+	<string name="sms_dismiss">暂不看</string>
+	<string name="sms_to">发送短信给：</string>
+	<string name="sms_message">短信内容：</string>
+	<string name="sms_cancel">取消发送</string>
+	<string name="sms_message_empty">短信内容为空</string>
+	<string name="sim_card_network_locked_please_contact_provider">网络不通,请检查SIM卡或联系网络服务商</string>
+	<string name="dl_expired_notification">此短信已过期，将被删除</string>
+	<string name="no_subject">"无主题"</string>
+	<string name="unknown_sender">"未知发送者"</string>
+	<string name="dl_failure_notification">"下载来自<xliff:g id="FROM">%2$s</xliff:g>的<xliff:g id="SUBJECT">%1$s</xliff:g>信息失败。"</string> 
+	<string name="message_queued">当前无法发送信息，将在服务恢复后发送。</string>
+	<string name="download_later">当前无法下载。请稍后再试。</string>
+	<string name="invalid_destination">输入的地址无效。</string>
+	
+	<!-- 短信部分字串结束 -->
+	<!-- dialerActivity -->
+	<string name="txt_tip_please_select_a_phoneNumber_to_dial">的电话号码有：</string>
+	<string name="please_select_action">请选择操作：</string>
+	<string name="please_input_ip_prefix">请输入IP前缀：</string>
+	<string name="call_log_direct_call">呼叫</string>
+	<string name="call_log_ip_call">IP拨号</string>
+	<string name="call_log_see_contacts">查看联系人</string>
+	<string name="call_log_add_contacts">添加联系人</string>
+	<string name="call_log_send_msg">发送短信</string>
+	<string name="call_log_delete_this_item">删除本条通话记录</string>
+	<string name="whose_phone_number_not_exist">的电话号码不存在！</string>
+	<string name="please_click_sync_btn_to_update">请点击同步更新组成员</string>
+	<string name="please_click_sync_btn_to_update_activity_member">请点击同步更新活动成员</string>
+	<string name="no_group_member_exist">无群联系人记录</string>
+
+	<!--note pad -->
+	<string name="menu_delete">Delete</string>
+	<string name="menu_insert">Add note</string>
+	<string name="menu_revert">Revert</string>
+	<string name="menu_discard">Discard</string>
+
+	<string name="resolve_edit">Edit note</string>
+	<string name="resolve_title">Edit title</string>
+
+	<string name="title_create">Create note</string>
+	<string name="title_edit">Edit note</string>
+	<string name="title_notes_list">Note pad</string>
+	<string name="title_note">Note</string>
+	<string name="title_edit_title">Note title:</string>
+
+	<string name="button_ok">OK</string>
+
+	<string name="error_title">Error</string>
+	<string name="error_message">Error loading note</string>
+
+	<!-- im -->
+	<string name="im_delete_conv">删除对话历史</string>
+	<string name="im_conv_title">MO私信</string>
+	<string name="im_system_agree">同意</string>
+	<string name="im_system_ignore">忽略</string>
+	<string name="im_system_passed">已通过</string>
+	<string name="im_system_ignored">已忽略</string>
+	<string name="myself">我</string>
+	<string name="im_title_choose">选择操作</string>
+	<string name="im_btn_send">发送</string>
+	<string name="im_btn_edit">编辑</string>
+	<string name="im_btn_cancel">取消</string>
+	<string name="im_btn_forward">转发</string>
+	<string name="im_btn_history">更多聊天历史</string>
+	<string name="im_btn_resend">重发</string>
+	<string name="im_btn_copy">复制</string>
+	<string name="im_btn_del">删除</string>
+	<string name="im_btn_del_both">删本地与服务器数据</string>
+	<string name="im_btn_del_local">只删除本地数据</string>
+	<string name="im_btn_record">按住录音</string>
+	<string name="im_hint_text_send">输入消息内容</string>
+	<string name="im_hint_text_sms">短信回复，运营商收取费用</string>
+	<string name="im_title_contact">联系人</string>
+	<string name="im_title_stranger">陌生人</string>
+
+	<!-- action names -->
+	<!-- 加了mq service的action后，请在mainfest里的ServiceReceiver配置新的action进去 -->
+	<string name="action_message_bind">com.nd.message.bind</string>
+	<string name="action_message_send">com.nd.message.send</string>
+	<string name="action_message_received">com.nd.message.received</string>
+	<string name="action_message_login">com.nd.message.login</string>
+	<string name="action_message_launch">com.nd.message.launch</string>
+	<string name="action_message_destroy">com.nd.message.destroy</string>
+	<string name="action_message_income">com.nd.message.income</string>
+	<string name="action_message_refresh">com.nd.message.refresh</string>
+	<string name="action_dynamic">cn.com.nd.action_dynamic</string>
+	
+	<string name="action_message_popup">cn.com.nd.momo.sms.popup</string>
+	<string name="action_message_read">com.nd.momo.message.read</string>
+	
+	<string name="action_app_status">com.nd.app.status</string>
+        
+    <string name="android_intent_action_BOOT_COMPLETED">android.intent.action.BOOT_COMPLETED</string>
+    <string name="android_intent_action_SCREEN_ON">android.intent.action.SCREEN_ON</string>
+    <string name="android_intent_action_SCREEN_OFF">android.intent.action.SCREEN_OFF</string>
+    <string name="android_net_conn_CONNECTIVITY_CHANGE">android.net.conn.CONNECTIVITY_CHANGE</string>
+    <string name="android_provider_Telephony_SMS_RECEIVED">android.provider.Telephony.SMS_RECEIVED</string>
+    <string name="android_intent_action_ACTION_POWER_CONNECTED">android.intent.action.ACTION_POWER_CONNECTED</string>
+    <string name="android_intent_action_ACTION_POWER_DISCONNECTED">android.intent.action.ACTION_POWER_DISCONNECTED</string>
+
+	<!-- 下拉刷新控件 -->
+	<string name="pull_to_refresh_pull_label">下拉刷新.</string>
+	<string name="pull_to_refresh_release_label">松开刷新..</string>
+	<string name="pull_to_refresh_refreshing_label">读取中...</string>
+	<string name="pull_to_refresh_tap_label">点击刷新</string>
+
+	<!--分享 -->
+	<string name="dynamic_refresh">点击刷新</string>
+	<string name="dynamic_refresh_last_time">最后刷新时间:</string>
+	<string name="dynamic_menu_refresh">刷新</string>
+
+	<string name="dynamic_loading">读取中</string>
+	<string name="dynamic_errorcode">错误码</string>
+	<string name="dynamic_copy_done">复制内容完成</string>
+	<string name="dynamic_sending">发送中</string>
+	<string name="dynamic_sendfail">未发送</string>
+	<string name="dynamic_is_save_draft">是否保存为草稿</string>
+	<string name="dynamic_public">全部</string>
+	<string name="dynamic_select_group">选择群</string>
+
+	<string name="dynamic_brodcast">分享</string>
+	<string name="dynamic_comment">评论:</string>
+	<string name="dynamic_comment_none">没有更多评论</string>
+	<string name="dynamic_repley">回复</string>
+	<string name="dynamic_twitter">转发</string>
+	<string name="dynamic_delete">删除</string>
+	<string name="dynamic_collect">收藏</string>
+	<string name="dynamic_prise">赞</string>
+	<string name="dynamic_hide">隐藏</string>
+	<string name="dynamic_uncollect">取消收藏</string>
+	<string name="dynamic_more">更多分享</string>
+	<string name="dynamic_publish">发布</string>
+	<string name="dynamic_send_fail">发送失败</string>
+	<string name="dynamic_clear_draft">将会清空所有草稿</string>
+	<string name="dynamic_isdelete_comment">删除分享?</string>
+	<string name="dynamic_delete_comment">删除分享</string>
+	<string name="msg_dynamic_not_login">查看momo分享需要登录，是否进入登录界面？</string>
+	<string name="msg_dynamic_relogin_error">用户名或者密码错误，是否进入登录界面？</string>
+	<string name="msg_exit">再按一次退出界面</string>
+	<string name="msg_exit_wait_sync">网络同步正在进行中，请稍等...</string>
+	<string name="dynamic_oldpage">上一页</string>
+	<string name="dynamic_comment_bar">评论顶部</string>
+	<string name="dynamic_all_data">分享全文</string>
+	<string name="dynamic_photo">查看照片</string>
+
+	<string name="dynamic_no_more_data">没有更多分享</string>
+
+	<string name="msg_user_info_not_login">查看个人主页需要登录，是否进入登录界面？</string>
+
+	<!-- home page -->
+	<string name="home_page_show_contact">查看联系人</string>
+	<string name="home_page_im">私聊</string>
+	<string name="home_page_friend">好友(%1$d)</string>
+	<string name="home_page_select_friends">好友: </string>
+	<string name="home_page_friend_info_details">详细资料</string>
+	<string name="home_page_intro_friend">介绍好友</string>
+	<string name="home_page_intro_friending">介绍好友中...</string>
+	<string name="home_page_add_friend">加为好友</string>
+	<string name="user_may_know_user_uninterest">忽略</string>
+	<string name="home_page_may_know_add_friend">加好友</string>
+
+	<string name="home_page_add_friending">请求加为好友中...</string>
+	<string name="home_page_add_friend_warning">加成功后会暴露你的手机号码！</string>
+	<string name="home_page_friend_equals_me">是我自己</string>
+
+	<string name="home_page_add_friend_repeat_request">不能重复发送请求</string>
+
+	<string name="home_page_not_friend_tip">你们还不是好友，先看看吧~</string>
+	<string name="home_page_common_friend">你们有%1$d个共同好友</string>
+	<string name="home_page_user_sex">性别:</string>
+	<string name="home_page_user_hometown">家乡:</string>
+	<string name="home_page_user_birthday">生日:</string>
+	<string name="home_page_user_residence">居住地:</string>
+	<string name="home_page_user_select_friend">选择好友(%1$d)</string>
+	<string name="home_page_user_select_friends">选择好友</string>
+	<string name="home_page_user_select_friend_tip">请选择好友</string>
+	<string name="home_page_user_add_friend_success">好友请求发送成功</string>
+	<string name="home_page_user_intro_friend_success">好友介绍成功</string>
+	<string name="home_page_user_is_friend">已是好友</string>
+	<string name="home_page_user_friends_tip">已是好友</string>
+	<string name="home_page_user_may_know_friends">可能认识的人</string>
+
+	<string name="home_page_user_friends">的好友</string>
+	<string name="home_page_user_common_friends">和我的公共好友</string>
+
+	<string name="home_page_download_big_avatar_failed">下载大头像失败</string>
+	<string name="home_page_person_dynamic_loading">分享读取中...</string>
+
+	<string name="notify_set_avatar">设个头像吧，方便朋友认出您</string>
+	<!-- 系统消息通知文案 -->
+	<string name="system_message">系统消息 </string>
+	<string name="recommend_friend">介绍好友给你认识</string>
+	<string name="action_invite">邀请你参加活动</string>
+	<string name="birthday_remind_prefix">你的好友</string>
+	<string name="birthday_remind_suffix">生日</string>
+	<string name="friend_apply">请求加你为好友</string>
+	<string name="group_invite">邀请你加入群</string>
+	<string name="group_apply">请求加入群</string>
+	<string name="personal_info_modify">个人信息发生了变更</string>
+	<string name="action_info_modify">活动信息变更</string>
+	<string name="auto_friend">应你的邀请加入了MOMMO，你们自动成为好友。</string>
+
+	<string name="extend">附言道：</string>
+
+	<string name="interested">你选择了"感兴趣"</string>
+	<string name="agree">已同意</string>
+	<string name="ignore">已忽略</string>
+
+	<string name="system_msg">系统消息</string>
+	<string name="warn_phone_number_may_leak_after_agree">同意后会暴露你的手机号码！</string>
+
+	<!-- 关于我的 -->
+	<string name="mention_set_all_read">全部设为已读</string>
+
+	<!-- 小秘文案 -->
+	<string name="contact_staff_introduction">大家好，我是小秘，您的小秘，有什么问题请在这里说吧，
+		我会第一时间给您回复的。您可以直接我们的网站http://momo.im，那里有更多的功能等待您的体验。</string>
+	<!-- 关于界面 -->
+	<string name="txt_about_title">关于MOMO</string>
+	<string name="txt_about_address">MOMO \n
+		Ver</string>
+	<string name="txt_about_url">http://momo.im</string>
+	<string name="txt_about_text">MOMO是一款基于手机通讯录的熟人社交及短信增强应用，开创好友免邀请、免注册安装的即时社交模式，并使短信功能升级，实现群聊、照片、语音、LBS等信息的全球分享。此外，采用全系统开发策略，支持联系人资料于不同平台、手机间的同步、迁移，同时允许电脑通过momo.im网站与手机消息互通。</string>
+	<string name="txt_about_version">版权所有©2009-2012 MOMO工作室</string>
+
+	<!-- 个人名片 -->
+	<string name="txt_my_user_card">我的名片</string>
+	<string name="txt_my_dynamic">我的分享</string>
+	<string name="txt_my_conversation">我的短信</string>
+
+	<string name="txt_user_card_item_custom_label">自定义</string>
+	<string name="txt_user_card_name_label">用户:</string>
+	<string name="txt_user_card_verified_tip">已审核</string>
+	<string name="txt_user_card_name_tip">用户</string>
+	<string name="txt_user_card_name_hint">请输入您的姓名</string>
+	<string name="txt_user_card_sex_label">性别:</string>
+	<string name="txt_user_card_sex_none">未填</string>
+	<string name="txt_user_card_birthday_label">生日:</string>
+	<string name="txt_user_card_birthday_year">年</string>
+	<string name="txt_user_card_animal_sign_label">生肖:</string>
+	<string name="txt_user_card_zodiac_label">星座:</string>
+	<string name="txt_user_card__bind_weibo_tip">绑定微博</string>
+	<string name="txt_user_card_sina_weibo_label">新浪微博:</string>
+	<string name="txt_user_card_sina_weibo_tip">绑定新浪微博</string>
+	<string name="txt_user_card_tencent_weibo_label">腾讯微博:</string>
+	<string name="txt_user_card_tencent_weibo_tip">绑定腾讯微博</string>
+	<string name="txt_user_card_weibo_tip">绑定微博</string>
+	<string name="txt_user_card_weibo_sina">新浪</string>
+	<string name="txt_user_card_weibo_tencent">腾讯</string>
+	<string name="txt_user_card_phone_label">手机:</string>
+	<string name="txt_user_card_verified_phone_tip">已验证</string>
+	<string name="txt_user_card_phone_tip">请输入手机号码</string>
+	<string name="txt_user_card_email_label">邮箱:</string>
+	<string name="txt_user_card_residence_label">居住地:</string>
+	<string name="txt_user_card_residence_tip">居住地</string>
+	<string name="txt_user_card_organization_label">公司/学校:</string>
+	<string name="txt_user_card_organization_tip">公司/学校</string>
+	<string name="txt_user_card_note_label">简介:</string>
+	<string name="txt_user_card_note_tip">个人简介</string>
+	<string name="txt_user_card_note_hint">请输入您的个人简介</string>
+	<string name="txt_user_card_add_more">添加更多信息</string>
+	<string name="txt_user_card_change_mobile">更换手机号</string>
+	<string name="txt_user_card_change_mobile_tip">新手机号</string>
+	<string name="txt_user_card_change_mobile_password_tip">用户密码</string>
+
+	<string name="txt_user_card_completed">完成度:</string>
+	<string name="txt_sync_to_contacts_count">您的名片已发送给%1$d个联系人</string>
+	<string name="txt_sync_to_contacts_none">您的名片还未发送给任何联系人</string>
+
+	<string name="txt_user_card_name_verified_edit_tip">注册名已审核,须登录momo.im进行修改。</string>
+	<string name="txt_user_card_birthday_verified_edit_tip">生日已审核,须登录momo.im进行修改。</string>
+	<string name="txt_user_card_sex_verified_edit_tip">性别已审核,须登录momo.im进行修改。</string>
+	<string name="txt_user_card_phone_verified_edit_tip">手机号已验证,须通过更换手机号进行修改。</string>
+	<string name="txt_user_card_interface_waitting">等待服务端对应接口提供ing...</string>
+	<string name="txt_user_card_update_waitting">正在提交名片修改信息...</string>
+	<string name="txt_user_card_update_failed">修改个人名片失败</string>
+	<string name="txt_user_card_update_success">修改个人名片成功</string>
+	<string name="txt_user_card_bind_weibo_failed">绑定微博信息失败</string>
+	<string name="txt_user_card_bind_weibo_success">绑定微博信息成功</string>
+	<string name="txt_user_card_change_mobile_failed">更换手机号失败</string>
+	<string name="txt_user_card_change_mobile_success">更换手机号成功</string>
+	<string name="txt_user_card_send_card">发送名片</string>
+	<string name="txt_user_card_send_card_waiting">正在发送名片...</string>
+	<string name="txt_user_card_send_card_success">发送名片成功</string>
+	<string name="txt_user_card_send_card_failed">发送名片失败</string>
+
+	<string name="txt_user_card_insufficiency">联系人重要信息不齐全</string>
+	<string name="txt_user_card_save_to_contact">保存至联系人</string>
+	<string name="txt_user_card_save_to_contact_success">保存名片至联系人成功</string>
+	<string name="txt_user_card_save_to_contact_failed">保存名片至联系人失败</string>
+	<string name="txt_user_card_save_to_contact_waiting">正在保存为联系人...</string>
+
+	<string name="txt_navigation_user_card">名片</string>
+	<string name="txt_navigation_dynamic">分享</string>
+	<string name="txt_navigation_conversation">短信</string>
+	<string name="txt_conversation_history">查看聊天历史</string>
+	<string name="im_unsupported">尚未支持的聊天数据类型，请尽快升级客户端</string>
+
+	<string name="txt_user_card_eidt_avatar_tip">点击设置您的头像</string>
+	<string name="txt_user_card_phone_call">呼叫</string>
+	<string name="txt_user_card_phone_sms">短信</string>
+	<string name="txt_user_card_phone_pref">主号码</string>
+	<string name="txt_user_card_change_phone_pref">设置为主手机号码</string>
+	<string name="txt_user_card_change_phone_pref_wait">正在设置主手机号码...</string>
+	<string name="txt_user_card_change_phone_pref_success">设置为主手机号码成功</string>
+	<string name="txt_user_card_change_phone_pref_failed">设置为主手机号码失败</string>
+	<string name="txt_user_card_request_input_name">您还没未填写用户名，请先完善此信息。</string>
+
+	<!-- im -->
+	<string name="txt_im_card_confirm">发送名片给%1$s，授权他查看您的联系方式，并请求交换名片？</string>
+	<string name="txt_im_card_tip">这是我的名片，跟我交换一下名片吧，我们就可以自动同步联系方式</string>
+	<string name="txt_im_notify_dunt_push_sms">请不要短时间频繁推送短信，既浪费短信数量，又骚扰好友，对方收到MO短信，点开链接就能看到所有聊天内容，您确认要再推短信吗？</string>
+
+	<string name="txt_menu_conversation_refresh">刷新</string>
+	<string name="txt_menu_conversation_clear">清除</string>
+	<string name="txt_menu_conversation_mark_read">设为已读</string>
+
+	<string name="txt_add_contact">新建联系人</string>
+	<string name="txt_edit_contact">编辑联系人</string>
+	<string name="txt_add_contact_name">姓名：</string>
+	<string name="txt_add_contact_name_title">姓名</string>
+	<string name="txt_add_contact_mobile">手机：</string>
+	<string name="txt_add_contact_name_input">请输入联系人姓名</string>
+	<string name="txt_add_contact_mobile_input">请输入联系人手机号码</string>
+	<string name="txt_add_contact_mobile_tip">国际号码：+区号-号码（例：+1-334552012）</string>
+	<string name="txt_add_contact_send_card">同时发送我的名片给TA</string>
+	<string name="txt_add_contact_submit">添加到我的联系人</string>
+	<string name="txt_add_contact_waitting">新建联系人进行中...</string>
+	<string name="txt_delete_contact_waitting">正在删除联系人...</string>
+	<string name="txt_delete_contact_success">删除联系人成功</string>
+	<string name="txt_edit_contact_success">修改联系人成功</string>
+	<string name="txt_edit_contact_waitting">正在修改联系人...</string>
+
+	<string name="txt_edit_contact_wait_for_sync_select">您尚未打开同步联系人到服务器设置，无法处理您的请求</string>
+	<string name="txt_edit_contact_wait_for_sync">正在进行同步，请稍候……</string>
+	
+	<string name="txt_select_sync_type">选择同步的帐号</string>
+	<string name="txt_sms_count">您还有%d条免费短信</string>
+	
+	<string name="sms_tip_send_by_momo">本条信息将通过momo免费回复</string>
+	<string name="sms_tip_send_by_users">本条信息将通过运营商发送，具体资费请咨询当地营业厅</string>
+	
+	<string name="txt_begin_conversation">发MO短信</string>
+	<string name="txt_no_user_to_conversation">没有可发MO短信的手机号码</string>
+	<string name="txt_sms">发短信</string>
+	<string name="txt_details">查看详情</string>
+	<string name="txt_contact_delete_confirm">此操作将从手机中彻底删除此人，是否确认删除？</string>
+	<string name="txt_select_phone_number">选择号码</string>
+	<string name="txt_invite_to_momo">尚未加入MOMO，邀请其加入吧！</string>
+	<string name="txt_send_card">发送名片给TA</string>
+	<string name="txt_save_to_contact">保存到联系人</string>
+    <string name="txt_one_key_register_button">一键注册</string>
+    <string name="txt_one_key_register_notice">MOMO需要向服务器发送一条短信完成注册，资费与普通短信相同，由运营商收取，MOMO不会收取任何费用，注册成功，MOMO将赠送您100条免费短信，是否发送？</string>
+    <string name="txt_smiley_default">默认</string>
+    
+    <string name="txt_unfound_mo_user">所选号码中没找到关联的mo用户</string>
+    
+    <string name="contact_lis_title_contact">联系人</string>
+	<string name="contact_lis_title_mo_user">MO好友</string>
+	<string name="contact_lis_title_group">群　组</string>
+	
+	<string name="exchange_mobile_title">号码变更</string>
+	<string name="exchange_new_mobile">新号码</string>
+	<string name="exchange_mobile_tip">将替换</string>
+	<string name="exchange_no_mobile">请勾选要替换的联系人号码</string>
+	
+	<string name="robot">机器人</string>
+	<string name="robot_subscribed">已订阅</string>
+	
+	<string name="group_detail">详情</string>
+	<string name="group_member_list">成员列表</string>
+	<string name="group_creator">创建者：</string>
+	<string name="group_member_count">成员数：</string>
+	<string name="group_info_label">群公告：</string>
+
+	<string name="statuses_all">全部分享</string>
+	<string name="statuses_all_send">发起MO分享</string>
+	<string name="statuses_detail">分享详情</string>
+	<string name="statuses_from">来自</string>
+	
+	<string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">松开刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    
+    <string name="statuses_map_small">小图预览</string>
+    <string name="statuses_map_big">大图预览</string>
+    <string name="statuses_map_no">无图预览</string>
+    
+   	<string name="bind_mobile">验证手机号</string>
+   	<string name="bind_mobile_waiting">正在请求下发验证码短信...</string>
+   	<string name="bind_mobile_failed">下发验证码短信失败</string>
+   	<string name="next_step">下一步</string>
+   	<string name="verify_code">验证</string>
+   	<string name="verify_code_waiting">校验验证码中...</string>
+   	<string name="verify_code_failed">验证码校验失败</string>
+</resources>
+
+

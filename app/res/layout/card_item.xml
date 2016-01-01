@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:gravity="center_vertical"
+	android:orientation="vertical">
+
+<RelativeLayout
+	android:id="@+id/card_item"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:layout_gravity="center"
+	android:layout_marginTop="20dip"
+	android:orientation="horizontal">
+	
+	<ImageView android:id="@+id/image_item_icon"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true" 
+		android:layout_centerVertical="true"
+		android:scaleType="fitCenter" />
+
+  	<TextView
+  		android:id="@+id/text_item_value"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:layout_toRightOf="@id/image_item_icon"
+  		android:layout_centerVertical="true"
+  		android:textSize="20sp"
+  		android:textColor="@color/user_card_item_color"
+  		android:layout_marginLeft="15dip"
+  		android:layout_marginRight="5dip"/>
+  		
+</RelativeLayout>
+</LinearLayout>

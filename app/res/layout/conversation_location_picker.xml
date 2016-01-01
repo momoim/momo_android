@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@color/background_color">
+
+	<LinearLayout android:id="@+id/layout_search_bar"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:padding="3dip" android:background="@drawable/searchbox_bg">
+		<EditText android:id="@+id/search_text" android:layout_width="fill_parent"
+			android:layout_height="40dip" android:paddingLeft="3dip"
+			android:hint=" 搜索附近地点" android:background="@drawable/searchbox_edit"
+			android:drawableLeft="@drawable/ic_search" android:focusable="true"
+			android:textColor="@color/black" android:singleLine="true" />
+	</LinearLayout>
+
+	<ImageView android:layout_width="fill_parent"
+		android:layout_height="@dimen/im_location_picker_img_height"
+		android:id="@+id/search_img" 
+		android:background="@drawable/map_location" />
+
+	<ListView android:id="@+id/search_results"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:listSelector="@drawable/list_selector_lighter"
+		android:fastScrollEnabled="false" android:layout_weight="1"
+		android:cacheColorHint="#00000000" android:scrollingCache="false"
+		android:fadingEdge="none" />
+</LinearLayout>

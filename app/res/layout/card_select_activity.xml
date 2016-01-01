@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:orientation="vertical"
+	android:background="@color/list_default_normal">
+
+	<RelativeLayout android:id="@+id/title_bar"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@drawable/title_background">
+		<TextView
+		 	android:id="@+id/txt_contact_select"
+			android:text="发送名片"
+			android:layout_centerInParent="true" 
+			style="@style/txt_title_bar"/>
+	</RelativeLayout>
+		
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<ListView android:id="@+id/card_list_view" 
+			android:paddingBottom="0dip"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+		
+		<cn.com.nd.momo.view.AlphabeticBar
+	    	android:id="@+id/alphabetic_bar"
+			android:background="#00000000" 
+			android:layout_width="30dip"
+			android:layout_alignParentRight="true"
+			android:layout_height="fill_parent" />
+						
+		<TextView android:id="@+id/txt_letter_index" android:visibility="gone"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerInParent="true"
+						android:background="@drawable/letter_indexer_bg"
+						android:gravity="center"
+						android:textSize="30sp"
+						android:text="A"
+						android:textStyle="bold"
+						android:textColor="#4f4f4f"/>
+	</RelativeLayout>
+	
+</LinearLayout>
+

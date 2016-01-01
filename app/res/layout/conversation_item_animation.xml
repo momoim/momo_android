@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/history_animation" android:layout_width="100dip"
+	android:layout_height="68dip" android:layout_gravity="right|top"
+	android:layout_marginRight="13dip" android:layout_marginTop="-5dip"
+	android:scaleType="fitEnd" android:background="#00000000" />

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clipChildren="true"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/history_chat"
+        style="@style/Chat.HistoryItemLeft"
+        android:layout_alignParentLeft="true" >
+
+        <include layout="@layout/conversation_avatar" />
+
+        <LinearLayout
+            style="@style/Chat.HistoryBGLeftButton"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/chat_content_area"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/conv_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="1dip"
+                    android:src="@drawable/ic_document" />
+
+                <TextView
+                    android:id="@+id/main_content"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="4dip"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textColorLink="#ff666666"
+                    android:textSize="16dip" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dip"
+                android:gravity="right"
+                android:text="点击保存到通讯录" />
+        </LinearLayout>
+
+        <include layout="@layout/conversation_history_item_state" />
+    </LinearLayout>
+
+</RelativeLayout>

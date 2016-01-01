@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" style="@style/contact_editor_phones_item">
+	<LinearLayout android:id="@+id/contact_editor_item_tool"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="horizontal" android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true" android:visibility="gone">
+		<Button android:id="@+id/contact_editor_item_delete"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="删除" />
+		<Button android:id="@+id/contact_editor_item_cancel"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="取消" />
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/contact_editor_edit_outer"
+		android:orientation="horizontal" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true" android:background="#ff000000">
+		<EditText android:id="@+id/contact_editor_main_text"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:singleLine="true" android:layout_weight="1" />
+		<cn.com.nd.momo.view.widget.LabelSelector
+			android:id="@+id/contact_editor_label" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="选择标签" />
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/contact_editor_create_outer"
+		style="@style/contact_editor_phones_item" android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
+		android:visibility="gone" android:gravity="center" android:background="#ffffff00">
+		<TextView android:id="@+id/contact_editor_button_create"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="添加新条目" android:clickable="false" android:singleLine="true" />
+	</LinearLayout>
+</RelativeLayout>
+

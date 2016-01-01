@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
+        android:padding="0dip" >
+
+        <TextView
+            android:id="@+id/txt_mome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/tab_txt_mention"
+            android:textColor="@color/white"
+            android:textSize="18dip" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/notify_set_avatar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dynamic_list_new_bg"
+        android:gravity="center"
+        android:text="@string/notify_set_avatar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <!--
+        	android:background="@color/background_color"
+                android:layout_weight="1"
+        -->
+
+        <cn.com.nd.momo.view.PullToRefreshListView
+            android:id="@+id/mention_list"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_weight="1"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/ic_null"
+            android:listSelector="@drawable/list_selector_lighter" />
+
+        <RelativeLayout
+            android:id="@+id/sending_area"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@drawable/title_background"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:padding="5dip"
+            android:visibility="gone" >
+
+            <cn.com.nd.momo.im.view.SmileySelector
+                android:id="@+id/smiley_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_null"
+                android:src="@drawable/dynamic_up" />
+
+            <ImageButton
+                android:id="@+id/friend_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/smiley_selector"
+                android:background="@drawable/ic_null"
+                android:src="@drawable/about_me_basebar_at" />
+
+            <ImageButton
+                android:id="@+id/message_send_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dip"
+                android:background="@drawable/ic_null"
+                android:src="@drawable/btn_about_me_send" />
+
+            <EditText
+                android:id="@+id/message_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dip"
+                android:layout_toLeftOf="@id/message_send_btn"
+                android:layout_toRightOf="@id/friend_at"
+                android:hint="说点话吧~"
+                android:maxLength="140"
+                android:maxLines="5"
+                android:minHeight="46dip"
+                android:singleLine="false"
+                android:text="" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

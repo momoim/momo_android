@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="momo消息设置"
+            android:textColor="#FFFFFF"
+            android:textSize="18dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_weight="1"
+        android:background="@color/background_color"
+        android:orientation="vertical" >
+
+        <!-- 短信拦截 -->
+
+        <LinearLayout
+            android:id="@+id/sms_opt_all_intercep"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/mm_frame_set_up"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="13dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="13dip" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="弹出框显示所有短信"
+                android:textColor="@color/light_black"
+                android:textSize="20dip" />
+
+            <CheckBox
+                android:id="@+id/sms_chk_option_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dip"
+                android:background="@drawable/ic_null"
+                android:clickable="false"
+                android:focusable="false"
+                android:minHeight="24dip"
+                android:minWidth="24dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sms_opt_momo_intercep"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mm_frame_set_down"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="13dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="13dip" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="弹出框显示MO短信"
+                android:textColor="@color/light_black"
+                android:textSize="20dip" />
+
+            <CheckBox
+                android:id="@+id/sms_chk_option_momo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dip"
+                android:background="@drawable/ic_null"
+                android:clickable="false"
+                android:focusable="false"
+                android:minHeight="24dip"
+                android:minWidth="24dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

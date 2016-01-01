@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/sms_popup_activity"
+    android:layout_width="fill_parent"
+    android:layout_height="400dip"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/ic_null"
+    android:orientation="vertical" >
+
+    <!-- main -->
+    <LinearLayout
+         android:layout_width="fill_parent"
+        android:layout_height="380dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="20dip"
+        android:background="@drawable/sms_content_bg"
+        android:orientation="vertical" >
+
+        <!-- logo  -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dip"
+            android:layout_marginTop="2dip"
+            android:background="@drawable/ic_null"
+            android:src="@drawable/sms_logo" />
+        
+        <!-- sms content -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/ic_null" >
+
+            <ImageView
+            	android:id="@+id/sms_before"
+                android:layout_width="16dip"
+                android:layout_height="fill_parent"
+                android:scaleType="center"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_null"
+                android:src="@drawable/sms_before" />
+            
+   			<android.support.v4.view.ViewPager
+   			    android:id="@+id/sms_view_pager"
+                android:layout_width="1dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sms_msg_content_bg" />
+
+            <ImageView
+            	android:id="@+id/sms_next"
+                android:layout_width="16dip"
+                android:layout_height="fill_parent"
+                android:scaleType="center"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_null"
+                android:src="@drawable/sms_next" />
+        </LinearLayout>
+
+       <!--Tip -->
+           <LinearLayout android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:background="@drawable/ic_null">
+               <TextView android:id="@+id/sms_index" 
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:gravity="center_horizontal"
+                   android:background="@drawable/ic_null"
+               	   android:textColor="@color/sms_pop_up_index"
+               	   android:textSize="18sp"
+                   android:text="1/4"
+               	   />
+               
+               <TextView android:id="@+id/sms_tip" 
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="9dip"
+               	   android:background="@drawable/ic_null"
+               	   android:textColor="@color/sms_pop_up_tip"
+                   android:textSize="10sp"
+                   android:text="@string/sms_tip_send_by_momo"
+                   />
+           </LinearLayout>
+
+        <!-- reply area -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sms_reply_area_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageButton android:id="@+id/sms_text_audio_switcher"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_margin="9dip"
+                android:background="@drawable/ic_null"
+                android:src="@drawable/sms_text_mode" />
+            
+            <cn.com.nd.momo.im.view.AudioRecorder
+                android:id="@+id/sms_audio_reply"
+                android:layout_width="1dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/conversation_recorder"
+                android:text="按住录音"
+                android:textColor="#ffffffff"
+                android:textSize="18dip" />
+            
+              <EditText android:id="@+id/sms_text_reply"
+                android:layout_width="1dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint=""
+                android:layout_marginLeft="9dip"
+                android:visibility="gone"/>
+
+            <ImageButton android:id="@+id/sms_more_media"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_margin="9dip"
+                android:background="@drawable/ic_null"
+                android:src="@drawable/dynamic_up" />
+            
+            <ImageButton android:id="@+id/sms_text_send"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_marginRight="10dip"
+                android:src="@drawable/btn_about_me_send"
+                android:background="@drawable/ic_null"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+          <!-- setting area -->
+            <RelativeLayout
+               android:layout_width="fill_parent"
+               android:layout_height="37dip"
+               android:background="@drawable/ic_null"
+               >
+               <Button android:id="@+id/sms_delete"
+                   android:layout_height="26dip"
+                   android:layout_width="wrap_content"
+                   android:layout_alignParentLeft="true"
+                   android:layout_marginLeft="9dip"
+                   android:layout_marginTop="5dip"
+                   android:layout_marginBottom="5dip"
+                   android:gravity="center"
+                   android:textColor="@color/sms_pop_up_more_setting"
+                   android:textSize="12sp"
+                   android:text="删除"
+                   android:background="@drawable/sms_set_btn"
+                   />
+               <Button android:id="@+id/sms_more_setting"
+                   android:layout_height="26dip"
+                   android:layout_width="wrap_content"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="9dip"
+                   android:layout_marginTop="5dip"
+                   android:layout_marginBottom="5dip"
+                   android:gravity="center"
+                   android:textColor="@color/sms_pop_up_more_setting"
+                   android:textSize="12sp"
+                   android:text="更多"
+                   android:background="@drawable/sms_set_btn"
+                   />
+               </RelativeLayout>
+    </LinearLayout>
+
+    <ImageButton android:id="@+id/sms_close"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#00000000"
+        android:src="@drawable/sms_close" />
+
+</RelativeLayout>

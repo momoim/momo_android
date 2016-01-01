@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/layout_main"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#e0e8ec">
+	 
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:background="@drawable/title_background"
+		android:textColor="@color/white"
+		android:textSize="18sp"
+		android:text="智能帐号匹配"/>
+    
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_marginLeft="25dip"
+		android:layout_marginRight="25dip">
+	
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical">
+    
+    		<TextView android:layout_width="fill_parent"
+    			android:layout_height="wrap_content"
+    			android:layout_marginTop="50dip"
+    			android:textColor="@color/black"
+    			android:text="匹配成功，您可以使用下面的号码登录"/>		
+    
+    		<LinearLayout android:layout_width="fill_parent"
+    			android:layout_height="wrap_content"
+    			android:layout_marginLeft="20dip"
+    			android:layout_marginTop="30dip"
+    			android:gravity="center_vertical">
+    		
+    			<TextView android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:textSize="20sp"
+    				android:textColor="@color/black"
+    				android:text="手机号: "/>
+    			
+    			<TextView android:id="@+id/txt_phone_number" 
+    				android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:textColor="@color/black"
+    				android:text="138888"/>
+    			
+    		</LinearLayout>
+
+    		<LinearLayout android:layout_width="fill_parent"
+    			android:layout_height="wrap_content"
+    			android:layout_marginLeft="20dip"
+    			android:layout_marginTop="20dip"
+    			android:gravity="center_vertical">
+    		
+    			<TextView android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:textSize="20sp"
+    				android:textColor="@color/black"
+    				android:text="姓名: "/>
+    			
+    			<TextView android:id="@+id/txt_user_name" 
+    				android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:textColor="@color/black"
+    				android:text=""/>
+    			
+    		</LinearLayout>
+
+    		<Button android:id="@+id/btn_wel_ok"
+    			android:layout_width="fill_parent"
+    			android:layout_height="wrap_content"
+    			android:layout_marginTop="40dip"
+    			android:layout_marginLeft="20dip"
+    			android:layout_marginRight="20dip"
+    			android:background="@drawable/btn_bg_blue"
+    			android:text="确认"/>
+
+    		<Button android:id="@+id/btn_wel_cancel"
+    			android:layout_width="fill_parent"
+    			android:layout_height="wrap_content"
+    			android:layout_marginTop="20dip"
+    			android:layout_marginLeft="20dip"
+    			android:layout_marginRight="20dip"    			
+    			android:background="@drawable/btn_bg_red"
+    			android:text="取消"/>
+    
+		</LinearLayout>
+	</ScrollView>    
+</LinearLayout>

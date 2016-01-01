@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:paddingTop="7dip" android:paddingBottom="7dip"
+	android:orientation="horizontal" android:gravity="center"
+	android:background="@color/background_color">
+	<Button android:id="@+id/btn_history" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_weight="1"
+		android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+		android:paddingLeft="10dip" android:paddingRight="10dip"
+		android:paddingTop="4dip" android:paddingBottom="4dip"
+		android:layout_marginLeft="6dip" android:layout_marginRight="6dip"
+		android:gravity="center" android:text="@string/im_btn_history"
+		android:background="@drawable/btn_bg_gray" android:enabled="true" />
+</LinearLayout> 

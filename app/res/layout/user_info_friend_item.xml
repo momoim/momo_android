@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="1dip"
+	android:layout_height="wrap_content"
+	android:gravity="center"
+	android:layout_weight="1"
+	android:layout_marginRight="3dip"
+	android:orientation="vertical">
+	
+	<cn.com.nd.momo.view.CustomImageView
+		android:id="@+id/img_user_info_friend_item_avatar"
+		android:layout_width="52dip"
+        android:layout_height="52dip"
+        android:minWidth="52dip"
+        android:minHeight="52dip"
+		android:layout_margin="2dip"
+		android:scaleType="fitCenter" 
+		android:src="@drawable/ic_contact_picture"/>
+	<Button
+		android:id="@+id/btn_user_info_friend_more"
+		android:text="@string/dynamic_more"
+		android:layout_width="52dip"
+        android:layout_height="52dip"
+        android:minWidth="52dip"
+        android:minHeight="52dip"
+		android:layout_margin="2dip"
+		android:visibility="gone"
+		android:background="@drawable/mm_frame_set_whole"/>
+
+	<TextView	
+		android:id="@+id/txt_user_info_friend_item_name"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:textSize="16sp"/>
+</LinearLayout>

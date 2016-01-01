@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+  
+  	<!-- title -->
+  	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:background="@drawable/title_background"
+		android:textColor="@color/white"
+		android:textSize="18sp"
+		android:text="@string/txt_option_status_sync"/>
+  	
+	<ScrollView android:orientation="vertical" 
+		android:layout_width="fill_parent" 
+		android:layout_height="1dip"
+		android:layout_weight="1.0"
+		android:background="@color/background_color">
+
+        <LinearLayout android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip">
+
+			<!-- sync progress -->
+			<!-- deposed -->
+			<LinearLayout android:id="@+id/layout_sync_source"
+				android:visibility="gone"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dip"
+				android:layout_marginBottom="10dip">
+					  				  
+			</LinearLayout>
+			
+			<View android:visibility="gone" 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="20dip"
+				android:background="@drawable/mm_frame_set_middle_line"/>
+			
+			<!-- deposed -->
+			<TextView android:visibility="gone" 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="15dip"
+				android:layout_marginBottom="15dip"
+				android:text="@string/sync_mode_choose_title"/>	
+			
+			<!-- sync mode selection -->			
+			<!-- deposed -->
+			<LinearLayout android:id="@+id/layout_sync_mode_normal"
+				android:visibility="gone"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:minHeight="50dip"
+				android:layout_marginBottom="20dip"
+				android:gravity="center_vertical"
+				android:background="@drawable/mm_frame_set_whole">
+				
+				<TextView android:id="@+id/txt_sync_mode" 
+					android:layout_width="1dip"
+					android:layout_weight="1"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dip"
+					android:textColor="@color/font_gray"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:text="@string/btn_option_sync_main_type_two_way"/>
+				
+				<ImageView android:layout_width="wrap_content"
+	  				android:layout_height="wrap_content"
+	  				android:layout_marginRight="5dip"
+	  				android:src="@drawable/option_arrow"/>
+	  				
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/layout_sync_begin"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:minHeight="50dip"
+				android:layout_marginTop="15dip"
+				android:layout_marginBottom="20dip"
+				android:gravity="center_vertical"
+				android:background="@drawable/mm_frame_set_whole">
+				
+				<LinearLayout android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+				
+					<TextView android:id="@+id/txt_sync_progress" 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="10dip"
+						android:textColor="@color/font_gray"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:text="@string/btn_option_sync_main_type_two_way"/>
+
+					<TextView android:id="@+id/txt_sync_click_sync" 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="10dip"
+						android:textColor="@color/font_gray"
+						android:textAppearance="?android:attr/textAppearanceSmall"
+						android:text="@string/msg_sync_click_to_sync"/>
+						
+				</LinearLayout>
+				
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/layout_sync_mode_check"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:minHeight="50dip"
+				android:layout_marginBottom="20dip"
+				android:gravity="center_vertical"
+				android:background="@drawable/mm_frame_set_whole">
+				
+				<TextView android:layout_width="1dip"
+					android:layout_weight="1"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dip"
+					android:textColor="@color/font_gray"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:text="打开自动同步"/>
+				
+				<CheckBox android:id="@+id/chk_auto_sync" 
+					android:layout_width="wrap_content"
+	  				android:layout_height="wrap_content"
+	  				android:layout_marginRight="5dip"
+	  				android:src="@drawable/check_box_selector"
+	  				android:clickable="false"
+				    android:focusable="false"/>
+	  				
+			</LinearLayout>
+
+
+			<!-- <View android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_middle_line"/> -->
+			
+			<!-- sync big photo -->
+			<!-- deposed -->
+			<LinearLayout android:id="@+id/btn_option_sync_photo"
+				android:visibility="gone"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:minHeight="50dip"
+				android:gravity="center_vertical"
+				android:layout_marginBottom="20dip"
+				android:background="@drawable/mm_frame_set_whole">
+				
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dip"
+					android:textColor="@color/font_gray"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:text="@string/btn_option_sync_main_photo"/>
+					
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dip"
+					android:textColor="@color/font_gray"
+					android:textSize="12sp"
+					android:text="@string/btn_option_sync_main_photo_note"/>		
+				
+			</LinearLayout>
+							
+			<!-- slow sync -->
+			<!-- deposed -->
+			<LinearLayout android:id="@+id/layout_sync_mode_slow"
+				android:visibility="gone"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:minHeight="50dip"
+				android:gravity="center_vertical"
+				android:layout_marginBottom="20dip"
+				android:background="@drawable/mm_frame_set_whole">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dip"
+					android:textColor="@color/font_gray"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:text="@string/btn_option_sync_main_type_slow"/>
+				
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dip"
+					android:textColor="@color/font_gray"
+					android:textSize="12sp"
+					android:text="@string/btn_option_sync_main_type_slow_note"/>	
+									
+			</LinearLayout>
+		</LinearLayout>	        
+    </ScrollView>
+	          
+	<!-- return button (now disabled) -->
+	<LinearLayout android:layout_width="fill_parent"
+	  	android:layout_height="wrap_content"
+	  	style="@android:style/ButtonBar"
+	  	android:visibility="gone">
+  	
+	  	<View android:layout_width="1dip"
+	  		android:layout_height="1dip"
+	  		android:layout_weight="1"/>
+	  		
+	  	<Button android:id="@+id/btn_sync_main_cancel"
+	  		android:layout_width="1dip"
+	  		android:layout_height="wrap_content"
+	  		android:layout_weight="1"
+	  		android:text="@string/btn_option_return"/>
+  	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants" >
+
+    <RelativeLayout
+        android:id="@+id/dynamic_list_item_wrap"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dip" >
+
+        <!-- 头像  左边 -->
+
+        <FrameLayout
+            android:id="@+id/dynamic_list_item_avatar_frame_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left_list_item"
+            android:clickable="false"
+            android:paddingRight="@dimen/padding_left_list_item"
+            android:paddingTop="10dip" >
+
+            <cn.com.nd.momo.view.CustomImageView
+                android:id="@+id/dynamic_list_item_avatar"
+                android:layout_width="@dimen/avatar_small_rect"
+                android:layout_height="@dimen/avatar_small_rect"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/dynamic_thumb_image" />
+        </FrameLayout>
+
+        <!-- 分享内容  右边 -->
+
+        <LinearLayout
+            android:id="@+id/dynamic_list_item_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dip"
+            android:layout_toRightOf="@id/dynamic_list_item_avatar_frame_content"
+            android:clickable="false"
+            android:orientation="vertical"
+            android:paddingRight="5dip" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <!-- 姓名 -->
+
+                <TextView
+                    android:id="@+id/dynamic_list_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="3dip"
+                    android:focusable="false"
+                    android:textColor="@color/blue_big"
+                    android:textSize="18sp" />
+                <!-- 赞 按钮 -->
+
+                <ImageButton
+                    android:id="@+id/btn_praise"
+                    style="@style/image_blue_bg_button"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                    android:padding="10dip" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/dynamic_list_item_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padding_left_list_item" >
+
+                <TextView
+                    android:id="@+id/dynamic_list_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dip"
+                    android:focusable="false"
+                    android:paddingLeft="3dip"
+                    android:paddingRight="3dip"
+                    android:textColor="#9c9d9d"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- 内容 -->
+
+            <TextView
+                android:id="@+id/dynamic_list_item_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padding_left_list_item"
+                android:focusable="false"
+                android:textColor="@color/statuses_content"
+                android:textSize="14sp" />
+
+            <!-- 图片 -->
+
+            <LinearLayout
+                android:id="@+id/images"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:paddingBottom="3dip"
+                android:paddingRight="10dip"
+                android:paddingTop="3dip" >
+
+                <LinearLayout
+                    android:id="@+id/dynamic_list_item_images"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:layout_width="@dimen/statuses_small_image_width"
+                        android:layout_height="@dimen/statuses_small_image_height"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:layout_width="@dimen/statuses_small_image_width"
+                        android:layout_height="@dimen/statuses_small_image_height"
+                        android:layout_marginLeft="5dip"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:layout_width="@dimen/statuses_small_image_width"
+                        android:layout_height="@dimen/statuses_small_image_height"
+                        android:layout_marginLeft="5dip"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:layout_width="@dimen/statuses_small_image_width"
+                        android:layout_height="@dimen/statuses_small_image_height"
+                        android:layout_marginLeft="5dip"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dynamic_image_more"
+                    android:layout_width="40dip"
+                    android:layout_height="52dip"
+                    android:layout_marginLeft="5dip"
+                    android:background="@drawable/dynamic_thumb_image_more"
+                    android:focusable="false"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="5dip"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/dynamic_list_group_panel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/dynamic_list_item_group_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="10dip"
+                    android:singleLine="true"
+                    android:textColor="#00bfff"
+                    android:textSize="12sp" >
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/dynamic_list_item_group_info"
+                    android:gravity="center_vertical"
+                    android:paddingRight="1dip"
+                    android:text="@string/statuses_from"
+                    android:textColor="#555555"
+                    android:textSize="12sp" >
+                </TextView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/dynamic_list_item_comment_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padding_left_list_item"
+                android:layout_marginTop="0dip"
+                android:background="@drawable/comment_bg"
+                android:clickable="false"
+                android:focusable="false"
+                android:orientation="vertical"
+                android:textColor="#ff000000"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dip" >
+
+                    <!-- 评论数 -->
+
+                    <TextView
+                        android:id="@+id/dynamic_list_item_commentcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_left_list_item"
+                        android:focusable="false"
+                        android:gravity="top"
+                        android:paddingRight="2dip"
+                        android:paddingTop="1dip"
+                        android:textColor="#9c9d9d"
+                        android:textSize="12sp" />
+
+                    <!-- 觉得赞 -->
+
+                    <TextView
+                        android:id="@+id/dynamic_list_item_likecount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:paddingTop="1dip"
+                        android:textColor="@color/im_grey"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dynamic_list_item_comment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/padding_left_list_item"
+                    android:layout_marginTop="0dip"
+                    android:focusable="false"
+                    android:textColor="@color/statuses_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

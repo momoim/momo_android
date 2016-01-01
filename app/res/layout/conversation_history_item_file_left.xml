@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="horizontal" android:clipChildren="true">
+	<LinearLayout android:id="@+id/history_chat" style="@style/Chat.HistoryItemLeft"
+		android:layout_alignParentLeft="true">
+		<include layout="@layout/conversation_avatar" />
+		<LinearLayout android:id="@+id/chat_content_area"
+			style="@style/Chat.HistoryBGLeftButton" android:layout_weight="1">
+			<ImageView android:id="@+id/conv_imageview"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" android:paddingTop="1dip"
+				android:src="@drawable/ic_document" />
+			<TextView android:id="@+id/conv_file_name"
+				android:singleLine="true" style="@style/Chat.HistoryItemHint"
+				android:layout_marginLeft="8dip" android:layout_marginRight="0dip"
+				android:layout_weight="1" />
+			<TextView android:id="@+id/conv_file_suffix" style="@style/Chat.HistoryItemHint"
+				android:layout_marginLeft="0dip" android:layout_marginRight="4dip" />
+			<TextView android:id="@+id/conv_file_size" style="@style/Chat.HistoryItemHint"
+				android:layout_marginLeft="4dip" android:layout_marginRight="4dip" />
+		</LinearLayout>
+
+		<include layout="@layout/conversation_history_item_state" />
+	</LinearLayout>
+</RelativeLayout>

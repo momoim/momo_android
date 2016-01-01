@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:paddingLeft="10dip"
+  android:paddingRight="10dip"
+  android:paddingTop="20dip"
+  android:paddingBottom="20dip">
+  	  
+	  <!-- begin time and end time -->
+	  <LinearLayout android:orientation="horizontal"
+	  	android:gravity="center_vertical"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="wrap_content">
+	  	
+		  <LinearLayout android:orientation="vertical" 
+		  	android:layout_width="fill_parent"
+		  	android:layout_height="wrap_content">
+		  	
+			  <TextView android:id="@+id/txt_sync_report_start_time"
+			  	android:layout_width="fill_parent"
+			  	android:layout_height="wrap_content"
+			  	android:textSize="15sp"
+			  	android:textColor="@color/font_gray"
+			  	android:text="start: 2011-1-4 15:10:20"/>
+			  	
+			  <TextView android:id="@+id/txt_sync_report_end_time"
+			  	android:layout_width="fill_parent"
+			  	android:layout_height="wrap_content"
+			  	android:textColor="@color/font_gray"
+			  	android:textSize="15sp"
+			  	android:text="end: 2011-1-4 15:10:30"/>
+			  	
+		  </LinearLayout>
+		  
+	  </LinearLayout>
+	  
+	  	<!-- sync status icon -->
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="right">
+			
+			<ImageView android:id="@+id/img_sync_report_status_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/icon_complete"/>
+				
+		</LinearLayout>
+	
+		<!-- sync status string -->
+		<TextView android:id="@+id/txt_sync_report_status"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/font_yellow"
+			android:textSize="18sp"
+			android:text="success"/>
+	
+	
+	  <TextView android:id="@+id/txt_sync_report_server_mod"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="wrap_content"
+	  	android:layout_marginTop="5dip"
+	  	android:textColor="@color/font_gray"
+	  	android:textSize="15sp"
+	  	android:text="server: add 0, mod 0, del 0, failed 0"/>
+	
+	  <TextView android:id="@+id/txt_sync_report_client_mod"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="wrap_content"
+	  	android:textColor="@color/font_gray"
+	  	android:textSize="15sp"
+	  	android:text="client: add 0, mod 0, del 0, failed 0"/>
+	  
+</LinearLayout>

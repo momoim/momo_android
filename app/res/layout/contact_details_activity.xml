@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="@color/user_card_background_color"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  
+  	<RelativeLayout
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@drawable/title_background">
+		
+	<Button android:id="@+id/btn_save_contact" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:paddingLeft="8dip" android:paddingRight="8dip"
+		android:paddingTop="3dip" android:paddingBottom="3dip"
+		android:layout_marginLeft="6dip" android:layout_marginRight="6dip"
+		android:gravity="center" android:text="保存"
+		android:background="@drawable/btn_bg_blue" />
+		
+		<TextView android:id="@+id/txt_name" android:gravity="center"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" android:textColor="#ffffffff"
+			android:textSize="18sp" android:layout_centerVertical="true"
+			android:text="" android:padding="5dip" android:singleLine="true" />
+	</RelativeLayout>
+  
+    <ScrollView 
+    	android:scrollbars="none"
+    	android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<LinearLayout
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:paddingLeft="10dip"
+			android:paddingRight="10dip"
+			android:paddingBottom="10dip"
+			android:orientation="vertical">
+
+		<RelativeLayout
+			android:id="@+id/layout_contact_header"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:background="@drawable/mm_frame_set_whole"
+			android:paddingTop="5dip"
+			android:paddingBottom="5dip"
+			android:layout_marginTop="10dip">
+			
+			<cn.com.nd.momo.view.CustomImageView
+				android:id="@+id/img_contact_avatar" 
+				android:layout_width="@dimen/user_card_avatar_size" 
+				android:layout_height="@dimen/user_card_avatar_size"
+				android:scaleType="fitXY" 
+				android:layout_alignParentLeft="true"
+				android:layout_margin="5dip"
+				android:layout_centerVertical="true"
+				android:src="@drawable/card_default_avatar" />
+				<LinearLayout 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:orientation="vertical"
+					android:layout_toRightOf="@id/img_contact_avatar">
+					<TextView
+						android:id="@+id/txt_contact_name"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="@color/user_card_item_label_color"
+						android:layout_marginTop="5dip"
+						android:layout_marginBottom="5dip"
+						android:textSize="18sp" />
+				</LinearLayout>
+
+			</RelativeLayout>
+			
+			<LinearLayout android:id="@+id/layout_contact_details"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:visibility="gone"
+				android:layout_marginTop="10dip">
+			 </LinearLayout>
+			
+			 <LinearLayout android:id="@+id/layout_save_contact"
+			 	android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:minHeight="45dip"
+				android:gravity="center"
+				android:background="@drawable/btn_bg_blue"
+				android:layout_marginTop="10dip">
+				<TextView
+			  		android:layout_width="fill_parent"
+			  		android:layout_height="wrap_content"
+			  		android:layout_gravity="center_vertical"
+			  		android:gravity="center"
+			  		android:textSize="16sp"
+			  		android:text="保存为联系人"/>
+			 </LinearLayout>
+		</LinearLayout>	
+	</ScrollView>
+</LinearLayout>

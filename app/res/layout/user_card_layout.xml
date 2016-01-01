@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:background="@color/white"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+	<WebView android:id="@+id/webview_robot" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:visibility="gone"
+		/>
+    <ScrollView 
+    	android:id="@+id/scroll_container"
+    	android:scrollbars="none"
+    	android:fillViewport="true"
+    	android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:visibility="gone"
+		>
+		<LinearLayout 
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:orientation="vertical"
+		>
+		<LinearLayout android:id="@+id/layout_card"
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:id="@+id/layout_avatar"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical">
+				
+				<cn.com.nd.momo.view.CustomImageView 
+					android:id="@+id/imgage_avatar"
+					android:layout_width="fill_parent"
+					android:layout_height="@dimen/user_card_avatar_height_size"
+					android:src="@drawable/common_avatar"
+					android:scaleType="centerCrop" />
+			</LinearLayout>
+			
+			<LinearLayout android:id="@+id/layout_user_name"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="37dip"
+				android:paddingLeft="37dip"
+				android:paddingRight="37dip">
+				
+				<TextView 
+					android:id="@+id/text_user_name"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="@color/user_card_name"
+					android:textSize="26sp" />	
+					
+				<TextView 
+					android:id="@+id/text_user_note"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="25dip"
+					android:textColor="@color/user_card_item_color"
+					android:textSize="18sp"
+					android:text="" />	
+			</LinearLayout>
+				
+			<LinearLayout android:id="@+id/layout_user_card_content"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="17dip"
+				android:paddingLeft="37dip"
+				android:paddingRight="37dip"
+				android:visibility="gone">
+			 </LinearLayout>
+			 
+			 <LinearLayout android:id="@+id/layout_send_card"
+			 	android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:visibility="gone"
+				android:minHeight="45dip"
+				android:layout_marginLeft="37dip"
+				android:layout_marginRight="37dip"
+				android:layout_gravity="center"
+				android:background="@drawable/btn_bg_blue"
+				android:layout_marginTop="30dip"
+				android:layout_marginBottom="10dip" >
+				<TextView
+			  		android:layout_width="fill_parent"
+			  		android:layout_height="wrap_content"
+			  		android:layout_gravity="center_vertical"
+			  		android:gravity="center"
+			  		android:textSize="16sp"
+			  		android:textColor="@color/user_card_item_value_color"
+			  		android:text="@string/txt_send_card" />
+			 </LinearLayout>
+			 <LinearLayout android:id="@+id/layout_save_to_contact"
+			 	android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:visibility="gone"
+				android:minHeight="45dip"
+				android:layout_marginLeft="37dip"
+				android:layout_marginRight="37dip"
+				android:layout_gravity="center"
+				android:background="@drawable/btn_bg_blue"
+				android:layout_marginTop="30dip"
+				android:layout_marginBottom="10dip" >
+				<TextView
+			  		android:layout_width="fill_parent"
+			  		android:layout_height="wrap_content"
+			  		android:layout_gravity="center_vertical"
+			  		android:gravity="center"
+			  		android:textSize="16sp"
+			  		android:textColor="@color/user_card_item_value_color"
+			  		android:text="@string/txt_save_to_contact" />
+			 </LinearLayout>
+			 <LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:layout_weight="1"
+				android:gravity="bottom"
+				android:layout_marginTop="10dip"
+				android:layout_gravity="bottom">
+				<ImageView android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:layout_gravity="bottom"
+					android:src="@drawable/card_bg"
+					android:scaleType="fitCenter"/>
+			 </LinearLayout>
+	</LinearLayout>	
+	</LinearLayout>
+	</ScrollView>
+</LinearLayout>

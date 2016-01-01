@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<include layout="@layout/conversation_topbar" />
+
+	<FrameLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+
+		<cn.com.nd.momo.view.CustomViewPager
+			android:id="@+id/contact_pager" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:layout_gravity="center" />
+
+		<LinearLayout android:id="@+id/layout_left"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:minHeight="30dip" android:background="@drawable/ic_null"
+			android:gravity="center_vertical" android:layout_gravity="left">
+
+			<ImageView android:id="@+id/img_contact_info_left"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical" android:src="@drawable/switch_left_arrow"
+				android:scaleType="fitCenter" android:layout_marginLeft="10dip" />
+
+			<TextView android:id="@+id/txt_contact_info_left"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical" android:gravity="center_vertical"
+				android:paddingLeft="10dip" android:textColor="@color/user_card_nav_text_color"
+				android:text="@string/txt_navigation_conversation" />
+		</LinearLayout>
+
+		<TextView android:id="@+id/txt_contact_info_center"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:minHeight="30dip" android:gravity="center_vertical"
+			android:visibility="invisible"
+			android:layout_gravity="center_horizontal" android:textColor="@color/user_card_item_label_color"
+			android:textSize="18sp" android:text="@string/txt_navigation_user_card" />
+
+		<LinearLayout android:id="@+id/layout_right"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:minHeight="30dip" android:background="@drawable/ic_null"
+			android:gravity="center_vertical" android:layout_gravity="right">
+			<TextView android:id="@+id/txt_contact_info_right"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical" android:textColor="@color/user_card_nav_text_color"
+				android:paddingRight="10dip" android:text="@string/txt_navigation_dynamic" />
+			<ImageView android:id="@+id/img_contact_info_right"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical" android:src="@drawable/switch_right_arrow"
+				android:scaleType="fitCenter" android:layout_marginRight="10dip" />
+		</LinearLayout>
+	</FrameLayout>
+
+
+
+</LinearLayout>

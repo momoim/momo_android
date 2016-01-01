@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <item type="id" name="birthday_edit" />
+  <item type="id" name="contact_info_group_value" />
+  <item type="id" name="contact_info_ringtone_value" />
+  <item type="id" name="home_page_common_friend_more" />
+  <item type="id" name="conversation_history_list_header" />
+  <item type="id" name="user_card_edit_name" />
+  <item type="id" name="user_card_edit_sex" />
+  <item type="id" name="user_card_edit_birthday" />
+  <item type="id" name="user_card_edit_note" />
+  <item type="id" name="user_card_edit_phone" />
+  <item type="id" name="user_card_edit_email" />
+  <item type="id" name="user_card_add_weibo" />
+  <item type="id" name="user_card_edit_sina_weibo" />
+  <item type="id" name="user_card_edit_tencent_weibo" />
+  <item type="id" name="user_card_edit_residence" />
+  <item type="id" name="user_card_edit_organization" />
+  <item type="id" name="user_card_open_weibo_url" />
+  <item type="id" name="contact_details_phone_item" />
+  <item type="id" name="card_phone_item" />
+</resources>

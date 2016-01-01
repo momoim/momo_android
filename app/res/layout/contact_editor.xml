@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<ScrollView android:id="@+id/contact_editor_scroll"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<ImageView android:id="@+id/contact_editor_avatar"
+					android:layout_width="100dip" android:layout_height="fill_parent"
+					android:layout_weight="0" android:clickable="true"
+					android:focusable="true" android:scaleType="center" android:src="@drawable/icon"
+					android:background="@drawable/btn_contact_picture" />
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layout_weight="1">
+					<LinearLayout android:orientation="horizontal"
+						android:layout_width="fill_parent" android:layout_height="wrap_content">
+						<EditText android:id="@+id/contact_editor_family_name"
+							android:layout_weight="1" android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:singleLine="true"
+							android:hint="姓氏" android:nextFocusRight="@+id/contact_editor_first_name"
+							android:nextFocusDown="@+id/contact_editor_first_name" />
+						<EditText android:id="@+id/contact_editor_first_name"
+							android:layout_weight="1" android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:singleLine="true"
+							android:hint="名字" />
+					</LinearLayout>
+					<EditText android:id="@+id/contact_editor_nickname"
+						android:layout_width="fill_parent" android:layout_height="wrap_content"
+						android:singleLine="true" android:hint="昵称" />
+				</LinearLayout>
+			</LinearLayout>
+			<ListView android:id="@+id/contact_editor_phones"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#ffff0000" android:scrollbars="none" />
+			<EditText android:id="@+id/contact_editor_company"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:singleLine="true" android:hint="公司" />
+			<EditText android:id="@+id/contact_editor_department"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:singleLine="true" android:hint="部门" />
+			<EditText android:id="@+id/contact_editor_job"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:singleLine="true" android:hint="职位" />
+			<EditText android:id="@+id/contact_editor_birthday"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:singleLine="true" android:hint="生日" />
+
+			<ListView android:id="@+id/contact_editor_emails"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#ffffff00" android:scrollbars="none" />
+			<ListView android:id="@+id/contact_editor_ims"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#ffffff00" android:scrollbars="none" />
+			<ListView android:id="@+id/contact_editor_addresses"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#ffffff00" android:scrollbars="none" />
+			<ListView android:id="@+id/contact_editor_urls"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#ffffff00" android:scrollbars="none" />
+			<ListView android:id="@+id/contact_editor_relationships"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#fffff000" android:scrollbars="none" />
+			<ListView android:id="@+id/contact_editor_memorialdays"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#fff00000" android:scrollbars="none" />
+
+			<EditText android:id="@+id/contact_editor_note"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:hint="备注" />
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<Button android:id="@+id/contact_editor_button_save"
+					android:layout_weight="1" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:singleLine="true"
+					android:text="@string/menu_done" android:nextFocusRight="@+id/contact_editor_button_cancel"
+					android:nextFocusDown="@+id/contact_editor_button_cancel" />
+				<Button android:id="@+id/contact_editor_button_cancel"
+					android:layout_weight="1" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:singleLine="true"
+					android:text="@string/menu_doNotSave" />
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

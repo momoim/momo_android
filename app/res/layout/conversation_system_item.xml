@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:layout_width="fill_parent" android:layout_height="fill_parent" 
+	android:paddingLeft="10dip" android:paddingRight="10dip" android:paddingTop="3dip" android:paddingBottom="3dip">
+<LinearLayout
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="horizontal" android:background="@drawable/mm_frame_set_whole">
+	<ImageView android:id="@+id/system_head"
+		android:layout_width="56dip" android:layout_height="56dip"
+		android:scaleType="fitCenter" android:layout_margin="2dip"
+		android:layout_gravity="top" android:background="@drawable/contact_picture_border_normal" />
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:layout_weight="1" android:layout_margin="2dip">
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<TextView android:id="@+id/user_name" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true" android:textSize="14dip" />
+			<TextView android:id="@+id/time_sent" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true" android:textSize="12dip" />
+		</RelativeLayout>
+		<TextView android:id="@+id/main_content"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:autoLink="none" android:textColor="@color/black"
+			android:textColorLink="@color/blue_small" android:textSize="14dip"
+			android:layout_marginTop="10dip" android:layout_marginBottom="10dip" />
+		<RelativeLayout android:id="@+id/control_area"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:visibility="gone" android:orientation="horizontal">
+			<LinearLayout android:id="@+id/control_buttons" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:gravity="center">
+				<Button android:id="@+id/sys_agree" android:text="@string/im_system_agree"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:background="@drawable/conversation_agree_selector"
+					android:paddingLeft="20dip" android:paddingRight="20dip"
+					android:paddingTop="10dip" android:padding="10dip"
+					android:layout_marginRight="20dip" />
+				<Button android:id="@+id/sys_ignore" android:text="@string/im_system_ignore"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:background="@drawable/conversation_ignore_selector"
+					android:paddingLeft="20dip" android:paddingRight="20dip"
+					android:paddingTop="10dip" android:padding="10dip" />
+			</LinearLayout>
+			<TextView android:id="@+id/sys_processed"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/blue_thin" />
+		</RelativeLayout>
+	</LinearLayout>
+</LinearLayout>
+</FrameLayout>

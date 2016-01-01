@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/tab_bar_layout" android:gravity="center"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<LinearLayout android:gravity="center"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+
+		<ImageView android:id="@+id/tab_imageView"
+			android:layout_width="wrap_content" android:layout_height="1dip"
+			android:layout_weight="1" android:src="@drawable/ic_contact"
+			android:scaleType="fitCenter" android:layout_marginTop="4dip" />
+
+		<TextView android:id="@+id/tab_textView"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="#FFFFFF" android:textSize="10sp"
+			android:paddingBottom="2dip" android:text="contacts" />
+
+	</LinearLayout>
+
+	<!-- this view for about me -->
+	<TextView android:id="@+id/txt_about_me_cout" android:gravity="center"
+		android:layout_gravity="right|top" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="1"
+		android:background="@drawable/about_me_count" android:visibility="gone"
+		android:paddingLeft="10dip" android:paddingRight="10dip" />
+
+</FrameLayout>	

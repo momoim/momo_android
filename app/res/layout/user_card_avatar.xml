@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/contact_avatar_dialog"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	android:background="@color/black"
+	android:gravity="center_vertical|center_horizontal"
+	>
+	
+	<ProgressBar 
+		android:id="@+id/txt_loadimg" 
+		android:layout_width="wrap_content"
+		android:visibility="visible"
+		android:layout_height="wrap_content"  />
+		
+	<ImageView
+		android:id="@+id/image_avatar"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:scaleType="fitCenter"
+		android:visibility="gone"
+		/>
+
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="#e0e8ec">
+    
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:background="@drawable/title_background"
+		android:textColor="@color/white"
+		android:textSize="20sp"
+		android:text="用户协议"/>
+			
+    <ScrollView android:fillViewport="true"
+    	android:layout_width="fill_parent"
+		android:layout_height="1dip"
+		android:layout_weight="1">
+			
+		<LinearLayout android:id="@+id/reg_info_container"
+			style="@style/LoginContainer">
+    
+		    <TextView android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:layout_marginTop="15dip"
+		    	android:text="输入真实姓名，方便你的好友找到你"/>
+		    	
+		    <EditText android:id="@+id/reg_name_input"
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:layout_marginTop="5dip"
+		    	android:background="@drawable/login_edit_background"
+		    	android:hint="姓名"/>
+		    	
+		    <TextView android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:layout_marginTop="15dip"
+		    	android:maxLength="20"
+		    	android:text="密码须6-20位，由字母或数字组成"/>
+		
+		    <EditText android:id="@+id/reg_pwd_input"
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:layout_marginTop="5dip"
+		    	android:background="@drawable/login_edit_background"
+		    	android:hint="密码"/>
+		    
+		    <Button android:id="@+id/btn_regist_now"
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:layout_marginTop="20dip"
+		    	style="@style/WhiteButtonView"
+		    	android:text="下一步"/>
+
+    	</LinearLayout>			
+	</ScrollView>
+</LinearLayout>

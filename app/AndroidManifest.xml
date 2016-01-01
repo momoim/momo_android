@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="cn.com.nd.momo" android:versionName="1.9.42"
+	android:versionCode="133">
+	<!--call note provider -->
+
+	<application android:name=".activity.MyApplication"
+		android:icon="@drawable/ts_icon" android:label="@string/app_name"
+		android:theme="@style/MoMoTheme" android:debuggable="true">
+		<!-- 单元测试需要用到库 -->
+		<uses-library android:name="android.test.runner" />
+
+		<!--创建帐号取消 <service android:name=".account.service.AccountService"> <intent-filter> 
+			<action android:name="android.accounts.AccountAuthenticator"></action> </intent-filter> 
+			<meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator"> 
+			</meta-data> </service> <service android:name=".account.service.SyncService" 
+			android:exported="true" android:process=":contacts"> <intent-filter> <action 
+			android:name="android.content.SyncAdapter" /> </intent-filter> <meta-data 
+			android:name="android.content.SyncAdapter" android:resource="@xml/sync_momo_contacts" 
+			/> </service> -->
+
+
+
+		<!-- android:theme="@android:style/Theme.NoDisplay" -->
+		<activity android:name=".activity.LauncherActivity"
+			android:configChanges="keyboardHidden|orientation" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			
+			<intent-filter>
+		 		<action android:name="cn.com.nd.momo.launch" />
+		     	<action android:name="android.intent.action.DEFAULT" />
+		 		<category android:name="android.intent.category.DEFAULT" />
+		
+		 	</intent-filter>
+		 
+		</activity>
+
+		<activity android:name=".activity.MainActivity"
+			android:label="@string/app_name" android:launchMode="singleTask"
+			android:windowSoftInputMode="adjustPan" android:configChanges="keyboardHidden|orientation">
+
+			<!-- <intent-filter> <action android:name="android.intent.action.CALL_BUTTON" 
+				/> <category android:name="android.intent.category.DEFAULT" /> </intent-filter> 
+				<intent-filter> <action android:name="android.intent.action.DIAL" /> <action 
+				android:name="android.intent.action.VIEW" /> <category android:name="android.intent.category.DEFAULT" 
+				/> <category android:name="android.intent.category.BROWSABLE" /> </intent-filter> 
+				<intent-filter> <action android:name="android.intent.action.VIEW" /> <category 
+				android:name="android.intent.category.DEFAULT" /> <category android:name="android.intent.category.BROWSABLE" 
+				/> <data android:mimeType="vnd.android.cursor.dir/calls" /> </intent-filter> -->
+
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="momo" />
+			</intent-filter>
+
+
+		</activity>
+
+		<activity android:name=".activity.ContactsListActivity"
+			android:configChanges="orientation" android:label="@string/app_name"></activity>
+		<activity android:name=".activity.ContactFragmentActivity"
+			android:configChanges="keyboardHidden|orientation" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="momouser" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activity.MemberSelectActivity"
+			android:configChanges="orientation"></activity>
+		<activity android:name=".activity.ContactLongClickMo"
+			android:configChanges="orientation" android:theme="@style/Transparent"></activity>
+
+		<!-- favourate tab -->
+		<activity android:name=".activity.FavourateActivity"></activity>
+
+		<!-- option tab -->
+		<activity android:name=".activity.OptionActivity" />
+
+		<activity android:name=".activity.ForceUpgradeActivity" />
+		<activity android:name=".activity.AboutActivity" />
+
+
+		<!-- login activity -->
+		<activity android:name=".activity.LauncherSelectActivity"
+			android:launchMode="singleTask" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.LoginPreActivity"
+			android:launchMode="singleTask" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.LoginActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.RegistSendVerifyActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.LeadToSyncActivity"
+			android:launchMode="standard" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.RegInfoActivity"
+			android:launchMode="singleTask" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.CountrySelectActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="stateVisible|adjustPan" />
+		<activity android:name=".activity.AccountsBindActivity"
+			android:launchMode="standard" android:configChanges="orientation|keyboardHidden" />
+		<activity android:name=".activity.Group_Fragment_Activity"
+			android:launchMode="standard" android:configChanges="orientation|keyboardHidden" />
+		
+		<receiver android:name=".receiver.ActivityController">
+			<intent-filter>
+				<action android:name="ActivityController" />
+			</intent-filter>
+		</receiver>
+
+		<!-- in call <receiver android:name=".receiver.PhoneStateReceiver"> <intent-filter> 
+			<action android:name="android.intent.action.PHONE_STATE" /> </intent-filter> 
+			</receiver> <activity android:name=".activity.CallScreenInActivity" android:configChanges="keyboardHidden|orientation" 
+			android:theme="@style/in_call_screen_theme" android:launchMode="singleTop"> 
+			<intent-filter> <action android:name="cn.com.nd.momo.CallScreenInActivity" 
+			/> <category android:name="android.intent.category.DEFAULT" /> </intent-filter> 
+			</activity> -->
+
+		<!-- other activity -->
+		<activity android:name=".im.activity.SmileTabActivity"
+			android:theme="@style/smileyDialogTheme">
+			<intent-filter>
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.SAMPLE" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activity.SmsActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="adjustResize" />
+		<!-- group activity -->
+		<activity android:name=".activity.GroupContactsListActivity"></activity>
+		<activity android:name=".activity.GroupDetailsActivity"></activity>
+
+		<activity android:name=".telephony.TitleEditor"
+			android:label="@string/title_edit_title" android:theme="@android:style/Theme.Dialog"
+			android:windowSoftInputMode="stateVisible" />
+
+		<!-- 弹出层 -->
+		<activity android:name=".im.activity.MOMOSmsActivity"
+			android:theme="@style/MyFloatingWindow" android:launchMode="singleTask" />
+		<activity android:name=".im.activity.SmsSettingActivity"
+			android:configChanges="keyboardHidden|orientation" />
+
+
+		<!-- momo activitys -->
+		<activity android:name=".activity.Statuses_Activity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.Statuses_Comment_Activity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.WholeImageActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.Statuses_Images_Activity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.Statuses_Send_Activity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="adjustResize" >
+			<intent-filter >
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+            <intent-filter>
+	        <action android:name="android.intent.action.SEND" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		        <data android:mimeType="text/plain" />
+		    </intent-filter>
+		    <intent-filter>
+		        <action android:name="android.intent.action.SEND_MULTIPLE" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		        <data android:mimeType="image/*" />
+		    </intent-filter>
+		</activity>
+
+
+		<activity android:name=".activity.DynamicSearchActivity"
+			android:windowSoftInputMode="stateHidden|adjustResize"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.Statuses_Draft_Activity"
+			android:windowSoftInputMode="stateHidden" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.GroupSelectListActivity"
+			android:windowSoftInputMode="stateHidden" android:configChanges="keyboardHidden|orientation" />
+
+		<activity android:name=".activity.SelectorActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="stateHidden|adjustPan" />
+
+		<!-- mention activity -->
+		<activity android:name=".mention.activity.MentionListActivity"
+			android:configChanges="keyboardHidden|orientation" />	
+		
+		<!-- im activity -->
+		<activity android:name=".im.activity.ConversationListActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.ConversationGroupActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.WebMapActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.BaiduMapActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.MMSSlideShowActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.MMSGalleryActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.LocationPickerActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<!-- android:launchMode="singleInstance" /> -->
+		<activity android:name=".im.activity.SysMsgActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:launchMode="singleTask" />
+		<activity android:name=".im.activity.SysMsgSuggestFriendActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.SysMsgFriendApplyActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.SysMsgGroupInviteActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".im.activity.SysMsgGroupRequestActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.AddContactActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.EditContactActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		
+		<activity android:name=".activity.BindMobileActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.BindVerifyCodeActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		
+		<!-- push service -->
+		<service
+            android:name="im.momo.service.pushable.MomoService"
+            android:enabled="true"
+            android:label="momo message push" >
+            <intent-filter android:priority="11">
+                <action android:name="im.momo.service.pushable.IMomoCommand" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="im.momo.service.pushable.MomoReceiver" >
+            <intent-filter android:priority="11" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="im.momo.service.pushable.StartReceiver" >
+            <intent-filter android:priority="11" >
+                <action android:name="im.momo.service.pushable.IMomoCommand" />
+            </intent-filter>
+        </receiver>
+			
+		<!-- 短信 -->
+		<service android:name="com.android.mms.transaction.TransactionService" />
+		<receiver android:name="com.android.mms.transaction.MmsSystemEventReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.CONTENT_CHANGED" />
+			</intent-filter>
+		</receiver>
+
+
+		<service android:enabled="true" android:name=".service.MQService"
+			android:label="momo for Android message push" />
+		<receiver android:name=".service.ServiceReceiver">
+			<intent-filter android:priority="1000">
+				<action android:name="com.nd.message.bind" />
+				<action android:name="com.nd.message.send" />
+				<action android:name="com.nd.message.userinfo" />
+				<action android:name="com.nd.message.received" />
+				<action android:name="com.nd.message.destroy" />
+				<action android:name="com.nd.message.login" />
+				<action android:name="com.nd.message.launch" />
+				<action android:name="com.nd.message.refresh" />
+				<action android:name="momo.sms.action.send" />
+				<action android:name="com.nd.app.status" />
+				<action android:name="com.nd.momo.message.read" />
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<category android:name="android.intent.category.LAUNCHER" />
+				<action android:name="android.intent.action.SCREEN_ON" />
+				<action android:name="android.intent.action.SCREEN_OFF" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+				<action android:name="android.provider.Telephony.SMS_RECEIVED" />
+				<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+			</intent-filter>
+		</receiver>
+
+		<!-- webview activity -->
+		<activity android:name=".activity.WebViewActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".sync.activity.SyncActivity"
+			android:configChanges="orientation" android:launchMode="singleTop"
+			android:screenOrientation="portrait">
+		</activity>
+
+		<activity android:name=".activity.guide.GuideActivity"
+			android:theme="@style/Transparent">
+		</activity>
+		<activity android:name=".activity.guide.EnterGuideActivity"
+			android:theme="@android:style/Theme.NoTitleBar">
+		</activity>
+
+		<activity android:name=".activity.ContactInfoActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.CardSelectActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="stateHidden|adjustPan" />
+		<activity android:name=".activity.ContactDetailsActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.ChangeMobileActivity"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name=".activity.RegistVerifyCodeActivity"
+			android:configChanges="keyboardHidden|orientation" 
+			android:windowSoftInputMode="stateHidden|adjustPan" />
+		<activity android:name=".activity.ForgetPasswordActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="stateHidden|adjustPan" />
+		<activity android:name=".activity.NewPasswordActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="stateHidden|adjustPan" />
+		<activity android:name=".activity.ResetPasswordActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="stateHidden|adjustPan" />
+		<activity android:name=".activity.RobotListActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="stateHidden|adjustPan" />
+		
+				
+		<service android:name=".account.service.AccountService">
+			<intent-filter>
+				<action android:name="android.accounts.AccountAuthenticator"></action>
+			</intent-filter>
+			<meta-data android:name="android.accounts.AccountAuthenticator"
+				android:resource="@xml/authenticator">
+			</meta-data>
+		</service>
+		<service android:name=".account.service.SyncService"
+            android:exported="true" android:process=":contacts">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_momo_contacts" />
+        </service>
+        
+		
+	</application>
+
+	<!-- 权限设置部分 -->
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" /> 
+	<uses-permission android:name="android.permission.READ_SYNC_SETTINGS" /> 
+	<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+	<uses-permission android:name="android.permission.READ_SMS" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<uses-permission android:name="android.permission.WRITE_SMS" />
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+	<!-- 拨打电话 -->
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<!-- <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" 
+		/> -->
+
+	<uses-permission android:name="android.permission.READ_CALENDAR" />
+	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+	<uses-permission android:name="android.permission.WRITE_CAbuxinLENDAR" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<!-- <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/> -->
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+	<uses-permission android:name="android.permission.CAMERA" />
+
+	<!-- 地图定位 -->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+	<!--momo动态 -->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-feature android:name="android.hardware.camera"></uses-feature>
+
+	<!-- 创建桌面快捷方式 -->
+	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+
+	<instrumentation android:name="android.test.InstrumentationTestRunner"
+		android:targetPackage="cn.com.nd.momo" android:label="Tests for momo subpackages." />
+
+	<!-- other -->
+	<supports-screens android:smallScreens="true"
+		android:normalScreens="true" android:largeScreens="true"
+		android:anyDensity="true" />
+
+	<!-- sdk version -->
+	<uses-sdk android:minSdkVersion="5" />
+
+</manifest> 

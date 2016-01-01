@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent" android:padding="5dip">
+	<EditText style="@style/EditText" android:id="@+id/edit_name"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10dip"
+		android:background="@drawable/login_edit_background"
+		android:hint="请输入真实姓名"/>
+	<LinearLayout android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+		<Button android:id="@+id/btn_configure" 
+		android:text="确定" 
+		android:layout_height="wrap_content"
+		android:layout_width="1dip"
+		android:layout_marginRight="2dip"
+		android:textColor="@color/black" 
+		android:layout_weight="1"/>
+		<Button android:id="@+id/btn_cancer" 
+		android:text="取消" 
+		android:layout_height="wrap_content"
+		android:layout_width="1dip"
+		android:layout_weight="1"
+		android:textColor="@color/black" 
+		android:layout_marginLeft="2dip"/>
+	</LinearLayout>
+</LinearLayout>

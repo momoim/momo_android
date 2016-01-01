@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 评论列表 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 标题栏 -->
+
+    <RelativeLayout
+        android:id="@+id/bar_statuses_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
+        android:padding="0dip" >
+
+        <TextView
+            android:id="@+id/txt_title"
+            style="@style/txt_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/statuses_detail" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/btn_praise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_null"
+                android:padding="10dip"
+                android:src="@drawable/share_topbar_praise" />
+
+            <ImageView
+                android:id="@+id/img_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="1dip"
+                android:src="@drawable/share_topbar_cutline" />
+
+            <ImageButton
+                android:id="@+id/btn_forward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_null"
+                android:padding="10dip"
+                android:src="@drawable/share_topbar_transmit" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- 分享详情： 作为列表header在代码里动态载入 -->
+
+
+    <!-- 评论列表 -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <cn.com.nd.momo.view.PullToRefreshListView
+            android:id="@+id/list_comment"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fastScrollEnabled="false"
+            android:listSelector="@drawable/list_selector_lighter"
+            android:paddingBottom="10dip"
+            android:stackFromBottom="false"
+            android:transcriptMode="normal" />
+
+        <!--
+             <include
+            android:id="@+id/loading_comments"
+            layout="@layout/dynamic_list_footer" />
+        -->
+    </RelativeLayout>
+
+    <!-- 评论输入框 -->
+
+    <RelativeLayout
+        android:id="@+id/sending_area"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@drawable/title_background"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:padding="5dip" >
+
+        <cn.com.nd.momo.im.view.SmileySelector
+            android:id="@+id/smiley_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_null"
+            android:src="@drawable/dynamic_up" />
+
+        <ImageButton
+            android:id="@+id/friend_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/smiley_selector"
+            android:background="@drawable/ic_null"
+            android:src="@drawable/about_me_basebar_at"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/message_send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/ic_null"
+            android:src="@drawable/btn_about_me_send" />
+
+        <cn.com.nd.momo.im.view.EditTextEx
+            android:id="@+id/message_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:layout_toLeftOf="@id/message_send_btn"
+            android:layout_toRightOf="@id/friend_at"
+            android:hint="输入评论内容"
+            android:maxLength="498"
+            android:maxLines="5"
+            android:minHeight="46dip"
+            android:singleLine="false"
+            android:text="" />
+    </RelativeLayout>
+
+</LinearLayout>

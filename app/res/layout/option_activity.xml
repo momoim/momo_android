@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<LinearLayout android:id="@+id/banner"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/title_background" android:gravity="center_horizontal|center_vertical">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="18dip"
+			android:textColor="#FFFFFF" android:text="@string/txt_option_title" />
+	</LinearLayout>
+
+	<ScrollView android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="1dip"
+		android:background="@color/background_color" android:layout_weight="1.0">
+
+		<LinearLayout android:orientation="vertical"
+			android:gravity="center_horizontal" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:paddingTop="13dip"
+			android:paddingBottom="13dip" android:paddingLeft="10dip"
+			android:paddingRight="10dip">
+
+			<LinearLayout android:id="@+id/btn_opt_my_home_page"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_up" android:paddingTop="13dip"
+				android:paddingLeft="20dip" android:paddingRight="20dip"
+				android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<!-- 姓名 -->
+				<TextView android:id="@+id/txt_option_login_user_info"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:textSize="20dip" android:textColor="@color/light_black"
+					android:layout_weight="1" android:text="@string/txt_option_status_sync" />
+
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow" />
+
+			</LinearLayout>
+			
+			<!-- change mobile -->
+			<LinearLayout android:id="@+id/btn_opt_change_mobile"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_middle" android:paddingTop="13dip"
+				android:paddingLeft="20dip" android:paddingRight="20dip"
+				android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<TextView 
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:textSize="20dip" android:textColor="@color/light_black"
+					android:layout_weight="1" android:text="@string/txt_change_mobile" />
+
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow" />
+
+			</LinearLayout>
+			
+			<!-- change password -->
+			<LinearLayout android:id="@+id/btn_opt_change_password"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_down" android:paddingTop="13dip"
+				android:paddingLeft="20dip" android:paddingRight="20dip"
+				android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<TextView 
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:textSize="20dip" android:textColor="@color/light_black"
+					android:layout_weight="1" android:text="@string/txt_change_pwd" />
+
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow" />
+
+			</LinearLayout>
+
+			    <!-- Message Ring -->
+			<LinearLayout android:id="@+id/btn_opt_msg_ring"
+			    android:layout_marginTop="10dip"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_up"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true">
+
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:layout_weight="2"
+					android:text="@string/txt_option_ring" />
+
+				<CheckBox android:id="@+id/chk_option_ring"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:minHeight="24dip" android:minWidth="24dip"
+					android:layout_marginRight="3dip" android:background="@drawable/ic_null"
+					android:clickable="false" android:focusable="false" />
+
+			</LinearLayout>
+			
+			<!-- system sound -->
+			<LinearLayout android:id="@+id/btn_opt_msg_system_sound"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_middle"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:visibility="gone" android:clickable="true">
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:layout_weight="2"
+					android:text="@string/txt_option_system" />
+
+				<CheckBox android:id="@+id/chk_option_system_sound"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:minHeight="24dip" android:minWidth="24dip"
+					android:layout_marginRight="3dip" android:background="@drawable/ic_null"
+					android:clickable="false" android:focusable="false" />
+
+			</LinearLayout>
+			
+			<!-- Message Vibrate -->
+			<LinearLayout android:id="@+id/btn_opt_msg_vibrate"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_down"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:layout_weight="2"
+					android:text="@string/txt_option_vibration" />
+
+				<CheckBox android:id="@+id/chk_option_vibrator"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:minHeight="24dip" android:minWidth="24dip"
+					android:layout_marginRight="3dip" android:background="@drawable/ic_null"
+					android:clickable="false" android:focusable="false" />
+
+			</LinearLayout>
+			
+			<!-- new audio im auto play -->
+			<LinearLayout android:id="@+id/btn_opt_im_auto_play"
+			    android:layout_marginTop="10dip"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_whole" android:paddingTop="13dip"
+				android:paddingLeft="20dip" android:paddingRight="20dip"
+				android:paddingBottom="13dip"
+				android:clickable="true">
+				
+				<cn.com.nd.momo.view.MarqueeTextView
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:layout_weight="2"
+					android:text="聊天时录音消息自动播放" />
+
+				<CheckBox android:id="@+id/chk_option_im_auto_play"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:minHeight="24dip" android:minWidth="24dip"
+					android:layout_marginRight="3dip" android:background="@drawable/ic_null"
+					android:clickable="false" android:focusable="false" />
+
+			</LinearLayout>
+			
+			<!-- 短信拦截 -->
+	        <LinearLayout
+	            android:id="@+id/sms_opt_all_intercep"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dip"
+	            android:background="@drawable/mm_frame_set_up"
+	            android:clickable="true"
+	            android:gravity="center_vertical"
+	            android:orientation="horizontal"
+	            android:paddingBottom="13dip"
+	            android:paddingLeft="20dip"
+	            android:paddingRight="20dip"
+	            android:paddingTop="13dip" 
+	            android:visibility="gone"
+	            >
+	
+	            <TextView
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="2"
+	                android:text="弹出框显示所有短信"
+	                android:textColor="@color/light_black"
+	                android:textSize="20dip" />
+	
+	            <CheckBox
+	                android:id="@+id/sms_chk_option_all"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginRight="3dip"
+	                android:background="@drawable/ic_null"
+	                android:clickable="false"
+	                android:focusable="false"
+	                android:minHeight="24dip"
+	                android:minWidth="24dip" />
+	        </LinearLayout>
+	
+	        <LinearLayout
+	            android:id="@+id/sms_opt_momo_intercep"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dip"
+	            android:background="@drawable/mm_frame_set_whole"
+	            android:clickable="true"
+	            android:gravity="center_vertical"
+	            android:orientation="horizontal"
+	            android:paddingBottom="13dip"
+	            android:paddingLeft="20dip"
+	            android:paddingRight="20dip"
+	            android:paddingTop="13dip" >
+	
+	            <TextView
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="2"
+	                android:text="弹出框显示MO短信"
+	                android:textColor="@color/light_black"
+	                android:textSize="20dip" />
+	
+	            <CheckBox
+	                android:id="@+id/sms_chk_option_momo"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginRight="3dip"
+	                android:background="@drawable/ic_null"
+	                android:clickable="false"
+	                android:focusable="false"
+	                android:minHeight="24dip"
+	                android:minWidth="24dip" />
+	        </LinearLayout>
+			    
+	        <LinearLayout
+	            android:id="@+id/upload_opt_full_size"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dip"
+	            android:background="@drawable/mm_frame_set_whole"
+	            android:clickable="true"
+	            android:gravity="center_vertical"
+	            android:orientation="horizontal"
+	            android:paddingBottom="13dip"
+	            android:paddingLeft="20dip"
+	            android:paddingRight="20dip"
+	            android:paddingTop="13dip" >
+	
+	            <TextView
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="2"
+	                android:text="上传照片使用原图"
+	                android:textColor="@color/light_black"
+	                android:textSize="20dip" />
+	
+	            <CheckBox
+	                android:id="@+id/upload_chk_option_full_size"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginRight="3dip"
+	                android:background="@drawable/ic_null"
+	                android:clickable="false"
+	                android:focusable="false"
+	                android:minHeight="24dip"
+	                android:minWidth="24dip" />
+	        </LinearLayout>
+
+			<!-- 打开自动同步 -->
+
+			<LinearLayout android:id="@+id/layout_sync_mode_check"
+				android:layout_marginTop="10dip" android:orientation="horizontal"
+				android:gravity="center_vertical" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:background="@drawable/mm_frame_set_up"
+				android:paddingTop="13dip" android:paddingLeft="20dip"  
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true">
+
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:layout_weight="2"
+					android:id="@+id/txt_autosync" android:text="@string/txt_option_autosync" />
+
+				<CheckBox android:id="@+id/chk_auto_sync"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:minHeight="24dip" android:minWidth="24dip"
+					android:layout_marginRight="3dip" android:background="@drawable/ic_null"
+					android:clickable="false" android:focusable="false" />
+
+			</LinearLayout>
+			
+			<LinearLayout android:id="@+id/btn_opt_import_contacts"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_middle"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" 
+					android:layout_weight="1"
+					android:text="导入其他帐号联系人" />
+					
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow" />
+
+			</LinearLayout>
+			
+			<!-- account -->
+			<LinearLayout android:id="@+id/btn_opt_account"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:background="@drawable/mm_frame_set_down"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<cn.com.nd.momo.view.MarqueeTextView android:layout_width="fill_parent" android:id="@+id/txt_opt_account"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:layout_weight="1"
+					android:singleLine="true" android:ellipsize="marquee"
+					android:marqueeRepeatLimit="marquee_forever"
+					android:text="" />
+
+			</LinearLayout>
+			
+			<LinearLayout
+	            android:id="@+id/layout_robot"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dip"
+	            android:background="@drawable/mm_frame_set_whole"
+	            android:clickable="true"
+	            android:gravity="center_vertical"
+	            android:orientation="horizontal"
+	            android:paddingBottom="13dip"
+	            android:paddingLeft="20dip"
+	            android:paddingRight="20dip"
+	            android:paddingTop="13dip" >
+	
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:text="@string/robot" 
+					android:layout_weight="1"/>
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow"/>
+	        </LinearLayout>
+
+			<!-- upgrade -->
+			<LinearLayout android:id="@+id/btn_opt_upgrade"
+			    android:layout_marginTop="10dip"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_up"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true" >
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:text="@string/txt_option_upgrade" />
+
+			</LinearLayout>
+
+			<!-- feed back -->
+			<LinearLayout android:id="@+id/btn_opt_feed_back"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_middle"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:text="@string/txt_option_feed_back" 
+					android:layout_weight="1"/>
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow"/>
+
+			</LinearLayout>
+			
+			<!-- help -->
+			<LinearLayout android:id="@+id/btn_opt_help"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_middle"
+				android:paddingTop="13dip" android:paddingLeft="20dip"
+				android:paddingRight="20dip" android:paddingBottom="13dip"
+				android:clickable="true">
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:text="@string/txt_option_help" 
+					android:layout_weight="1"/>
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow"/>
+
+			</LinearLayout>
+
+			<!-- about -->
+			<LinearLayout android:id="@+id/btn_opt_about"
+				android:orientation="horizontal" android:gravity="center_vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/mm_frame_set_down" android:paddingTop="13dip"
+				android:paddingLeft="20dip" android:paddingRight="20dip"
+				android:paddingBottom="13dip" android:clickable="true">
+
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="20dip"
+					android:textColor="@color/light_black" android:text="@string/txt_option_about" 
+					android:layout_weight="1"/>
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:src="@drawable/option_arrow"/>
+
+			</LinearLayout>
+			<Button android:id="@+id/btn_quit" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:text="@string/btn_option_quit"
+				android:background="@drawable/btn_bg_red" android:textSize="15dip"
+				android:layout_marginTop="10dip" />
+		</LinearLayout>
+
+	</ScrollView>
+
+</LinearLayout>

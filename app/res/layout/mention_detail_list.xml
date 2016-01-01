@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+	
+	<!-- title bar -->
+	<LinearLayout android:gravity="center" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:background="@drawable/title_background">
+		
+		<TextView android:id="@+id/txt_feed"
+			android:gravity="center" 
+			android:layout_width="1dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="1" 
+			android:textColor="@color/white" 
+			android:paddingLeft="10dip"/>
+
+		<ImageButton android:id="@+id/feed"
+			style="@style/image_rect_bg_button"
+			android:src="@drawable/chat_topbar_ic_next"/>
+	
+	</LinearLayout>
+	
+	<!-- content -->
+	<ListView android:id="@+id/mention_list" 
+		android:layout_width="fill_parent"
+		android:layout_height="1dip" 
+		android:layout_weight="1"
+		android:stackFromBottom="true"
+		/>
+		
+		<RelativeLayout android:id="@+id/sending_area" 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" android:layout_weight="0"
+			android:background="@drawable/title_background"
+			android:padding="5dip" android:gravity="center">
+			<ImageButton android:layout_alignParentLeft="true"
+				android:id="@+id/at" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:src="@drawable/about_me_basebar_at" 
+				android:background="@drawable/ic_null"/>
+			<ImageButton android:id="@+id/reply_send" android:layout_marginLeft="5dip"
+				android:src="@drawable/btn_about_me_send" 
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:background="@drawable/ic_null"/>
+			<EditText android:id="@+id/reply_content" android:layout_marginLeft="5dip"
+				android:layout_centerVertical="true"
+				android:layout_toRightOf="@id/at"
+				android:layout_toLeftOf="@id/reply_send"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:minHeight="46dip" android:maxLength="140"
+				android:singleLine="false" android:maxLines="5"
+				android:text="" android:hint="说点话吧~" />
+		</RelativeLayout>
+
+</LinearLayout>

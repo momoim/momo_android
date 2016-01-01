@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:orientation="vertical" android:minWidth="300dip">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal">
+		<EditText android:id="@+id/contact_editor_address_country"
+			android:singleLine="true" android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:hint="国家" android:text="中国" />
+		<EditText android:id="@+id/contact_editor_address_province"
+			android:singleLine="true" android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:hint="省份" />
+		<EditText android:id="@+id/contact_editor_address_city"
+			android:singleLine="true" android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:hint="城市" />
+	</LinearLayout>
+	<EditText android:id="@+id/contact_editor_address_street"
+		android:singleLine="true" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:hint="街道" />
+	<EditText android:id="@+id/contact_editor_address_postcode"
+		android:singleLine="true" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:hint="邮编" />
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<Button android:id="@+id/contact_editor_address_save"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:layout_weight="1" android:text="保存" />
+		<Button android:id="@+id/contact_editor_address_cancel"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:layout_weight="1" android:text="取消" />
+	</LinearLayout>
+</LinearLayout>

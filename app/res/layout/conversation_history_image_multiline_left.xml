@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="horizontal" android:clipChildren="true">
+	<LinearLayout android:id="@+id/chat_content_area" style="@style/Chat.HistoryItemLeft"
+		android:layout_alignParentLeft="true">
+		<include layout="@layout/conversation_avatar" />
+		<LinearLayout style="@style/Chat.HistoryBGLeft"
+			android:gravity="center" android:paddingTop="8dip"
+			android:paddingBottom="10dip">
+			<ImageView android:id="@+id/conv_imageview"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:visibility="gone" />
+			<ProgressBar android:id="@+id/download_progress"
+				android:indeterminate="true" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:visibility="visible"
+				android:layout_centerVertical="true" style="?android:attr/progressBarStyleSmall" />
+		</LinearLayout>
+
+		<include layout="@layout/conversation_history_item_state" />
+	</LinearLayout>
+</RelativeLayout>

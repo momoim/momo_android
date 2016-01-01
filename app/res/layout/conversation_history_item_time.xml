@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="horizontal" android:clipChildren="true">
+	<TextView android:id="@+id/time_sent" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_centerInParent="true"
+		android:paddingTop="10dip" android:textColor="#ff9c9d9d"
+		android:textSize="14dip" />
+</RelativeLayout>

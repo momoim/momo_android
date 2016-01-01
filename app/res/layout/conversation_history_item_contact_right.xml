@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:orientation="horizontal"
+		android:clipChildren="true">
+		<LinearLayout android:id="@+id/history_chat" style="@style/Chat.HistoryItemRight"
+			android:layout_alignParentRight="true" android:layout_width="fill_parent">
+			<include layout="@layout/conversation_history_item_state" />
+
+			<LinearLayout android:id="@+id/chat_content_area" style="@style/Chat.HistoryBGRight"
+				android:orientation="vertical" android:layout_weight="1">
+				<TextView android:id="@+id/conv_who_send" android:text="四个字啊发送了名片"
+					style="@style/Chat.HistoryItemHint" android:layout_width="fill_parent"
+					android:gravity="left" android:padding="10dip" android:paddingLeft="20dip"
+					android:singleLine="true" android:ellipsize="end" />
+				<TextView android:id="@+id/conv_who_detail" android:text="随意"
+					style="@style/Chat.HistoryItemHint" android:background="@drawable/conversation_contact_detail_border_blue"
+					android:padding="10dip" android:paddingBottom="-5dip"
+					android:paddingLeft="20dip" android:layout_marginBottom="5dip"
+					android:layout_width="fill_parent" android:gravity="center_vertical" />
+			</LinearLayout>
+
+			<include layout="@layout/conversation_avatar" />
+		</LinearLayout>
+	</RelativeLayout>
+	<ImageView android:src="@drawable/chat_ic_contact"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:paddingTop="1dip" android:layout_gravity="right|top"
+		android:layout_marginRight="90dip" android:layout_marginTop="5dip"
+		android:scaleType="fitEnd" />
+	<include layout="@layout/conversation_item_animation" />
+</FrameLayout>

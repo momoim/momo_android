@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/user_card_background_color" >
+
+    <TextView
+        android:id="@+id/txt_group_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
+        android:gravity="center"
+        android:padding="5dip"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="#ffffffff"
+        android:textSize="18sp" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:background="@drawable/switch_nav">
+
+        <LinearLayout
+            android:id="@+id/layout_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="@drawable/ic_null"
+            android:gravity="center_vertical"
+            android:minHeight="30dip" >
+
+            <ImageView
+                android:id="@+id/img_contact_info_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/switch_left_arrow" />
+
+            <TextView
+                android:id="@+id/txt_contact_info_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dip"
+                android:text="@string/group_member_list"
+                android:textColor="@color/user_card_nav_text_color" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_contact_info_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:minHeight="30dip"
+            android:text="@string/txt_navigation_user_card"
+            android:textColor="@color/user_card_item_label_color"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/ic_null"
+            android:gravity="center_vertical"
+            android:minHeight="30dip" >
+
+            <TextView
+                android:id="@+id/txt_contact_info_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dip"
+                android:text="@string/group_detail"
+                android:textColor="@color/user_card_nav_text_color" />
+
+            <ImageView
+                android:id="@+id/img_contact_info_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/switch_right_arrow" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <cn.com.nd.momo.view.widget.DragableSpace
+        android:id="@+id/contact_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+         />
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<dimen name="padding_in_dip">45dip</dimen>
+	<dimen name="note_edit_top_padding">3dip</dimen>
+	<dimen name="note_edit_left_padding">10dip</dimen>
+	<dimen name="note_edit_text_height">120dip</dimen>
+	<dimen name="textview_width">30dip</dimen>
+	<dimen name="avatar_small_rect">46dip</dimen>
+	<dimen name="padding_left_list_item">10dip</dimen>
+	<dimen name="user_card_avatar_size">70dip</dimen>
+	<dimen name="user_card_avatar_height_size">210dip</dimen>
+	<dimen name="contact_letter_font_size_portrait">12sp</dimen>
+	<dimen name="contact_letter_font_size_landscape">6sp</dimen>
+	<dimen name="option_sync_padding_left_or_right">20dip</dimen>
+	<dimen name="option_sync_padding_top_or_bottom">13dip</dimen>
+	<dimen name="im_location_picker_img_height">100dip</dimen>
+	<dimen name="im_location_marker_text_title">18sp</dimen>
+	<dimen name="statuses_small_image_width">50dip</dimen>
+	<dimen name="statuses_small_image_height">50dip</dimen>
+</resources>

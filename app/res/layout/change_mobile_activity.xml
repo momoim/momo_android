@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="@color/user_card_background_color"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  
+  	<RelativeLayout
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@drawable/title_background">
+		
+	<Button android:id="@+id/btn_cancel" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+		android:layout_centerVertical="true"
+		android:paddingLeft="8dip" android:paddingRight="8dip"
+		android:paddingTop="3dip" android:paddingBottom="3dip"
+		android:layout_marginLeft="6dip" android:layout_marginRight="6dip"
+		android:gravity="center" android:text="@string/txt_cancel"
+		android:background="@drawable/btn_bg_blue" />
+		
+	<Button android:id="@+id/btn_exchange" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:paddingLeft="8dip" android:paddingRight="8dip"
+		android:paddingTop="3dip" android:paddingBottom="3dip"
+		android:layout_marginLeft="6dip" android:layout_marginRight="6dip"
+		android:gravity="center" android:text="@string/txt_exchange"
+		android:background="@drawable/btn_bg_blue" />
+		
+		<TextView android:id="@+id/txt_name" android:gravity="center"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" android:textColor="#ffffffff"
+			android:textSize="18sp" android:layout_centerVertical="true"
+			android:text="@string/exchange_mobile_title" 
+			android:padding="5dip" android:singleLine="true" />
+	</RelativeLayout>
+  
+    <ScrollView 
+    	android:scrollbars="none"
+    	android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<LinearLayout
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:paddingLeft="10dip"
+			android:paddingRight="10dip"
+			android:paddingBottom="10dip"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:layout_marginTop="30dip"
+				android:background="@drawable/mm_frame_set_whole" 
+				android:paddingTop="13dip"
+				android:paddingLeft="40dip" 
+				android:paddingRight="20dip"
+				android:paddingBottom="13dip"
+				>
+				
+				<TextView
+			  		android:layout_width="wrap_content"
+			  		android:layout_height="wrap_content"
+			  		android:layout_gravity="center_vertical"
+			  		android:textSize="18sp"
+			  		android:textColor="@color/black"
+			  		android:text="@string/exchange_new_mobile"/>
+				<TextView
+					android:id="@+id/txt_new_mobile"
+			  		android:layout_width="wrap_content"
+			  		android:layout_height="wrap_content"
+			  		android:layout_gravity="center_vertical"
+			  		android:singleLine="true"
+			  		android:textSize="18sp"
+			  		android:textColor="@color/black"
+			  		android:text=""
+			  		android:layout_marginLeft="10dip"/>
+			</LinearLayout>
+			
+			<TextView
+		  		android:layout_width="fill_parent"
+		  		android:layout_height="wrap_content"
+		  		android:layout_gravity="center_vertical"
+		  		android:textSize="18sp"
+		  		android:textColor="@color/black"
+		  		android:layout_marginTop="10dip"
+		  		android:gravity="center"
+		  		android:text="@string/exchange_mobile_tip"/>
+		  	<ImageView 
+		  		android:layout_width="wrap_content"
+		  		android:layout_height="wrap_content"
+		  		android:src="@drawable/refresh_down"
+		  		android:layout_gravity="center_horizontal"
+		  		android:layout_marginTop="10dip"
+		  	/>
+			
+			<LinearLayout android:id="@+id/layout_contact_list"
+			 	android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:minHeight="45dip"
+				android:paddingBottom="20dip"
+				>
+			</LinearLayout>
+		</LinearLayout>	
+	</ScrollView>
+</LinearLayout>

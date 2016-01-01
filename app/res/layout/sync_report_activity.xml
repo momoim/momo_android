@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+    <!-- title -->
+  	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:background="@drawable/title_background"
+		android:textColor="@color/white"
+		android:textSize="18sp"
+		android:text="@string/txt_option_sync_report"/>  
+  	
+  	<!-- list for report -->
+	<ListView android:id="@id/android:list"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="1dip"
+	  	android:layout_weight="1"
+	  	android:clickable="false"
+	  	android:choiceMode="none"
+		android:focusableInTouchMode="false"/>
+	  
+	<!-- disable return button -->	
+	<LinearLayout android:layout_width="fill_parent"
+	  	android:layout_height="wrap_content"
+	  	android:visibility="gone"
+	  	style="@android:style/ButtonBar">
+	  
+		<View android:layout_width="1dip"
+	  		android:layout_height="1dip"
+	  		android:layout_weight="1"/>
+	  	
+	  	<Button android:id="@+id/btn_sync_report_cancel"
+	  		android:layout_width="1dip"
+	  		android:layout_height="wrap_content"
+	  		android:layout_weight="1"
+	  		android:text="@string/btn_option_return"/>
+	</LinearLayout>
+  
+</LinearLayout>

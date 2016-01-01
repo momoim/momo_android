@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="horizontal" android:padding="@dimen/padding_left_list_item"
+	android:gravity="top">
+	<include layout="@layout/conversation_avatar"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_marginRight="10dip" />
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:gravity="top" android:layout_alignParentTop="true">
+			<RelativeLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:gravity="top"
+				android:layout_weight="1">
+				<TextView android:id="@+id/fullname" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_alignParentTop="true"
+					android:textColor="@color/black" android:textSize="20dip"
+					android:singleLine="true" android:includeFontPadding="false"
+					android:ellipsize="end" android:layout_marginRight="40dip" />
+				<TextView android:id="@+id/unread" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textColor="@color/white"
+					android:textSize="10dip" android:singleLine="true"
+					android:includeFontPadding="false" android:background="@drawable/about_me_count"
+					android:layout_alignParentTop="true" android:layout_toRightOf="@+id/fullname"
+					android:layout_marginLeft="-40dip" />
+			</RelativeLayout>
+
+			<TextView android:id="@+id/timesent" android:layout_width="wrap_content"
+				android:layout_height="fill_parent" android:layout_weight="0"
+				android:textColor="@color/im_grey" android:textSize="14dip"
+				android:includeFontPadding="false" />
+		</LinearLayout>
+		<TextView android:id="@+id/message" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:singleLine="true"
+			android:textColor="@color/im_grey" android:textSize="14dip"
+			android:includeFontPadding="false" android:layout_alignParentBottom="true"
+			android:layout_marginRight="20dip" />
+	</RelativeLayout>
+</LinearLayout>

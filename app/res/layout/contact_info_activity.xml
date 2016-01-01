@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="@color/user_card_background_color"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  	<RelativeLayout
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@drawable/title_background">
+		
+		<TextView android:id="@+id/txt_name" android:gravity="center"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" android:textColor="#ffffffff"
+			android:textSize="18sp" android:layout_centerVertical="true"
+			android:text="" android:padding="5dip" android:singleLine="true" />
+	</RelativeLayout>
+  
+    <ScrollView 
+    	android:scrollbars="none"
+    	android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<LinearLayout
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:paddingLeft="13dip"
+			android:paddingRight="13dip"
+			android:paddingBottom="13dip"
+			android:orientation="vertical">
+				
+				<LinearLayout android:id="@+id/layout_card_list_container"
+				 	android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:visibility="gone"
+					android:layout_marginTop="13dip">
+					<LinearLayout android:id="@+id/layout_card_list"
+					 	android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content">
+	
+					 	</LinearLayout>
+				 
+					 <LinearLayout android:id="@+id/layout_card_waiting"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal"
+						android:visibility="gone">
+						<ProgressBar android:id="@+id/download_card_waiting_bar"
+						      android:layout_width="wrap_content" 
+						      android:layout_height="wrap_content"  
+						      android:layout_gravity="center_vertical">
+						</ProgressBar>
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="3dip"
+							android:layout_gravity="center_vertical"
+							android:text="获取名片信息..."
+							android:textSize="18sp" />
+					 </LinearLayout>
+				 
+				 </LinearLayout>
+
+				
+				 <LinearLayout android:id="@+id/layout_begin_conversation"
+				 	android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:minHeight="45dip"
+					android:gravity="center"
+					android:background="@drawable/btn_bg_green"
+					android:layout_marginTop="20dip">
+					<TextView
+						android:id="@+id/txt_conversation"
+				  		android:layout_width="fill_parent"
+				  		android:layout_height="wrap_content"
+				  		android:layout_gravity="center_vertical"
+				  		android:gravity="center"
+				  		android:textSize="16sp"
+				  		android:text="@string/txt_begin_conversation"/>
+				 </LinearLayout>
+				 
+				 <LinearLayout android:id="@+id/layout_phone_list"
+				 	android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="20dip">
+					<LinearLayout
+						android:gravity="center_vertical"
+						android:layout_width="fill_parent" android:layout_height="wrap_content"
+						android:background="@drawable/mm_frame_set_whole">
+		
+						<TextView
+							android:layout_width="fill_parent" 
+							android:layout_height="wrap_content"
+							android:gravity="center"
+							android:text="正在载入联系人电话号码..." />
+		
+					</LinearLayout>
+				 </LinearLayout>
+				 
+				 <LinearLayout android:id="@+id/layout_contact_option"
+				 	android:orientation="horizontal"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="20dip">
+					<Button android:id="@+id/btn_sms"
+						android:layout_width="1dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:minHeight="45dip"
+						android:gravity="center"
+						android:text="@string/txt_sms"
+						android:background="@drawable/mm_frame_set_whole"/>
+					<Button android:id="@+id/btn_details"
+						android:layout_width="1dip"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="6dip"
+						android:layout_marginRight="6dip"
+						android:layout_weight="1"
+						android:minHeight="45dip"
+						android:gravity="center"
+						android:text="@string/txt_details"
+						android:background="@drawable/mm_frame_set_whole"/>
+					<Button android:id="@+id/btn_delete"
+						android:layout_width="1dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:minHeight="45dip"
+						android:gravity="center"
+						android:text="@string/txt_delete"
+						android:background="@drawable/mm_frame_set_whole"/>
+					
+				 </LinearLayout>
+				 
+			</LinearLayout>	
+	</ScrollView>
+</LinearLayout>
