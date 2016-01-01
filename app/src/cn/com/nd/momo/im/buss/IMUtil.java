@@ -3,78 +3,36 @@ package cn.com.nd.momo.im.buss;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.Handler;
-import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
-import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.activity.WholeImageActivity;
-import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.RequestUrl;
-import cn.com.nd.momo.api.exception.MoMoException;
-import cn.com.nd.momo.api.http.HttpToolkit;
-import cn.com.nd.momo.api.parsers.json.ChatContentParser;
-import cn.com.nd.momo.api.parsers.json.ChatParser;
-import cn.com.nd.momo.api.parsers.json.UserParser;
-import cn.com.nd.momo.api.types.Chat;
-import cn.com.nd.momo.api.types.ChatContent;
-import cn.com.nd.momo.api.types.ChatContent.Audio;
-import cn.com.nd.momo.api.types.ChatContent.Card;
-import cn.com.nd.momo.api.types.ChatContent.File;
-import cn.com.nd.momo.api.types.ChatContent.Location;
-import cn.com.nd.momo.api.types.ChatContent.LongText;
-import cn.com.nd.momo.api.types.ChatContent.Picture;
-import cn.com.nd.momo.api.types.ChatContent.Text;
-import cn.com.nd.momo.api.types.Contact;
+
 import cn.com.nd.momo.api.types.User;
-import cn.com.nd.momo.api.util.Base64;
 import cn.com.nd.momo.api.util.BitmapToolkit;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 
-import cn.com.nd.momo.im.types.ChatLocal;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.util.StartForResults;
 import cn.com.nd.momo.util.StartForResults.PickData;
-
-
-import com.flurry.android.FlurryAgent;
 
 /**
  * @author wuyq
@@ -122,32 +80,9 @@ public class IMUtil {
         return isNetworkAvaliable(ctx, false);
     }
 
-    public static long getJSONTime(JSONObject json, String prop) {
-        long timesent = 0;
-        if (json.has(prop)) {
-            try {
-                timesent = json.getLong(prop);
-            } catch (JSONException e) {
-                Log.e(TAG, "json timesent is not a long number");
-                e.printStackTrace();
-            }
-        }
-        if (timesent == 0)
-            timesent = new Date().getTime();
-        return timesent;
-    }
 
-    public static long getJSONTimeSent(JSONObject json, boolean system) {
-        return getJSONTime(json,  "addtime");
-    }
 
-    public static long getJSONTimeSent(JSONObject json) {
-        return getJSONTimeSent(json, false);
-    }
 
-    public static void putJSONTimeSent(JSONObject json, long timesent) {
-
-    }
 
     /**
      * 把字符窜转为unicode
@@ -199,28 +134,7 @@ public class IMUtil {
         return str != null ? str : "";
     }
 
-    /**
-     * 把地理信息转化为地图图片地址
-     */
-    public static String gmapUrl(Location info, int width, int height) {
-        String location = info.getLatitude() + "," + info.getLongitude();
-        String result = "http://maps.googleapis.com/maps/api/staticmap?center="
-                + location + "&markers=color:blue|" + location
-                + "&zoom=16&size=" + width + "x" + height + "&sensor=false";
-        return result;
-    }
 
-    public static String gmapUrl(Location info, Context context) {
-        Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE))
-                .getDefaultDisplay();
-        int width = display.getWidth();
-        int height = display.getHeight();
-        return gmapUrl(info, width * 2, height * 2);
-    }
-
-    public static String gmapUrl(Location info) {
-        return gmapUrl(info, 300, 200);
-    }
 
     /**
      * size 0的时候表示原图
@@ -233,8 +147,6 @@ public class IMUtil {
         return url.replaceFirst("(?s)_\\d{2,4}.jpg", size == 0 ? ".jpg" : "_"
                 + size + ".jpg");
     }
-
-
 
     /**
      * 构造
@@ -306,161 +218,7 @@ public class IMUtil {
         return IMUtil.isEmptyString(url) || !(url.startsWith("http"));
     }
 
-    /**
-     * 聊天对话列表显示状态的时候文字修改颜色
-     * 
-     * @param context
-     * @param info
-     * @return
-     */
-    public static SpannableStringBuilder chatContentToSpannable(
-            Context context, ChatLocal info, final boolean hasDraft) {
-        String draft = "";
-        if (hasDraft) {
-            draft = "[草稿] ";
-        }
-        String state = "";
-        if (info.getState() == ChatLocal.STATE_FAILED) {
-            state = "[失败] ";
-        } else if (info.isOut() && info.getState() == ChatLocal.STATE_SENDING) {
-            state = "[发送中] ";
-        }
-        SpannableStringBuilder sb = TextViewUtil.addEmojiSmileySpans(context, draft + state
-                + chatContentToString(context, info), ImageSpan.ALIGN_BOTTOM);
-        // SpannableStringBuilder sb = new SpannableStringBuilder(draft + state
-        // + chatContentToString(context, info));
-        if (hasDraft) {
-            final ForegroundColorSpan fcs = new ForegroundColorSpan(
-                    IMUtil.getStateColor(context, ChatLocal.STATE_DRAFT));
-            sb.setSpan(fcs, 0, draft.length(),
-                    Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        }
-        if (IMUtil.isNotEmptyString(state)) {
-            final ForegroundColorSpan fcs = new ForegroundColorSpan(
-                    IMUtil.getStateColor(context, info.getState()));
-            sb.setSpan(fcs, draft.length(), draft.length() + state.length(),
-                    Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        }
-        return sb;
-    }
 
-    /**
-     * 发送内容提醒各种类型转文字说明
-     * 
-     * @param context
-     * @param info
-     * @return
-     */
-    public static String chatContentToString(Context context, ChatLocal info) {
-        ChatContent content = info.getContent();
-        String text = "";
-        String senderAlias = info.isOut() ? "你" : "给您";
-        if (content instanceof Picture) {
-            text = senderAlias + "发送了一张照片";
-        } else if (content instanceof Location) {
-            text = senderAlias + "发送了地理位置";
-        } else if (content instanceof Audio) {
-            text = senderAlias + "发送了一段语音";
-        } else if (content instanceof File) {
-            text = senderAlias + "发送了一个文件";
-        } else if (content instanceof Card) {
-            text = senderAlias + "发送了一个名片";
-        } else if (content instanceof ChatContent.Contact) {
-            text = senderAlias + "发送了联系人信息";
-        } else if (content instanceof ChatContent.MobileModify) {
-            text = "变更了联系方式";
-        } else if (content instanceof LongText) {
-            text = ((LongText)content).getText();
-        } else if (content instanceof Text) {
-            if (info.isSecretary()
-                    && (info.getContent() == null || IMUtil
-                            .isEmptyString(((Text)content).getText()))) {
-                text = "Hi，我是小秘，如需帮助请留言。";
-            } else {
-                text = ((Text)content).getText();
-            }
-        } else {
-            text = senderAlias + "发送了"
-                    + context.getString(R.string.im_unsupported);
-        }
-        return noHTMLButSmiley(text);
-    }
-
-
-    public static String getStateLocale(int state) {
-        switch (state) {
-            case ChatLocal.STATE_DRAFT:
-                return "";// "草稿";
-            case ChatLocal.STATE_FAILED:
-                return "失败";
-            case ChatLocal.STATE_RECEIVED:
-                return "已读";
-            case ChatLocal.STATE_SENDING:
-                return "发送中";
-            case ChatLocal.STATE_SENT:
-                return "";// "已发";
-            case ChatLocal.STATE_INBOXED:
-                return "";// "送达";
-            case ChatLocal.STATE_SMS_SENDING:
-            case ChatLocal.STATE_SMS_SENT:
-                return "短信";
-            case ChatLocal.STATE_SMS_FAIL:
-                return "短信";
-            case ChatLocal.STATE_UNREAD:
-                // return "未读";
-            case ChatLocal.STATE_READ:
-            default:
-                return "";
-        }
-    }
-
-    public static String getStateLocaleEn(int state) {
-        switch (state) {
-            case ChatLocal.STATE_DRAFT:
-                return "draft";// "草稿";
-            case ChatLocal.STATE_FAILED:
-                return "fail";
-            case ChatLocal.STATE_RECEIVED:
-                return "other read";
-            case ChatLocal.STATE_SENDING:
-                return "sending";
-            case ChatLocal.STATE_SENT:
-                return "sent";
-            case ChatLocal.STATE_INBOXED:
-                return "inboxed";
-            case ChatLocal.STATE_SMS_SENDING:
-                return "sms sending";
-            case ChatLocal.STATE_SMS_SENT:
-                return "sms sent";
-            case ChatLocal.STATE_SMS_FAIL:
-                return "sms fail";
-            case ChatLocal.STATE_UNREAD:
-                return "unread";
-            case ChatLocal.STATE_READ:
-            default:
-                return "read";
-        }
-    }
-
-    public static int getStateColor(Context context, int state) {
-        switch (state) {
-            case ChatLocal.STATE_INBOXED:
-                return context.getResources().getColor(R.color.im_state_yellow);
-            case ChatLocal.STATE_RECEIVED:
-                return context.getResources().getColor(R.color.im_grey);
-            case ChatLocal.STATE_FAILED:
-            case ChatLocal.STATE_SMS_FAIL:
-            case ChatLocal.STATE_DRAFT:
-                return context.getResources().getColor(R.color.im_state_red);
-            case ChatLocal.STATE_SENT:
-            case ChatLocal.STATE_SMS_SENDING:
-            case ChatLocal.STATE_SMS_SENT:
-            default:
-                return context.getResources().getColor(R.color.im_state_green);
-            case ChatLocal.STATE_SENDING:
-                return context.getResources().getColor(R.color.im_state_blue);
-        }
-    }
 
     /**
      * 文件大小显示
@@ -670,18 +428,6 @@ public class IMUtil {
 
 
 
-    /**
-     * 察看长文本内容
-     * 
-     * @param context
-     * @param info
-     */
-    public static void showLongText(Context context, ChatLocal info) {
-        String url = RequestUrl.URL_CONVERSATION_LONGTEXT
-                + "&id=" + info.getId();
-        Log.i(TAG, "on long text click:" + url);
-        openMomoUrl(context, url);
-    }
 
     /**
      * 打开momo需要认证的url
@@ -699,82 +445,6 @@ public class IMUtil {
         GlobalUserInfo.openMoMoUrl(context, all, false);
     }
 
-
-    /**
-     * 显示大图
-     * 
-     * @param context
-     * @param picture
-     */
-    public static void showWholeImage(Context context, ChatContent.Picture picture) {
-        Intent i = new Intent(context,
-                WholeImageActivity.class);
-        ArrayList<String> images = new ArrayList<String>();
-        Log.i(TAG, "on image click " + picture.getUrl()
-                + " user " + GlobalUserInfo.getUID());
-        if (IMUtil.isLocalUrl(picture.getUrl())) {
-            i.setAction(WholeImageActivity.ACION_VIEW_LOACL);
-            images.add(picture.getUrl());
-        } else {
-            i.setAction(WholeImageActivity.ACION_VIEW_NET);
-            images.add(IMUtil.pictureUrl(
-                    picture.getUrl(), 780));
-        }
-        ;
-        i.putExtra(WholeImageActivity.EXTRAL_IMAGES,
-                images);
-        i.putExtra(WholeImageActivity.EXTRAL_INDEX, 0);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
-    }
-
-    /**
-     * 获取真实位置信息
-     * 
-     * @param raw
-     * @return
-     */
-    public static ChatContent.Location getFixedLocation(ChatContent.Location raw) {
-        ChatContent.Location result = new ChatContent.Location();
-
-        final String url = "http://search1.mapabc.com/sisserver?config=BSPS&resType=json&imei="
-                + GlobalUserInfo.getDeviceIMEI()
-                + "&gps=1&glong="
-                + raw.getLongitude()
-                + "&glat="
-                + raw.getLatitude()
-                + "&cdma=0&sid=14136&nid=0&bid=8402&lon=0&lat=0&macs=&a_k=c2b0f58a6f09cafd1503c06ef08ac7aeb7ddb91a3ce48789b37a6c2da3a69309fec4cfad868b6c21";
-        HttpToolkit http = new HttpToolkit(url);
-        int ret = http.DoGet(null, null);
-        String response = http.GetResponse();
-
-        boolean fix = false;
-        try {
-            if (ret == 200) {
-                // Log.i(TAG, "getFixedLocation:" + response);
-                JSONObject json = new JSONObject(response);
-                JSONArray list = json.getJSONArray("list");
-                if (list.length() > 0) {
-                    JSONObject item = list.getJSONObject(0);
-                    if (item.getInt("ceny") == 0 && item.getInt("cenx") == 0) {
-                        // no need to fix (outside china)
-                        return raw;
-                    }
-                    result.setLatitude(item.getDouble("ceny"));
-                    result.setLongitude(item.getDouble("cenx"));
-                    fix = true;
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        if (fix) {
-            return result;
-        } else {
-            return null;
-        }
-    }
 
     /**
      * 显示地图详细信息
@@ -798,113 +468,6 @@ public class IMUtil {
 
 
 
-    public static void showLocationSwitcher(final Context context, final ChatLocal info,
-            final boolean isLocationFixedOK, final ChatContent.Location other) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("选择操作");
-        builder.setItems(locationItems, new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int which) {
-                CharSequence item = locationItems[which];
-                if (LOCATION_AMAP.equals(item)) {
-                    try {
-                        Location l = (Location)info.getContent();
-                        Intent intent = new Intent(
-                                "com.autonavi.minimap.ACTION",
-                                Uri.parse("navi:" + l.getLatitude() + ","
-                                        + l.getLongitude()
-                                        + "," + (l.isCorrect() ? 0 : 1) + ",2,"
-                                        + info.getSender().getName()));
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        // context.startActivity(intent);
-                        ((Activity)context).startActivityForResult(intent, 1011);
-                    } catch (Exception error) {
-                        Toast.makeText(context, "抱歉，您可能尚未安装高德地图", 5000).show();
-                        try {
-                            Intent iInstall = new Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri
-                                            .parse("http://market.android.com/details?id=com.autonavi.minimap"));
-                            context.startActivity(iInstall);
-                        } catch (Exception noMarket) {
-                        }
-                    }
-                } else if (LOCATION_GMAP.equals(item)) {
-                    Location l;
-                    if (isLocationFixedOK && other != null) {
-                        l = other;
-                    } else {
-                        l = (Location)info.getContent();
-                    }
-                    try {
-                        String uri = "http://maps.google.com/?daddr=" +
-                                l.getLatitude() + "," + l.getLongitude();
-                        Intent myIntent = new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse(uri));
-                        myIntent.setClassName("com.google.android.apps.maps",
-                                "com.google.android.maps.MapsActivity");
-                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(myIntent);
-                    } catch (Exception error) {
-                        Toast.makeText(context, "抱歉，您可能尚未安装谷歌地图", 5000).show();
-                    }
-                } else if (LOCATION_KCODE.equals(item)) {
-                    Location l;
-                    if (isLocationFixedOK && other != null) {
-                        l = other;
-                    } else {
-                        l = (Location)info.getContent();
-                    }
-                    AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                    alertDialog.setTitle("K码是："
-                            + IMUtil.gpsToKCode(l.getLatitude(), l.getLongitude()));
-                    alertDialog.setButton("确定", new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    alertDialog.show();
-                } else {
-                    try {
-                        Location l;
-                        if (isLocationFixedOK && other != null) {
-                            l = other;
-                        } else {
-                            l = (Location)info.getContent();
-                        }
-                        String location = l.getLatitude() + ","
-                                + l.getLongitude();
-                        Intent intent = new Intent(
-                                android.content.Intent.ACTION_VIEW,
-                                Uri.parse("geo:" + location + "?q="
-                                        + location + "("
-                                        + info.getSender().getName()
-                                        + ")" + "&markers=color:blue|"
-                                        + location));
-                        context.startActivity(intent);
-                    } catch (Exception e) {
-                        Toast.makeText(context, "抱歉，您可能尚未安装地图软件", 5000).show();
-                        FlurryAgent.logEvent(FLURRY_IM_MAP_FAIL);
-                    }
-                }
-            }
-        }).show();
-    }
-
-    /**
-     * 调用浏览器下载文件
-     * 
-     * @param mContext
-     * @param file
-     */
-    public static void showFile(Context context, File file) {
-        Log.i(TAG, "on file click:" + file.getUrl());
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri
-                .parse(file.getUrl()));
-        context.startActivity(i);
-    }
 
     /**
      * 拍照选照片完统一处理生成本地缩略图
@@ -981,18 +544,7 @@ public class IMUtil {
         }
     }
 
-    /**
-     * @param chat
-     * @return
-     */
-    public static boolean isSmsAble(ChatLocal chat) {
-        return false;
-        // return chat.isOut()
-        // && chat.getReceiver().isSingle()
-        // && (chat.getState() == ChatLocal.STATE_INBOXED
-        // || chat.getState() == ChatLocal.STATE_SENT || chat
-        // .getState() == ChatLocal.STATE_SMS_FAIL);
-    }
+
 
     /**
      * 调用系统播放声音或者视频
@@ -1067,43 +619,4 @@ public class IMUtil {
         return result;
     }
 
-    /**
-     * K码结束--------------------------------------------------
-     */
-
-    public static ChatContent.Location convertGoogleToBaidu(ChatContent.Location l) {
-        ChatContent.Location result;
-        String url = "http://api.map.baidu.com/ag/coord/convert?from=2&to=4&x=" + l.getLongitude()
-                + "&y=" + l.getLatitude();
-        HttpToolkit http = new HttpToolkit(url);
-        int ret = http.DoGet(null, null);
-        String response = http.GetResponse();
-
-        Log.i(TAG, "convertGoogleToBaidu:" + response);
-        try {
-            if (ret == 200) {
-                JSONObject json = new JSONObject(response);
-                if (json.optInt("error", -1) == 0) {
-                    String baseX = json.optString("x");
-                    String baseY = json.optString("y");
-                    result = new ChatContent.Location();
-                    try {
-                        double lat = Double.parseDouble(new String(Base64.decode(baseY)));
-                        double lng = Double.parseDouble(new String(Base64.decode(baseX)));
-                        Log.i(TAG, "LAT GOT: " + lat + " LNG " + lng);
-                        result.setLatitude(lat);
-                        result.setLongitude(lng);
-                        return result;
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }

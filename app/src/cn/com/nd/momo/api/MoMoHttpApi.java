@@ -17,14 +17,9 @@ import android.graphics.Bitmap;
 import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.http.HttpTool;
 import cn.com.nd.momo.api.oauth.OAuthHelper;
-import cn.com.nd.momo.api.parsers.json.ChatBaseParser;
-import cn.com.nd.momo.api.parsers.json.ChatParser;
 import cn.com.nd.momo.api.parsers.json.ContactParser;
-import cn.com.nd.momo.api.parsers.json.GroupParser;
 import cn.com.nd.momo.api.types.Attachment;
-import cn.com.nd.momo.api.types.Chat;
 import cn.com.nd.momo.api.types.Contact;
-import cn.com.nd.momo.api.types.Group;
 import cn.com.nd.momo.api.types.OAuthInfo;
 import cn.com.nd.momo.api.types.User;
 import cn.com.nd.momo.api.types.UserList;
@@ -484,24 +479,6 @@ public final class MoMoHttpApi {
         }
     }
 
-    /**
-     * 批量删除聊天记录
-     * 
-     * @param chats
-     * @return
-     * @throws MoMoException
-     */
-    public static void postIMDelete(Group<Chat> chats) throws MoMoException {
-        HttpTool http = new HttpTool(RequestUrl.URL_DEL_MSG);
-
-        JSONArray ids = new JSONArray();
-        for (Chat chat : chats) {
-            ids.put(chat.getId());
-        }
-        if (ids.length() > 0) {
-            http.DoPostArray(ids);
-        }
-    }
 
     /**
      * 删除和某人的所有聊天记录
@@ -514,125 +491,6 @@ public final class MoMoHttpApi {
         HttpTool http = new HttpTool(RequestUrl.URL_DEL_MSG_ALL + "?uid="
                 + Utils.getIMGroupID(receiver));
         http.DoPost(new JSONObject());
-    }
-
-    /**
-     * 发送私聊消息
-     * 
-     * @param chat
-     * @return
-     * @throws MoMoException
-     */
-    public static Chat postIMSendMessage(Chat chat) throws MoMoException {
-        Chat result = null;
-        HttpTool http = new HttpTool(RequestUrl.URL_SEND_MSG);
-        try {
-            JSONObject params = new ChatParser().toJSONObject(chat).getJSONObject("data");
-            http.DoPost(params);
-            String response = http.GetResponse();
-            JSONObject json = new JSONObject(response);
-            result = new ChatBaseParser().parse(json);
-        } catch (JSONException ex) {
-            throw new MoMoException(ex);
-        }
-        return result;
-    }
-
-    /**
-     * 用短信来获取聊天消息
-     * 
-     * @param sms
-     * @return
-     * @throws MoMoException
-     */
-    public static Chat postIMMessageBySms(String sms) throws MoMoException {
-        Chat result = null;
-        HttpTool http = new HttpTool(RequestUrl.URL_GET_MSG);
-        try {
-            JSONObject params = new JSONObject();
-            params.put("sms", sms);
-            http.DoPost(params);
-            String response = http.GetResponse();
-            JSONObject json = new JSONObject(response);
-            result = new ChatBaseParser().parse(json);
-        } catch (JSONException ex) {
-            throw new MoMoException(ex);
-        }
-        return result;
-    }
-
-    /**
-     * 根据URL列表获取消息列表，如果不是mo短信则该位置返回null
-     * 
-     * @param sms
-     * @return
-     * @throws MoMoException
-     */
-    public static Group<Chat> postIMMessageBySmsBatch(JSONArray urls) throws MoMoException {
-        Group<Chat> chats = new Group<Chat>();
-        HttpTool http = new HttpTool(RequestUrl.URL_GET_MSG_BATCH);
-        try {
-            http.DoPostArray(urls);
-            String response = http.GetResponse();
-            JSONArray jArray = new JSONArray(response);
-            for (int i = 0; i < jArray.length(); ++i) {
-                Chat chat = null;
-                try {
-                    chat = new ChatBaseParser(true).parse(jArray.getJSONObject(i));
-                } catch (JSONException e) {
-                    // maybe not a momo message
-                    chat = null;
-                }
-                chats.add(chat);
-            }
-        } catch (JSONException ex) {
-            throw new MoMoException(ex);
-        }
-        return chats;
-    }
-
-    /**
-     * 拉取未读的聊天记录
-     * 
-     * @return
-     * @throws MoMoException
-     */
-    public static Group<Chat> getIMAll() throws MoMoException {
-        Group<Chat> chats = null;
-        HttpTool http = new HttpTool(RequestUrl.CONVERSATION_LIST);
-        http.DoGet();
-        JSONArray json;
-        try {
-            json = new JSONArray(http.GetResponse());
-            chats = new GroupParser<Chat>(new ChatBaseParser(
-                    true)).parse(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            throw new MoMoException(e);
-        }
-        return chats;
-    }
-
-    /**
-     * 获取聊天记录 TODO pagesize? 有可能在新版本API里去掉，暂时不处理，现在这种用page来取很容易重复数据
-     * 
-     * @param receiver
-     * @return
-     * @throws MoMoException
-     */
-    public static Group<Chat> getIMMore(UserList receiver) throws MoMoException {
-        Group<Chat> chats = null;
-        HttpTool http = new HttpTool(RequestUrl.URL_CONVERSATION_DETAIL_LIST_SINGLE
-                + Utils.getIMGroupID(receiver) + RequestUrl.HTTP_RESULT_TYPE + "?pagesize=25");
-        http.DoGet();
-        try {
-            JSONArray json = new JSONArray(http.GetResponse());
-            chats = new GroupParser<Chat>(new ChatBaseParser(
-                    true)).parse(json);
-        } catch (JSONException ex) {
-            throw new MoMoException(ex);
-        }
-        return chats;
     }
 
     /**
