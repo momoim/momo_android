@@ -26,8 +26,6 @@ import cn.com.nd.momo.api.types.Chat;
 import cn.com.nd.momo.api.types.Contact;
 import cn.com.nd.momo.api.types.Group;
 import cn.com.nd.momo.api.types.OAuthInfo;
-import cn.com.nd.momo.api.types.Robot;
-import cn.com.nd.momo.api.types.UpgradeInfo;
 import cn.com.nd.momo.api.types.User;
 import cn.com.nd.momo.api.types.UserList;
 import cn.com.nd.momo.api.util.Log;
@@ -258,82 +256,6 @@ public final class MoMoHttpApi {
     public static void bindWeibo(String site, String accountName, String accountPassword,
             boolean followMoMo) throws MoMoException {
         OAuthHelper.bindWeibo(site, accountName, accountPassword, followMoMo);
-    }
-
-    /**
-     * 获取升级信息
-     * 
-     * @param version
-     * @return UpgradeInfo
-     */
-    public static UpgradeInfo getUpgradeInfo(String version) throws MoMoException {
-        UpgradeInfo result = null;
-
-        JSONObject param = new JSONObject();
-        HttpTool http = new HttpTool(RequestUrl.UPGRADE);
-        try {
-            param.put("source", APP_ID);
-            param.put("version", version);
-            param.put("is_beta", UPGRADE_IS_BETA);
-            param.put("install_id", UPGRADE_INSTALL_ID);
-            param.put("phone_model", android.os.Build.MODEL);
-            param.put("os", android.os.Build.VERSION.RELEASE);
-
-            http.DoPost(param);
-            JSONObject jsonResponse = new JSONObject(http.GetResponse());
-            result = new UpgradeInfo();
-            result.downloadUrl = jsonResponse.getString("download_url");
-            result.remark = jsonResponse.getString("remark");
-            result.publishDate = jsonResponse.getString("publish_date");
-            result.fileSize = jsonResponse.getString("file_size");
-            result.downloadUrl = jsonResponse.getString("download_url");
-            result.currentVersion = jsonResponse.getString("current_version");
-
-        } catch (Exception e) {
-            throw new MoMoException(e);
-        }
-
-        return result;
-    }
-
-    /**
-     * 获取所有机器人列表
-     * 
-     * @return
-     * @throws MoMoException
-     */
-    public static ArrayList<Robot> getRobotList() throws MoMoException {
-        ArrayList<Robot> robotList = new ArrayList<Robot>();
-        HttpTool httpTool = new HttpTool(RequestUrl.GET_ALL_ROBOT_URL);
-        int responseCode = httpTool.DoGet();
-        String response = httpTool.GetResponse();
-        Log.d("code:" + responseCode + " response:" + response);
-        try {
-            JSONArray jsonArray = new JSONArray(response);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonResult = jsonArray.getJSONObject(i);
-
-                long id = jsonResult.optLong("robot_id");
-                String name = jsonResult.optString("name");
-                String avatar = jsonResult.optString("avatar");
-                boolean isSubscribed = jsonResult.optBoolean("is_subscribed");
-                Robot robot = new Robot();
-                robot.setId(id);
-                robot.setName(name);
-                robot.setAvatar(avatar);
-                robot.setIsSubscribed(isSubscribed);
-
-                if (robot != null) {
-                    robotList.add(robot);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new MoMoException(e);
-        } finally {
-            Log.i("get robots complete!");
-        }
-        return robotList;
     }
 
 

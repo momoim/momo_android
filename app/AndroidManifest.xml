@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="cn.com.nd.momo" android:versionName="1.9.42"
-	android:versionCode="133">
+	package="cn.com.nd.momo">
 	<!--call note provider -->
 
 	<application android:name=".activity.MyApplication"
@@ -100,14 +99,6 @@
 		<activity android:name=".activity.SelectorActivity"
 			android:configChanges="keyboardHidden|orientation"
 			android:windowSoftInputMode="stateHidden|adjustPan" />
-
-		<!-- 短信 -->
-		<service android:name="com.android.mms.transaction.TransactionService" />
-		<receiver android:name="com.android.mms.transaction.MmsSystemEventReceiver">
-			<intent-filter>
-				<action android:name="android.intent.action.CONTENT_CHANGED" />
-			</intent-filter>
-		</receiver>
 
 
 		<!-- webview activity -->

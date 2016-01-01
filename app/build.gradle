@@ -8,8 +8,8 @@ android {
         applicationId "cn.com.nd.momo"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 133
+        versionName "1.9.42"
     }
 
     sourceSets {

@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.RequestUrl;
-import cn.com.nd.momo.api.types.UpgradeInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.manager.GlobalUserInfo;

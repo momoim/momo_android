@@ -28,7 +28,6 @@ import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.manager.RegistThread;
 
-import com.flurry.android.FlurryAgent;
 
 public class RegistVerifyCodeActivity extends Activity implements OnClickListener {
     private static final String TAG = "RegistVerifyCodeActivity";

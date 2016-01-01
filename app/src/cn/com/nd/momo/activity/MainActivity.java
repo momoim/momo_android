@@ -36,7 +36,6 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import cn.com.nd.momo.R;
-import cn.com.nd.momo.api.types.UpgradeInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.manager.GlobalUserInfo;
