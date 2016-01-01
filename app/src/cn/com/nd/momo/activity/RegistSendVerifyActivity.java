@@ -4,6 +4,7 @@ package cn.com.nd.momo.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
@@ -18,10 +19,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
+import cn.com.nd.momo.api.MoMoHttpApi;
+import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.manager.RegistThread;
 
 public class RegistSendVerifyActivity extends Activity implements OnClickListener {
     private static final String TAG = "RegistSendVerifyActivity";
@@ -51,10 +53,69 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
     // dialog
     private ProgressDialog m_progressDlg = null;
 
+
+
+    public static class RegistThread extends Thread {
+        private static String TAG = "RegistThread";
+
+        // message define
+        public static final int HTTP_GET_VERIFY = 1; // get verify code
+        // return code for get verify code
+        public static final int HTTP_GET_VERIFY_OK = 200;
+
+        private ProgressDialog mDlg = null;
+
+        private Handler mHandler = null;
+
+        private String mPhoneNum = null;
+
+        public RegistThread(Context c, ProgressDialog dlg, Handler h) {
+            this.mDlg = dlg;
+            this.mHandler = h;
+        }
+
+        public void setRegistInfo(String phoneNum) {
+            this.mPhoneNum = phoneNum;
+        }
+
+        @Override
+        public void run() {
+            int nRet = 0;
+            try {
+                MoMoHttpApi.register(GlobalUserInfo.getZoneCode(), mPhoneNum);
+                exitWithErrorCode(HTTP_GET_VERIFY, HTTP_GET_VERIFY_OK, "");
+            } catch (MoMoException e) {
+                exitWithErrorCode(HTTP_GET_VERIFY, e.getCode(), e.getSimpleMsg());
+            } catch (Exception e) {
+                exitWithErrorCode(HTTP_GET_VERIFY, nRet, "注册失败");
+            }
+        }
+
+        // send error message and exit progress dialog
+        private void exitWithErrorCode(int msgWhat, int nRet, String strRet) {
+            // destroy progress dialog
+            if (mDlg != null) {
+                mDlg.dismiss();
+            }
+
+            if (mHandler != null) {
+                Message msg = new Message();
+                msg.what = msgWhat;
+                Bundle b = new Bundle();
+                b.putInt("http_ret", nRet);
+                b.putString("http_response", strRet);
+                msg.setData(b);
+                mHandler.sendMessage(msg);
+
+            } else {
+                Log.e(TAG, "exitWithErrorCode: mHandler is null");
+
+            }
+        }
+    }
+
     // regist thread
     private RegistThread mThread = null;
-
-    // private static final int REQUEST_REG_CODE = 10;
 
     // handler to process message from http response
     private Handler m_Handler = new Handler() {
@@ -86,29 +147,6 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
                         intent.putExtra(EXTRA_REGIST_MOBILE, mEditPhoneNum.getText().toString());
                         startActivityForResult(intent, REQ_VERIFY_CODE_CODE);
                     }
-                    break;
-
-                case RegistThread.BEGIN_SEARCH_SMS:
-                    // change progress dialog message
-                    m_progressDlg.setMessage(getResources().getString(
-                            R.string.msg_reg_info_sennding_sms));
-                    break;
-
-                case RegistThread.FIND_VERIFY_TIME_OUT:
-                    if (m_progressDlg != null && m_progressDlg.isShowing()) {
-                        m_progressDlg.dismiss();
-                    }
-                    cn.com.nd.momo.api.util.Utils.displayToast(
-                            getString(R.string.msg_reg_info_find_verify_timeout),
-                            Toast.LENGTH_SHORT);
-                    break;
-
-                case RegistThread.DLG_BACK_KEY_ENABLE:
-                    m_progressDlg.setCancelable(true);
-                    break;
-
-                case RegistThread.DLG_BACK_KEY_DISABLE:
-                    m_progressDlg.setCancelable(false);
                     break;
 
                 default:
@@ -143,7 +181,6 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-
         GlobalUserInfo.setZoneCode(ZONE_CODE);
     }
 

@@ -53,7 +53,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="1" >
 
-        <cn.com.nd.momo.im.view.EditTextEx
+        <cn.com.nd.momo.view.EditTextEx
             android:id="@+id/dynamic_comment_text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -86,7 +86,7 @@
                 android:src="@drawable/btn_dynamic_at" />
             <!-- 表情 -->
 
-            <cn.com.nd.momo.im.view.SmileySelector
+            <cn.com.nd.momo.view.SmileySelector
                 android:id="@+id/smiley_selector"
                 style="@style/image_blue_bg_button"
                 android:layout_centerVertical="true"

@@ -16,7 +16,7 @@ import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.parsers.json.GroupInfoParser;
 import cn.com.nd.momo.api.types.GroupInfo;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.dynamic.DynamicMgr;
+import cn.com.nd.momo.model.DynamicMgr;
 import cn.com.nd.momo.view.widget.DragableSpace;
 import cn.com.nd.momo.view.widget.DragableSpace.OnScreenChangedListener;
 

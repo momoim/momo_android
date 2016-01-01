@@ -30,7 +30,7 @@ import cn.com.nd.momo.api.util.BitmapToolkit;
 import cn.com.nd.momo.api.util.BitmapToolkit.BitmapMemoryMgr;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.dynamic.ui.DynamicListItemUI;
+import cn.com.nd.momo.view.DynamicListItemUI;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.util.StartForResults;
 

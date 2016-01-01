@@ -48,12 +48,12 @@
 		<ImageButton android:id="@+id/sms_text_audio_switcher"
 			android:layout_width="40dip" android:layout_height="wrap_content"
 			android:background="@drawable/ic_null" android:src="@drawable/sms_text_mode" />
-		<cn.com.nd.momo.im.view.SmileySelector
+		<cn.com.nd.momo.view.SmileySelector
 			android:layout_alignParentLeft="true" android:id="@+id/smiley_selector"
 			android:layout_width="40dip" android:layout_height="wrap_content"
 			android:layout_centerVertical="true" android:src="@drawable/conversation_smiley"
 			android:background="@drawable/ic_null" android:visibility="gone" />
-		<cn.com.nd.momo.im.view.EditTextEx
+		<cn.com.nd.momo.view.EditTextEx
 			android:id="@+id/message_content" android:layout_marginLeft="5dip"
 			android:layout_centerVertical="true" android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:minHeight="46dip"

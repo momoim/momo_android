@@ -11,11 +11,10 @@ import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.types.OAuthInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.api.util.Utils;
-import cn.com.nd.momo.dynamic.DraftMgr;
-import cn.com.nd.momo.dynamic.DynamicDB;
-import cn.com.nd.momo.dynamic.DynamicMgr;
-import cn.com.nd.momo.im.buss.IMUtil;
+import cn.com.nd.momo.model.DraftMgr;
+import cn.com.nd.momo.model.DynamicDB;
+import cn.com.nd.momo.model.DynamicMgr;
+import cn.com.nd.momo.util.IMUtil;
 
 /**
  * 用户信息全局配置管理类

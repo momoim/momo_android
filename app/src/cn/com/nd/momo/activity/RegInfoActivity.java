@@ -57,7 +57,7 @@ public class RegInfoActivity extends Activity implements OnClickListener {
                     sendBroadcast(new Intent(getString(R.string.action_message_login)));
                     // start lead to sync activity
                     Intent i = new Intent(RegInfoActivity.this, MainActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                     finish();
                     break;

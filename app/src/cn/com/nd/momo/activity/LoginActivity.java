@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,13 +20,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
+import cn.com.nd.momo.api.MoMoHttpApi;
+import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.types.Country;
+import cn.com.nd.momo.api.types.OAuthInfo;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.manager.LoginThread;
 
-import com.flurry.android.FlurryAgent;
+import org.apache.http.HttpStatus;
 
 /**
  * 登录activity
@@ -57,6 +60,65 @@ public class LoginActivity extends Activity {
 
     private ProgressDialog m_progressDlg = null;
 
+
+    /**
+     * 登录线程
+     *
+     * @author jiaolei
+     */
+    public static class LoginThread extends Thread {
+
+        public static final int MSG_LOGIN_RET = 0x101;
+
+        private Context mContext = null;
+
+        private Handler mHandler = null;
+
+        private String mPhoneNum = null;
+
+        private String mPWD = null;
+
+        public LoginThread(Context c, ProgressDialog dlg, Handler h) {
+            this.mContext = c;
+            this.mHandler = h;
+        }
+
+        public void setLoginInfo(String phoneNum, String pwd, boolean bReg) {
+            this.mPhoneNum = phoneNum;
+            this.mPWD = pwd;
+        }
+
+        @Override
+        public void run() {
+            int nRet = 0;
+            String exceptMsg = "";
+            // 需保存认证信息，处理重置密码
+            try {
+                OAuthInfo mOAuthInfo = MoMoHttpApi.login(GlobalUserInfo.getZoneCode(), mPhoneNum,
+                        mPWD);
+                if (mOAuthInfo != null) {
+                    // 不需要重置密码
+                    GlobalUserInfo.setOAuthToken(mOAuthInfo);
+                    // set login status
+                    GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
+                    nRet = HttpStatus.SC_OK;
+                }
+            } catch (MoMoException ex) {
+                nRet = ex.getCode();
+                exceptMsg = ex.getSimpleMsg();
+            }
+
+            // send UI message to show result information
+            Message msg = new Message();
+            msg.what = MSG_LOGIN_RET;
+            Bundle b = new Bundle();
+            b.putInt("http_ret", nRet);
+            b.putString("http_response", exceptMsg);
+            msg.setData(b);
+            mHandler.sendMessage(msg);
+        }
+    }
+
     private Handler m_Handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -72,6 +134,7 @@ public class LoginActivity extends Activity {
                             Log.i(TAG, "login ok");
                             setResult(RESULT_OK);
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                             finish();
                             break;

@@ -25,10 +25,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.dynamic.DraftMgr;
-import cn.com.nd.momo.dynamic.DynamicDB.DraftInfo;
-import cn.com.nd.momo.dynamic.DynamicInfo;
-import cn.com.nd.momo.dynamic.NotifyProgress;
+import cn.com.nd.momo.model.DraftMgr;
+import cn.com.nd.momo.model.DynamicDB.DraftInfo;
+import cn.com.nd.momo.model.DynamicInfo;
+import cn.com.nd.momo.util.NotifyProgress;
 
 /**
  * 草稿箱

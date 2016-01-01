@@ -59,7 +59,7 @@
 			android:launchMode="standard" android:configChanges="orientation|keyboardHidden" />
 
 		<!-- other activity -->
-		<activity android:name=".im.activity.SmileTabActivity"
+		<activity android:name=".activity.SmileTabActivity"
 			android:theme="@style/smileyDialogTheme">
 			<intent-filter>
 				<category android:name="android.intent.category.DEFAULT" />

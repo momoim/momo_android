@@ -15,7 +15,6 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.MediaColumns;
 import cn.com.nd.momo.api.util.BitmapToolkit;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.im.buss.IMUtil;
 
 public final class StartForResults {
     /**

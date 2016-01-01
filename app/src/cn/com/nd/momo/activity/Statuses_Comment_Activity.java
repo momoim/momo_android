@@ -26,7 +26,6 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -46,27 +45,25 @@ import android.widget.Toast;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.exception.MoMoException;
-import cn.com.nd.momo.api.parsers.json.UserParser;
 import cn.com.nd.momo.api.statuses.StatusesManager;
 import cn.com.nd.momo.api.types.Attachment;
-import cn.com.nd.momo.api.types.User;
 import cn.com.nd.momo.api.util.BitmapToolkit.BitmapMemoryMgr;
 import cn.com.nd.momo.api.util.DateFormater;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.dynamic.AbsSdk.SdkResult;
-import cn.com.nd.momo.dynamic.DynamicDB;
-import cn.com.nd.momo.dynamic.DynamicDB.CommentInfo;
-import cn.com.nd.momo.dynamic.DynamicInfo;
-import cn.com.nd.momo.dynamic.DynamicItemInfo;
-import cn.com.nd.momo.dynamic.DynamicMgr;
-import cn.com.nd.momo.dynamic.DynamicPoster;
-import cn.com.nd.momo.dynamic.DynamicSdk;
-import cn.com.nd.momo.dynamic.NotifyProgress;
-import cn.com.nd.momo.dynamic.ui.DynamicListItemUI;
-import cn.com.nd.momo.im.buss.TalkHistoryAdapter;
-import cn.com.nd.momo.im.buss.TextViewUtil;
-import cn.com.nd.momo.im.view.EditTextEx;
-import cn.com.nd.momo.im.view.SmileySelector;
+import cn.com.nd.momo.api.AbsSdk.SdkResult;
+import cn.com.nd.momo.model.DynamicDB;
+import cn.com.nd.momo.model.DynamicDB.CommentInfo;
+import cn.com.nd.momo.model.DynamicInfo;
+import cn.com.nd.momo.model.DynamicItemInfo;
+import cn.com.nd.momo.model.DynamicMgr;
+import cn.com.nd.momo.api.DynamicPoster;
+import cn.com.nd.momo.api.DynamicSdk;
+import cn.com.nd.momo.util.NotifyProgress;
+import cn.com.nd.momo.view.DynamicListItemUI;
+import cn.com.nd.momo.util.TalkHistoryAdapter;
+import cn.com.nd.momo.util.TextViewUtil;
+import cn.com.nd.momo.view.EditTextEx;
+import cn.com.nd.momo.view.SmileySelector;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.util.Utils;
 import cn.com.nd.momo.view.CustomImageView;
@@ -101,7 +98,7 @@ public class Statuses_Comment_Activity extends Activity implements
 
     private View mFooterView;
 
-    private cn.com.nd.momo.dynamic.ui.DynamicListItemUI.ViewHold mHold;
+    private DynamicListItemUI.ViewHold mHold;
 
     private String mCurrentReplyName = "";
 

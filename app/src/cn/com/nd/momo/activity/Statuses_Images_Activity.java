@@ -18,14 +18,13 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.util.BitmapToolkit;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.dynamic.AbsAdapter;
+import cn.com.nd.momo.adapters.AbsAdapter;
 import cn.com.nd.momo.util.StartForResults;
 import cn.com.nd.momo.util.StartForResults.PickData;
 

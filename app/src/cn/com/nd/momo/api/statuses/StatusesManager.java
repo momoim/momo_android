@@ -19,9 +19,9 @@ import cn.com.nd.momo.api.types.Group;
 import cn.com.nd.momo.api.types.GroupInfo;
 import cn.com.nd.momo.api.types.GroupMember;
 import cn.com.nd.momo.api.util.Log;
-import cn.com.nd.momo.dynamic.DynamicInfo;
-import cn.com.nd.momo.dynamic.DynamicItemInfo;
-import cn.com.nd.momo.dynamic.DynamicPoster.DynamicPostInfo;
+import cn.com.nd.momo.model.DynamicInfo;
+import cn.com.nd.momo.model.DynamicItemInfo;
+import cn.com.nd.momo.api.DynamicPoster.DynamicPostInfo;
 
 public class StatusesManager {
 

@@ -47,7 +47,8 @@
 		    	android:layout_marginTop="5dip"
 		    	android:background="@drawable/login_edit_background"
 		    	android:hint="密码"
-				android:textColor="#000000" />
+				android:textColor="#000000"
+				android:password="true" />
 		    
 		    <Button android:id="@+id/btn_regist_now"
 		    	android:layout_width="fill_parent"

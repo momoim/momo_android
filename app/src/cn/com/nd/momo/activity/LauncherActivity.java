@@ -32,7 +32,7 @@ public class LauncherActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        startApp();
+        //startApp();
     }
 
     private void startApp() {
@@ -41,7 +41,7 @@ public class LauncherActivity extends Activity {
             public void run() {
                 Intent i = null;
                 GlobalUserInfo.checkLoginStatus(getApplicationContext());
-
+                boolean isMain = false;
                 if (!GlobalUserInfo.hasLogined()) {
                     Log.d(TAG, "login called");
                     i = new Intent(getApplicationContext(), LoginActivity.class);
@@ -49,6 +49,7 @@ public class LauncherActivity extends Activity {
                     i = new Intent(getApplicationContext(), RegInfoActivity.class);
                 } else {
                     i = new Intent(getApplicationContext(), MainActivity.class);
+                    isMain = true;
                 }
                 startActivity(i);
                 Log.d(TAG, "launcher end");

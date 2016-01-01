@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,9 +25,9 @@ import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.types.OAuthInfo;
 import cn.com.nd.momo.api.util.ConfigHelper;
+import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.manager.RegistThread;
 
 
 public class RegistVerifyCodeActivity extends Activity implements OnClickListener {
@@ -50,6 +51,14 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
 
     private String mverifyCode = "";
 
+
+
+
+    // message define
+    public static final int HTTP_GET_VERIFY = 1; // get verify code
+    // return code for get verify code
+    public static final int HTTP_GET_VERIFY_OK = 200;
+
     // private static final int REQUEST_REG_CODE = 10;
 
     // handler to process message from http response
@@ -61,9 +70,9 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
             String strRet = b.getString("http_response");
 
             switch (msg.what) {
-                case RegistThread.HTTP_GET_VERIFY:
+                case HTTP_GET_VERIFY:
                     // show message
-                    if (nRet != RegistThread.HTTP_GET_VERIFY_OK) {
+                    if (nRet != HTTP_GET_VERIFY_OK) {
                         if (nRet == 400117) {
                             Intent data = new Intent();
                             data.putExtra(RegistSendVerifyActivity.EXTRA_HAD_REGIST, true);
@@ -78,6 +87,13 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
                             mTxtVerifyCodeResponse.setText(strRet);
                         }
                     } else {
+
+                        {
+                            Intent intent = new Intent(RegistVerifyCodeActivity.this, RegInfoActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+
                         Intent intent = new Intent();
                         intent.putExtra(RegistSendVerifyActivity.EXTRA_REGIST_COMPLETE, true);
                         setResult(RESULT_OK, intent);
@@ -190,7 +206,7 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
                 }
                 // send UI message to show result information
                 Message msg = new Message();
-                msg.what = RegistThread.HTTP_GET_VERIFY;
+                msg.what = HTTP_GET_VERIFY;
                 Bundle b = new Bundle();
                 b.putInt("http_ret", nRet);
                 b.putString("http_response", exceptMsg);

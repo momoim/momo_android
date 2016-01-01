@@ -97,7 +97,7 @@
         android:gravity="center"
         android:padding="5dip" >
 
-        <cn.com.nd.momo.im.view.SmileySelector
+        <cn.com.nd.momo.view.SmileySelector
             android:id="@+id/smiley_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
             android:background="@drawable/ic_null"
             android:src="@drawable/btn_about_me_send" />
 
-        <cn.com.nd.momo.im.view.EditTextEx
+        <cn.com.nd.momo.view.EditTextEx
             android:id="@+id/message_content"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

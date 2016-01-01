@@ -62,7 +62,7 @@
             android:padding="5dip"
             android:visibility="gone" >
 
-            <cn.com.nd.momo.im.view.SmileySelector
+            <cn.com.nd.momo.view.SmileySelector
                 android:id="@+id/smiley_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
