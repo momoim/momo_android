@@ -1,5 +1,5 @@
 
-package cn.com.nd.momo.api.sync;
+package cn.com.nd.momo.manager;
 
 public class SQLCreator {
     public final static String CALL_HISTORY = " CREATE TABLE \"call_history\" "

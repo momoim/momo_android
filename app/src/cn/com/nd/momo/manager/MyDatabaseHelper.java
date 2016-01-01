@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import cn.com.nd.momo.api.sync.SQLCreator;
+
 import cn.com.nd.momo.api.util.Log;
 
 public class MyDatabaseHelper {
