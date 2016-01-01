@@ -10,7 +10,6 @@ import cn.com.nd.momo.api.types.MomoType;
 import cn.com.nd.momo.api.types.User;
 import cn.com.nd.momo.api.types.UserList;
 
-import com.android.mms.model.SlideshowModel;
 
 /**
  * 本地数据库映射
@@ -68,7 +67,7 @@ public class ChatLocal implements Comparable<ChatLocal>, IChat, MomoType {
     // 用于删除某条短信
     public Uri uri;
 
-    public SlideshowModel slideShow;
+
 
     /**
      * 内存数据字段结束

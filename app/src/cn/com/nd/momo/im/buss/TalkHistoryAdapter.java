@@ -29,30 +29,9 @@ import android.os.Message;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
-import cn.com.nd.momo.R;
-import cn.com.nd.momo.api.parsers.json.ChatContentParser;
-import cn.com.nd.momo.api.types.ChatContent;
-import cn.com.nd.momo.api.types.ChatContent.Audio;
-import cn.com.nd.momo.api.types.ChatContent.Picture;
-import cn.com.nd.momo.api.types.Roger;
-import cn.com.nd.momo.api.util.BitmapToolkit;
-import cn.com.nd.momo.api.util.ConfigHelper;
-import cn.com.nd.momo.api.util.Log;
-
 import cn.com.nd.momo.im.buss.TextViewUtil.Hit;
-
 import cn.com.nd.momo.im.view.SmileyAdapter;
-import cn.com.nd.momo.manager.GlobalUserInfo;
-import cn.com.nd.momo.view.CustomImageView;
-import cn.com.nd.momo.view.CustomImageView.OnAvatarListener;
 
-
-import com.android.mms.model.SlideModel;
 
 /**
  * 聊天详情列表聊天记录详细UI展示适配器
