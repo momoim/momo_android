@@ -22,7 +22,7 @@ public final class RequestUrl {
     // 注册
     static public final String REGIST_SEND_VERIFY_CODE_URL = URL_API + "/auth/verify_code.json";
     static public final String REGIST_VERIFY_URL = URL_API + "/auth/token";
-
+    static public final String REFRESH_ACCESS_TOKEN = URL_API + "/auth/refresh_token";
     // 登录
     static public final String LOGIN = URL_API + "/user/login.json";
 

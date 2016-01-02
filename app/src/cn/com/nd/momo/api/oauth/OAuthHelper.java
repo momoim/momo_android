@@ -119,7 +119,10 @@ public class OAuthHelper {
             param.put("zone_code", zoneCode);
             param.put("os", android.os.Build.VERSION.RELEASE);
 
-            http.DoPost(param, null);
+            int statusCode = http.DoPost(param, null);
+            if (statusCode != 200) {
+                throw new MoMoException("request verify code error");
+            }
         } catch (Exception ex) {
             throw new MoMoException(ex);
         }
@@ -149,7 +152,6 @@ public class OAuthHelper {
             JSONObject jsonResponse = new JSONObject(responseContent);
 
             result = new OAuthInfo();
-            result = new OAuthInfo();
             result.mAccessToken = jsonResponse.optString("access_token");
             result.mRefreshToken = jsonResponse.optString("refresh_token");
             result.mUid = "" + jsonResponse.optLong("id");
@@ -172,7 +174,7 @@ public class OAuthHelper {
 
         OAuthInfo result = null;
 
-        HttpTool http = new HttpTool(RequestUrl.REGIST_VERIFY_URL);
+        HttpTool http = new HttpTool(RequestUrl.REFRESH_ACCESS_TOKEN);
         JSONObject param = new JSONObject();
         try {
             param.put("refresh_token", refreshToken);
