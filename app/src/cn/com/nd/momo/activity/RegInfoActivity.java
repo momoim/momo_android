@@ -129,10 +129,8 @@ public class RegInfoActivity extends Activity implements OnClickListener {
                     @Override
                     public void run() {
                         try {
-                            int user_status = 0;
-                            user_status = MoMoHttpApi.updateUserInfo(name, password);
-                            // user_status > 0 方表示完善成功
-                            if (user_status > 0) {
+                            int statusCode = MoMoHttpApi.updateUserInfo(name, password);
+                            if (statusCode == 200) {
                                 GlobalUserInfo.setName(name);
                                 mHandler.sendEmptyMessage(REG_PERSONAL_INFO_SUCCESS);
                             } else {
