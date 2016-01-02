@@ -9,24 +9,12 @@ package cn.com.nd.momo.api;
 public final class RequestUrl {
     static public String URL_API = "http://api.momo.im";
 
-    static public final String IN_API = "http://192.168.94.26";
-
-    static public final String OUT_API = "http://api.momo.im";
-
-    static public final String OUT_API_V2 = "http://v3.api.momo.im";
-
-    static public final String OUT_API_V3 = "http://v3.api.momo.im";
-
-    static public final String OUT_API_SIMULATE = "http://api.simulate.momo.im";
-
     // 注册
     static public final String REGIST_SEND_VERIFY_CODE_URL = URL_API + "/auth/verify_code.json";
     static public final String REGIST_VERIFY_URL = URL_API + "/auth/token";
     static public final String REFRESH_ACCESS_TOKEN = URL_API + "/auth/refresh_token";
     // 登录
     static public final String LOGIN = URL_API + "/user/login.json";
-
-
 
 
 
@@ -195,47 +183,8 @@ public final class RequestUrl {
 
     static public final String USER_CARD_SEND = URL_API + "/user/send_card" + HTTP_RESULT_TYPE;
 
-    static public final String CONVERSATION_LIST = URL_API + "/im/all" + HTTP_RESULT_TYPE;
 
-    static public final String URL_CONVERSATION_DETAIL_LIST_SINGLE = URL_API + "/im/more/";
 
-    static public final String URL_CONVERSATION_LONGTEXT = URL_API
-            + "/transfer/apiserver.php?class=im&method=show_text&source=" + MoMoHttpApi.APP_ID;
 
-    /**
-     * 短信拦截
-     */
-    // 通过短信内容获取消息
-    static public final String URL_GET_MSG = URL_API + "/im/get_message_by_sms" + HTTP_RESULT_TYPE;
-
-    // 通过短信url批量获取聊天对象
-    static public final String URL_GET_MSG_BATCH = URL_API + "/im/get_message_by_sms_batch"
-            + HTTP_RESULT_TYPE;
-
-    // 发送消息
-    static public final String URL_SEND_MSG = URL_API + "/im/send_message" + HTTP_RESULT_TYPE;
-
-    // 删除消息
-    static public final String URL_DEL_MSG = URL_API + "/im/delete" + HTTP_RESULT_TYPE;
-
-    // 删除所有与某人消息
-    static public final String URL_DEL_MSG_ALL = URL_API + "/im/delete_all" + HTTP_RESULT_TYPE;
-
-    static public String M_API = MoMoHttpApi.get3GApi();
-
-    static public final String ROBOT_3G_URL = M_API + "/t/app/";
-
-    /**
-     * 联系人同步
-     */
-    static public final String UPDATE_CONTACTS_URL = URL_API + "/contact/update/";
-
-    static public final String BATCH_ADD_CONTACTS_URL = URL_API + "/contact/create_batch.json";
-
-    static public final String BATCH_DELETE_CONTACTS_URL = URL_API + "/contact/destroy_batch.json";
-
-    static public final String RETRIEVE_CONTACTS_SIMPLE_INFO_URL = URL_API + "/contact.json";
-
-    static public final String BATCH_RETRIEVE_CONTACTS_URL = URL_API + "/contact/show_batch.json";
 
 }

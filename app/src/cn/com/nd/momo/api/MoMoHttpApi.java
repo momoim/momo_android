@@ -35,58 +35,6 @@ public final class MoMoHttpApi {
 
     public static int APP_ID = 1;
 
-    public static enum MOMO_CONFIG_TYPE {
-        // 设置为内网
-        IN(RequestUrl.IN_API, 10650764, RequestUrl.IN_API)
-        // 设置为仿真
-        , SIMULATE(RequestUrl.OUT_API_SIMULATE, 353, "http://m.simulate.momo.im")
-        // 设置为外网真实环境
-        , OUT(RequestUrl.OUT_API_V3, 353, "http://m.momo.im");
-
-        private String url;
-
-        private int secretaryUid;
-
-        private String mobileUrl;
-
-        private MOMO_CONFIG_TYPE(String url, int secretaryUid, String mobileUrl) {
-            this.url = url;
-            this.secretaryUid = secretaryUid;
-            this.mobileUrl = mobileUrl;
-        }
-
-        public String getUrl() {
-            return this.url;
-        }
-
-        private int getSecretaryUid() {
-            return this.secretaryUid;
-        }
-
-        private String getMobileUrl() {
-            return this.mobileUrl;
-        }
-    }
-
-    // 升级检测时是否内测包条件
-    public static final boolean UPGRADE_IS_BETA = false;
-
-    // 升级检测渠道id
-    public static final String UPGRADE_INSTALL_ID = "momo";
-
-    /**
-     * 新更改环境方法
-     */
-    public static final MOMO_CONFIG_TYPE configType = MOMO_CONFIG_TYPE.OUT;
-
-    /**
-     * 设置AppID
-     * 
-     * @param appID
-     */
-    public static final void setAppID(int appID) {
-        APP_ID = appID;
-    }
 
     /**
      * 设置认证资料
@@ -97,27 +45,7 @@ public final class MoMoHttpApi {
         AppInfo.setOAuthInfo(oAuthInfo);
     }
 
-    public static final int getFeedUID() {
-        return configType.getSecretaryUid();
-    }
 
-    /**
-     * 获取3G地址
-     * 
-     * @return
-     */
-    public static final String get3GApi() {
-        return configType.getMobileUrl();
-    }
-
-    /**
-     * 获取API地址
-     * 
-     * @return
-     */
-    public static final String getApi() {
-        return configType.getUrl();
-    }
 
     /**
      * 根据手机号 + 密码登陆
@@ -485,84 +413,6 @@ public final class MoMoHttpApi {
     }
 
 
-    /**
-     * 删除和某人的所有聊天记录
-     * 
-     * @param id
-     * @return
-     * @throws MoMoException
-     */
-    public static void postIMDeleteAll(UserList receiver) throws MoMoException {
-        HttpTool http = new HttpTool(RequestUrl.URL_DEL_MSG_ALL + "?uid="
-                + Utils.getIMGroupID(receiver));
-        http.DoPost(new JSONObject());
-    }
-
-    /**
-     * 发送名片请求（授权对方看自己名片）
-     * 
-     * @param who
-     * @throws MoMoException
-     */
-    public static void postUserSendCard(String who) throws MoMoException {
-        HttpTool http = new HttpTool(RequestUrl.USER_CARD_SEND);
-        JSONObject params = new JSONObject();
-        try {
-            params.put("to", who);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            throw new MoMoException(e);
-        }
-        http.DoPost(params);
-    }
-
-    
-    /**
-     * OAP帐号校验
-     * 
-     * @param sid
-     * @return
-     * @throws MoMoException
-     */
-    public static OAuthInfo checkOap(String sid) throws MoMoException {
-        return OAuthHelper.checkOap(sid);
-    }
-    
-    /**
-     * 用户token登录 
-     * 
-     * @param sid
-     * @return
-     * @throws MoMoException
-     */
-    public static OAuthInfo tokenLogin(String sid, String uid, String oauthToken) throws MoMoException {
-        return OAuthHelper.tokenLogin(sid, uid, oauthToken);
-    }
-    
-    /**
-     * 请求手机校验码
-     * 
-     * @param mobile
-     * @return
-     * @throws MoMoException
-     */
-    public static void applyVerifyCode(String consumeKey, String mobile) throws MoMoException {
-        OAuthHelper.applyVerifyCode(consumeKey, mobile);
-    }
-
-    /**
-     * 完成手机号绑定
-     * 
-     * @param zoneCode
-     * @param mobile
-     * @param verifyCode
-     * @return OAuthInfo
-     */
-    public static OAuthInfo bindMobile(String consumerKey, String mobile, String verifyCode)
-            throws MoMoException {
-        return OAuthHelper.bindMobile(consumerKey, mobile, verifyCode);
-    }
-    
     /**
      * 获取长文本内容
      * @param id
