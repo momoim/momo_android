@@ -292,10 +292,7 @@ public class GlobalUserInfo {
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_UID);
         cHelper.removeKey(ConfigHelper.CONFIG_OAUTH_KEY);
         cHelper.removeKey(ConfigHelper.CONFIG_OAUTH_SECRET);
-
         cHelper.saveKey(ConfigHelper.CONFIG_KEY_LOGIN_STATUS, String.valueOf(LOGIN_STATUS_UNLOGIN));
-
-        //cHelper.removeKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
 
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_NAME);
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_TYPE);
@@ -303,7 +300,6 @@ public class GlobalUserInfo {
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_AVATAR);
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_ZONE_CODE);
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_PHONE_NUMBER);
-        cHelper.removeKey(ConfigHelper.CONFIG_USER_STATUS);
         cHelper.removeKey(ConfigHelper.CONFIG_QNAME);
 
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_MESSAGE_RING);
@@ -340,14 +336,6 @@ public class GlobalUserInfo {
         DynamicDB.instance().reset();
         DynamicMgr.getInstance().reset();        
         DraftMgr.instance().deleteAll();
-        
-
-
-        // clear database
-        Log.d(TAG, "logout step5");
-        //SyncManager.getInstance().emptyAllMoMoDatabase();
-
-
 
         return true;
     }

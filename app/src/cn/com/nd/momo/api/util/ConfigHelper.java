@@ -36,8 +36,6 @@ public class ConfigHelper {
 
     static public final String CONFIG_QNAME = "q_name";
 
-    static public final String CONFIG_USER_STATUS = "user_status";
-    
     static public final String CONFIG_SID = "sid";
 
 
