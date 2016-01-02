@@ -89,6 +89,7 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
                     } else {
 
                         {
+                            //todo 判断是否用户之前是否有登录，登录过则直接进入主界面
                             Intent intent = new Intent(RegistVerifyCodeActivity.this, RegInfoActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
@@ -190,12 +191,7 @@ public class RegistVerifyCodeActivity extends Activity implements OnClickListene
                         nRet = HttpStatus.SC_OK;
                         GlobalUserInfo.setOAuthInfo(mOAuthInfo);
 
-                        GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
-                        ConfigHelper configHelper = ConfigHelper
-                                .getInstance(getApplicationContext());
-                        // clear try once user
-                        configHelper.removeKey(ConfigHelper.LAST_TIME_UPDATE_USER_ID);
-                        configHelper.commit();
+
                     }
                 } catch (MoMoException ex) {
                     nRet = ex.getCode();

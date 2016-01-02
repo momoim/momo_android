@@ -40,16 +40,6 @@ public class ConfigHelper {
     
     static public final String CONFIG_SID = "sid";
 
-    // sync
-    public static final String SYNC_MODE_TWO_WAY = "1";
-
-    public static final String SYNC_MODE_LOCAL_ONLY = "2";
-
-    public static final String CONFIG_KEY_SYNC_MODE = "sync_mode";
-
-    public static final String LAST_TIME_UPDATE_USER_ID = "update_user_id_time";
-
-    // im
 
     static public final String CONFIG_KEY_UID = "uid";
 

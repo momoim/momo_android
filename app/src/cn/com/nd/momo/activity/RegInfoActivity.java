@@ -54,6 +54,8 @@ public class RegInfoActivity extends Activity implements OnClickListener {
 
             switch (msg.what) {
                 case REG_PERSONAL_INFO_SUCCESS:
+                    GlobalUserInfo.setLoginStatus(GlobalUserInfo.LOGIN_STATUS_LOGINED);
+
                     sendBroadcast(new Intent(getString(R.string.action_message_login)));
                     // start lead to sync activity
                     Intent i = new Intent(RegInfoActivity.this, MainActivity.class);
@@ -173,7 +175,7 @@ public class RegInfoActivity extends Activity implements OnClickListener {
         // show message box to ensure quit
         Builder b = new AlertDialog.Builder(this);
         b.setTitle("确定退出");
-        b.setMessage("退出momo？下次启动momo再设置用户名");
+        b.setMessage("退出momo？下次启动momo再重新注册");
         b.setPositiveButton(getString(R.string.txt_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

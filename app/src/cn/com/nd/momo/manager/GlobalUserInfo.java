@@ -234,7 +234,7 @@ public class GlobalUserInfo {
 
     public synchronized static void setLoginStatus(int nStatus) {
         ConfigHelper.getInstance(mAppContext).saveKey(ConfigHelper.CONFIG_KEY_LOGIN_STATUS,
-                String.valueOf(LOGIN_STATUS_LOGINED));
+                String.valueOf(nStatus));
         ConfigHelper.getInstance(mAppContext).commit();
         mLoginStatus = nStatus;
     }
@@ -294,7 +294,9 @@ public class GlobalUserInfo {
         cHelper.removeKey(ConfigHelper.CONFIG_OAUTH_SECRET);
 
         cHelper.saveKey(ConfigHelper.CONFIG_KEY_LOGIN_STATUS, String.valueOf(LOGIN_STATUS_UNLOGIN));
-        cHelper.removeKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
+
+        //cHelper.removeKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
+
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_NAME);
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_BINDED_ACCOUNT_TYPE);
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_REALNAME);
@@ -322,8 +324,6 @@ public class GlobalUserInfo {
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_SKIP_VERSION);
 
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_IM_AUTO_PLAY);
-
-        cHelper.removeKey(ConfigHelper.LAST_TIME_UPDATE_USER_ID);
 
         cHelper.removeKey(ConfigHelper.CONFIG_KEY_IMPORT_ACCOUNTS);
         

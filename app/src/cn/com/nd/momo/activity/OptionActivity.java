@@ -182,8 +182,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
 
         configHelper = ConfigHelper.getInstance(this);
 
-        initAutoSyncConfigure();
-
         // mo短信拦截
         mOptInterceptAll = (ViewGroup)findViewById(R.id.sms_opt_all_intercep);
         mOptInterceptAll.setOnClickListener(this);
@@ -237,9 +235,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
                 true);
         mChkAudioAutoPlay = (CheckBox)findViewById(R.id.chk_option_im_auto_play);
         mChkAudioAutoPlay.setChecked(m_audioAutoPlay);
-        String syncModel = configHelper.loadKey(ConfigHelper.CONFIG_KEY_SYNC_MODE);
-        mChkAutoSync = (CheckBox)findViewById(R.id.chk_auto_sync);
-        resetSyncOptionView(syncModel, false);
 
         // change login status string and button enable due to the login status
         if (GlobalUserInfo.getName() != null && GlobalUserInfo.getName().length() != 0) {
@@ -401,54 +396,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
             	configHelper.commit();
             	break;
         }
-    }
-
-    /**
-     * 初始化同步方式
-     */
-    private void initAutoSyncConfigure() {
-        mChkAutoSync = (CheckBox)findViewById(R.id.chk_auto_sync);
-        String strKey = ConfigHelper.getInstance(getApplicationContext()).loadKey(
-                ConfigHelper.CONFIG_KEY_SYNC_MODE);
-        if (null == strKey || "".equals(strKey)) {
-            strKey = ConfigHelper.SYNC_MODE_LOCAL_ONLY;
-        }
-        changeSyncMode(strKey);
-        findViewById(R.id.layout_sync_mode_check).setOnClickListener(this);
-    }
-
-    /**
-     * 切换同步与不同步
-     * 
-     * @param strModeKey
-     */
-    private void changeSyncMode(String strModeKey) {
-        ConfigHelper.getInstance(getApplicationContext()).saveKey(
-                ConfigHelper.CONFIG_KEY_SYNC_MODE, strModeKey);
-        ConfigHelper.getInstance(getApplicationContext()).commit();
-    }
-
-    private void resetSyncOptionView(String strModeKey, boolean showContactCount) {
-        int paddingLeft = (int)getResources().getDimension(
-                R.dimen.option_sync_padding_left_or_right);
-        int paddingTop = (int)getResources().getDimension(
-                R.dimen.option_sync_padding_top_or_bottom);
-        if (ConfigHelper.SYNC_MODE_TWO_WAY.equals(strModeKey)) {
-            mChkAutoSync.setChecked(true);
-            MarqueeTextView accountView = (MarqueeTextView)findViewById(R.id.txt_opt_account);
-            accountView.setText("同步帐号:" + getCurrentAccountName(showContactCount, ""));
-            m_btnAccount.setVisibility(View.VISIBLE);
-            m_btnImportContacts.setVisibility(View.VISIBLE);
-            m_btnSync.setBackgroundDrawable(getResources().getDrawable(
-                    R.drawable.mm_frame_set_up));
-        } else if (ConfigHelper.SYNC_MODE_LOCAL_ONLY.equals(strModeKey)) {
-            mChkAutoSync.setChecked(false);
-            m_btnImportContacts.setVisibility(View.GONE);
-            m_btnAccount.setVisibility(View.GONE);
-            m_btnSync.setBackgroundDrawable(getResources().getDrawable(
-                    R.drawable.mm_frame_set_whole));
-        }
-        m_btnSync.setPadding(paddingLeft, paddingTop, paddingLeft, paddingTop);
     }
 
     private void viewContactFragmentActivity(long uid, String name, Context context,
