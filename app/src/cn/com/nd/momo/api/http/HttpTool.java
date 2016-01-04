@@ -646,6 +646,7 @@ public final class HttpTool {
      */
     public static String post(String requestUrl, JSONObject params) throws MoMoException {
         HashMap<String, String> headerMap = new HashMap<String, String>();
+
         headerMap.put(HEADERNAME_OAUTH, OAuthHelper.getAuthHeader(requestUrl, "POST"));
         return post(requestUrl, params, headerMap, CONTENT_TYPE, CONTENT_ENCODING);
     }

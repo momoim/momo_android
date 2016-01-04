@@ -168,7 +168,6 @@ public class OptionActivity extends TabActivity implements OnClickListener {
                 startActivity(i);
                 break;
             case R.id.btn_opt_help:
-                GlobalUserInfo.openMoMoUrl(this, RequestUrl.HELP_URL, false);
                 break;
             case R.id.btn_quit:
                 dlgLogout = ProgressDialog.show(this, "退出登录", "正在退出登录，请稍等...");

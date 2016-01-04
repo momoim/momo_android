@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -1201,27 +1202,21 @@ public class Statuses_Activity extends TabActivity implements OnClickListener,
     }
 
     private void initData() {
-        // mCurrentGroup = DynamicPoster.mLastGroupinfo;
-        // if (mCurrentGroup != null) {
-        // btnGroupSelect.setText(mCurrentGroup.gname);
-        // } else {
-        // btnGroupSelect.setText(getString(R.string.dynamic_public));
-        // }
-
-        new Thread() {
+        new AsyncTask<Void, Integer, Boolean>() {
             @Override
-            public void run() {
+            protected Boolean doInBackground(Void... urls) {
+
                 Message msg = new Message();
                 msg.what = DynamicMgr.MSG_GET_GROUPS;
 
                 // if (!DynamicMgr.getInstance().isLoaded()) {
                 DynamicMgr.getInstance().refreshGroup();
                 mHandler.sendMessage(msg);
-                // }
-
-                super.run();
+                return true;
             }
-        }.start();
+        }.execute();
+
+
     }
 
     /**

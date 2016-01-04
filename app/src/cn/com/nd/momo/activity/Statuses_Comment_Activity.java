@@ -17,6 +17,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -406,10 +407,11 @@ public class Statuses_Comment_Activity extends Activity implements
                 mlistView.setSelection(mlistView.getCount() - 1);
                 break;
             case R.id.btn_praise:
-                new Thread(new Runnable() {
 
+                new AsyncTask<Void, Integer, Boolean>() {
                     @Override
-                    public void run() {
+                    protected Boolean doInBackground(Void... urls) {
+
                         SdkResult result = new SdkResult();
                         try {
                             StatusesManager.praise(mDynamicInfo.id);
@@ -419,8 +421,15 @@ public class Statuses_Comment_Activity extends Activity implements
                             result.response = e.getSimpleMsg();
                         }
                         sendMessage(DynamicMgr.MSG_POST_PRISE, result);
+                        return true;
                     }
-                }).run();
+
+                    @Override
+                    protected void onPostExecute(Boolean r) {
+
+                    }
+                }.execute();
+
                 break;
             case R.id.btn_forward:
                 Intent i = new Intent(Statuses_Comment_Activity.this, Statuses_Send_Activity.class);

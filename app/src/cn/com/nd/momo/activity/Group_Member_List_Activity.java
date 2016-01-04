@@ -123,7 +123,7 @@ public class Group_Member_List_Activity extends LinearLayout {
                 mHandler.sendMessage(msg);
 
             }
-        }).run();
+        }).start();
     }
 
     private class OnContactListItemClick implements OnItemClickListener {

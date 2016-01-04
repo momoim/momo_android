@@ -14,10 +14,12 @@ import cn.com.nd.momo.api.http.HttpTool;
 import cn.com.nd.momo.api.parsers.json.GroupInfoParser;
 import cn.com.nd.momo.api.parsers.json.GroupMemberParser;
 import cn.com.nd.momo.api.parsers.json.GroupParser;
+import cn.com.nd.momo.api.parsers.json.UserParser;
 import cn.com.nd.momo.api.types.Attachment;
 import cn.com.nd.momo.api.types.Group;
 import cn.com.nd.momo.api.types.GroupInfo;
 import cn.com.nd.momo.api.types.GroupMember;
+import cn.com.nd.momo.api.types.User;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.model.DynamicInfo;
 import cn.com.nd.momo.model.DynamicItemInfo;
@@ -32,6 +34,24 @@ public class StatusesManager {
      * @throws MoMoException
      */
     public static void praise(String ID) throws MoMoException {
+/*
+        HttpTool http = new HttpTool(RequestUrl.STATUSES_PRAISE);
+        try {
+            JSONObject param = new JSONObject();
+            param.put("statuses_id", ID);
+
+            int statusCode = http.DoPost(param);
+
+            if (statusCode != 200) {
+                throw new MoMoException("server error");
+            }
+
+
+        } catch (Exception ex) {
+            throw new MoMoException(ex);
+        }*/
+
+
         JSONObject param = new JSONObject();
         try {
             param.put("statuses_id", ID);

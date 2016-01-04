@@ -7,6 +7,7 @@ import java.util.Vector;
 import android.R.color;
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,10 +18,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.activity.WholeImageActivity;
+import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.statuses.StatusesManager;
 import cn.com.nd.momo.api.types.Attachment;
 import cn.com.nd.momo.api.util.Log;
+import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.view.DynamicListItemUI;
 import cn.com.nd.momo.view.DynamicListItemUI.ViewHold;
 import cn.com.nd.momo.manager.GlobalUserInfo;
@@ -354,42 +357,49 @@ public class DynamicAdapter extends AbsAdapter {
                 hold.praise.setImageResource(R.drawable.share_praise);
                 final View viewCach = convertView;
                 hold.praise.setEnabled(true);
+
                 hold.praise.setOnClickListener(new OnClickListener() {
-                    
                     @Override
-                    public void onClick(View v) { 
-                        new Thread(new Runnable() {
-                            
+                    public void onClick(View v) {
+
+                        new AsyncTask<Void, Integer, Boolean>() {
                             @Override
-                            public void run() {
+                            protected Boolean doInBackground(Void... urls) {
                                 try {
-                                    StatusesManager.praise(itemInfo.id);                                    
-                                    
+                                    StatusesManager.praise(itemInfo.id);
+                                    return true;
+                                }catch(MoMoException e) {
+                                    e.printStackTrace();
+                                    return false;
+                                }
+                            }
+
+                            @Override
+                            protected void onPostExecute(Boolean r) {
+                                if (r) {
                                     hold.praise.setEnabled(false);
                                     hold.praise.setImageResource(R.drawable.share_praise_disable);
                                     itemInfo.allowPraise = 0;
-                                    
+
                                     itemInfo.likeList = "我"
                                             + (itemInfo.likeList.length() == 0 ? "觉得这挺赞的"
-                                                    : "和") + itemInfo.likeList;
+                                            : "和") + itemInfo.likeList;
                                     itemInfo.likeCount ++;
-                                    
+
                                     DynamicListItemUI.setTextFromHtml(hold.likeCount, itemInfo.likeList + " ");
                                     viewCach.findViewById(R.id.dynamic_list_item_comment_info).setVisibility(View.VISIBLE);
-                                    
+
                                     // 有存储的需替换，无存储(群分享、个人分享)的不做处理
                                     DynamicInfo info = DynamicDB.instance().queryDynamic(itemInfo.id);
 
                                     boolean isCached = info != null && info.id != null && info.id.length() != 0;
-                                    
+
                                     if (isCached) {
                                         DynamicDB.instance().insertDynamic(itemInfo, false);
                                     }
-                                } catch (MoMoException e) {
-                                    e.printStackTrace();
                                 }
                             }
-                        }).run();                        
+                        }.execute();
                     }
                 });
             } else {
