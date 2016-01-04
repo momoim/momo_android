@@ -23,7 +23,7 @@
 			android:visibility="gone"
 			android:layout_height="wrap_content" android:src="@drawable/btn_contact_add_momo" />
 			
-		<ImageButton  android:id="@+id/btn_confirm"  
+		<ImageButton  android:id="@+id/btn_confirm_select"
 			style="@style/image_rect_bg_button" android:layout_centerVertical="true"
 			android:paddingLeft="10dip" android:paddingRight="10dip"
 			android:paddingTop="5dip" android:paddingBottom="5dip"

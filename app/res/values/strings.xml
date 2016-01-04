@@ -13,7 +13,7 @@
 	<string name="version_id">1.0.0</string>
 
 	<!-- General use -->
-	<string name="app_name">momo</string>
+	<string name="app_name">momo动态</string>
 	<string name="txt_confirm">亲，确定吗？</string>
 	<string name="txt_done">完成</string>
 	<string name="txt_ok">确定</string>

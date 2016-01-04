@@ -19,7 +19,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:paddingLeft="10dip"
-            android:paddingRight="10dip" >
+            android:paddingRight="10dip"
+            android:visibility="gone">
 
             <!-- <cn.com.nd.momo.view.DrawImagesView android:id="@+id/btn_draw_images" -->
             <!-- style="@style/image_rect_bg_button" android:visibility="gone" -->

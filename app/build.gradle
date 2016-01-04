@@ -12,6 +12,20 @@ android {
         versionName "1.9.42"
     }
 
+    signingConfigs {
+        app {
+            storeFile file("gradle.keystore")
+            storePassword "123456"
+            keyAlias "momo"
+            keyPassword "123456"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -28,6 +42,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.app
         }
     }
 
@@ -42,6 +57,13 @@ android {
         exclude 'META-INF/license.txt'
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
+    }
+
+
+    productFlavors {
+        internal {
+            applicationId 'com.wing.momo'
+        }
     }
 }
 

@@ -5,51 +5,7 @@
     android:background="@color/list_default_normal"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/title_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/title_background"
-        android:visibility="gone" >
 
-        <TextView
-            android:id="@+id/txt_contact_select"
-            style="@style/txt_title_bar"
-            android:layout_centerInParent="true"
-            android:text="选择联系人" />
-
-        <ImageButton
-            android:id="@+id/btn_add_mobile"
-            style="@style/image_rect_bg_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:paddingBottom="5dip"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip"
-            android:paddingTop="5dip"
-            android:src="@drawable/btn_contact_add_momo"
-            android:visibility="gone" />
-
-        <ImageButton
-            android:id="@+id/btn_confirm"
-            style="@style/image_rect_bg_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:paddingBottom="5dip"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip"
-            android:paddingTop="5dip"
-            android:src="@drawable/dynamic_end" />
-    </RelativeLayout>
-
-    <!-- <EditText android:layout_margin="5dip" android:hint="@string/txt_search_friend" -->
-    <!-- android:drawableRight="@drawable/ic_search" android:id="@+id/search" -->
-    <!-- android:editable="true" android:layout_height="50dip" -->
-    <!-- android:layout_width="fill_parent" /> -->
 
     <RelativeLayout
         android:layout_width="fill_parent"
