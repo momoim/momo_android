@@ -8,6 +8,7 @@ package cn.com.nd.momo.api;
  */
 public final class RequestUrl {
     static public String URL_API = "http://api.momo.im";
+    //static public String URL_API = "http://192.168.1.101:8080";
 
     // 注册
     static public final String REGIST_SEND_VERIFY_CODE_URL = URL_API + "/auth/verify_code.json";
@@ -18,6 +19,8 @@ public final class RequestUrl {
 
 
     static public final String FRIENDS = URL_API + "/friend/index.json?page=1&pagesize=200";
+    static public final String POTENTIAL_FRIENDS = URL_API + "/user/search.json";
+    static public final String FRIEND_ADD = URL_API + "/friend/add.json";
 
     static public final String APPLY_VERIFYCODE = URL_API + "/user/apply_verifycode.json";
     static public final String BIND_MOBILE = URL_API + "/user/bind_mobile.json";

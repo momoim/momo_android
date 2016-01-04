@@ -9,6 +9,7 @@ import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.manager.GlobalUserInfo;
 import cn.com.nd.momo.manager.MyDatabaseHelper;
+import cn.com.nd.momo.model.ContactDB;
 
 import com.flurry.android.FlurryAgent;
 
@@ -27,6 +28,9 @@ public class MyApplication extends Application {
 
         MyDatabaseHelper.initDatabase(getApplicationContext());
         Context context = getApplicationContext();
+
+        ContactDB cdb = ContactDB.getInstance();
+        cdb.setContentResolver(getApplicationContext().getContentResolver());
 
         ConfigHelper.getInstance(getApplicationContext());
         GlobalUserInfo.setAppContext(getApplicationContext());

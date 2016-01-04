@@ -337,6 +337,47 @@ public final class MoMoHttpApi {
         }
     }
 
+    public static ArrayList<User> getPotentialFriends(ArrayList<String> mobiles) throws MoMoException {
+        HttpTool http = new HttpTool(RequestUrl.POTENTIAL_FRIENDS);
+        try {
+            JSONObject obj = new JSONObject();
+            JSONArray array = new JSONArray();
+            for (String s : mobiles) {
+                array.put(s);
+            }
+            obj.put("mobiles", array);
+            int statusCode = http.DoPost(obj);
+
+            if (statusCode != 200) {
+                throw new MoMoException("server error");
+            }
+
+            String s = http.GetResponse();
+            JSONArray resp = new JSONArray(s);
+            ArrayList<User> userList = new ArrayList<User>();
+
+            userList.addAll(new GroupParser(new UserParser())
+                    .parse(resp));
+
+            return userList;
+        } catch (Exception ex) {
+            throw new MoMoException(ex);
+        }
+    }
+
+    public static void addFriend(long friendID) throws MoMoException {
+        HttpTool http = new HttpTool(RequestUrl.FRIEND_ADD);
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("user_id", Long.valueOf(friendID));
+            int statusCode = http.DoPost(obj);
+            if (statusCode != 200) {
+                throw new MoMoException("server error");
+            }
+        } catch (Exception ex) {
+            throw new MoMoException(ex);
+        }
+    }
     /**
      * 获取长文本内容
      * @param id

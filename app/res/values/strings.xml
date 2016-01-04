@@ -151,6 +151,7 @@
 	<string name="tab_txt_contacts">联系人</string>
 	<string name="tab_txt_call_log">通话记录</string>
 	<string name="tab_txt_dialer">拨号</string>
+	<string name="tab_txt_friend">好友</string>
 	<string name="tab_txt_option">设置</string>
 	<string name="tab_txt_dynamic">分享</string>
 	<string name="tab_txt_mention">MO我的</string>
@@ -274,6 +275,12 @@
 	<string name="msg_lead_sync_cancel_confirm">不同步联系人无法获取好友最新分享，也不能在电脑上发短信，确定不开启同步？</string>
 	<string name="msg_lead_sync_confirm">现在就同步联系人到服务器？</string>
 	<string name="msg_sync_account">同步帐号:</string>
+
+
+	<!-- FriendActivity.java -->
+	<string name="btn_add_friend">加为好友</string>
+	<string name="btn_is_friend">已是好友</string>
+	<string name="msg_add_friend">添加好友...</string>
 
 	<!-- SyncMainActivity.java -->
 	<string name="tab_sync_main">同步</string>
@@ -403,6 +410,7 @@
 	<string name="txt_option_version_no">没有发现新版本</string>
 	<string name="txt_option_version_yes">发现新版本,是否更新?</string>
 	<string name="txt_option_title">MOMO设置</string>
+	<string name="txt_option_friend">MOMO设置</string>
 	<string name="txt_option_status_unlogin">未登录</string>
 	<string name="txt_option_status_logined">已登录</string>
 	<string name="txt_option_status_sync">同步</string>

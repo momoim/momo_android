@@ -39,7 +39,7 @@
 			</intent-filter>
 		</activity>
 
-
+		<activity android:name=".activity.FriendActivity"/>
 		<!-- option tab -->
 		<activity android:name=".activity.OptionActivity" />
 		<activity android:name=".activity.AboutActivity" />

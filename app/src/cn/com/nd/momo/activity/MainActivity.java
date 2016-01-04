@@ -38,6 +38,8 @@ public class MainActivity extends ActivityGroup {
 
     public static String TAB_DYNAMIC = "dynamic";
     public static String TAG_OPTION = "option";
+    public static String TAG_FRIEND = "friend";
+
 
     private boolean mHasInited = false;
 
@@ -110,6 +112,12 @@ public class MainActivity extends ActivityGroup {
         mTab.setIndicator(inflaterTab(getResources().getDrawable(R.drawable.ic_dynamic),
                 getResources().getString(R.string.tab_txt_dynamic)));
         mTab.setContent(new Intent(this, Statuses_Activity.class));
+        mTabHost.addTab(mTab);
+
+        mTab = mTabHost.newTabSpec(TAG_FRIEND);
+        mTab.setIndicator(inflaterTab(getResources().getDrawable(R.drawable.ic_contact),
+                getResources().getString(R.string.tab_txt_friend)));
+        mTab.setContent(new Intent(this, FriendActivity.class));
         mTabHost.addTab(mTab);
 
         // add option
