@@ -3,6 +3,8 @@ package cn.com.nd.momo.activity;
 
 import android.app.Application;
 import android.content.Context;
+
+import cn.com.nd.momo.api.util.ConfigHelper;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
 import cn.com.nd.momo.manager.GlobalUserInfo;
@@ -26,6 +28,7 @@ public class MyApplication extends Application {
         MyDatabaseHelper.initDatabase(getApplicationContext());
         Context context = getApplicationContext();
 
+        ConfigHelper.getInstance(getApplicationContext());
         GlobalUserInfo.setAppContext(getApplicationContext());
         Utils.saveGlobleContext(context);
         GlobalUserInfo.checkLoginStatus(context);

@@ -29,6 +29,9 @@ public class ConfigHelper {
     static public final String CONFIG_REFRESH_TOKEN = "auth_refresh_token";
     static public final String CONFIG_ACCESS_TOKEN_EXPIRE = "auth_expires";
 
+    static public final String CONFIG_KEY_FRIENDS = "friends";
+    static public final String CONFIG_KEY_FRIENDS_UPDATE_TIMESTAMP = "friends_update_timestamp";
+
     // uid use CONFIG_KEY_UID
     static public final String CONFIG_OAUTH_KEY = "oauth_key";
 

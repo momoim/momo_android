@@ -805,12 +805,6 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
                 setImageCount();
                 // mUploadedProcess.setVisibility(View.VISIBLE);
                 btnBroadcast.setEnabled(true);
-
-                // 生成缩略图并且上传
-                // if (mData.thumbBmp != null) {
-                // addThumbView(mData.thumbBmp, R.id.upload_image);
-                // startUpload();
-                // }
                 Log.i("onActivityResult end");
                 break;
             case SelectorActivity.USER_PICKED:
@@ -828,9 +822,6 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
                     str = str + " ";
                     txtBroadcast.getText().insert(txtBroadcast.getSelectionStart(), str);
                 }
-                // String str = paramIntent.getStringExtra("name");
-                // txtBroadcast.getText().insert(txtBroadcast.getSelectionStart(),
-                // str);
                 break;
             case SmileySelector.SMILEY_PICK_WITH_DATA:
                 onSelect(paramIntent.getExtras().getString(SmileySelector.INTENT_SMILEY_KEY));

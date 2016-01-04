@@ -18,6 +18,8 @@ import cn.com.nd.momo.api.exception.MoMoException;
 import cn.com.nd.momo.api.http.HttpTool;
 import cn.com.nd.momo.api.oauth.OAuthHelper;
 import cn.com.nd.momo.api.parsers.json.ContactParser;
+import cn.com.nd.momo.api.parsers.json.GroupParser;
+import cn.com.nd.momo.api.parsers.json.UserParser;
 import cn.com.nd.momo.api.types.Attachment;
 import cn.com.nd.momo.api.types.Contact;
 import cn.com.nd.momo.api.types.OAuthInfo;
@@ -159,6 +161,7 @@ public final class MoMoHttpApi {
     public static int getSmsCount() throws MoMoException {
         return OAuthHelper.getSmsCount();
     }
+
 
     /**
      * 根据手机号码批量获取用户ID
@@ -313,105 +316,26 @@ public final class MoMoHttpApi {
         return result;
     }
 
-    /**
-     * 根据用户名、手机号码获取名片
-     * 
-     * @param name
-     * @param mobile
-     * @return
-     * @throws MoMoException
-     */
-    public static Contact getUserCardByMobile(String name, String mobile) throws MoMoException {
-        Contact result = null;
-        HttpTool http = new HttpTool(RequestUrl.RETRIEVE_USER_CARD_BY_MOBILE_URL);
-        JSONObject param = new JSONObject();
-
+    public static ArrayList<User> getFriends() throws MoMoException {
+        HttpTool http = new HttpTool(RequestUrl.FRIENDS);
         try {
-            param.put("name", name);
-            param.put("mobile", mobile);
+            int statusCode = http.DoGet();
 
-            http.DoPost(param);
-            JSONObject jsonResponse = new JSONObject(http.GetResponse());
-            result = new ContactParser().parse(jsonResponse);
-
-        } catch (Exception ex) {
-            throw new MoMoException(ex);
-        }
-
-        return result;
-    }
-
-    /**
-     * 根据手机号码批量获取名片
-     * 
-     * @param mobiles
-     * @return 名片列表
-     * @throws MoMoException
-     */
-    public static List<Contact> getUserCardListByMobile(List<String> mobileList)
-            throws MoMoException {
-        List<Contact> result = new ArrayList<Contact>();
-        JSONArray paramArray = new JSONArray();
-
-        try {
-            JSONArray jsonArray = new JSONArray();
-            for (String mobile : mobileList) {
-                jsonArray.put(mobile);
-                // 每次批量请求上限100笔
-                if (jsonArray.length() == 100) {
-                    paramArray.put(jsonArray);
-                    jsonArray = new JSONArray();
-                }
-
-            }
-            if (jsonArray.length() > 0) {
-                paramArray.put(jsonArray);
+            if (statusCode != 200) {
+                throw new MoMoException("server error");
             }
 
-            for (int i = 0; i < paramArray.length(); i++) {
-                HttpTool http = new HttpTool(RequestUrl.BATCH_GET_CARD_LIST);
-                http.DoPostArray(paramArray.optJSONArray(i));
-                String responseContent = http.GetResponse();
-                JSONObject jsonResponse = new JSONObject(responseContent);
-                Iterator<?> keyIter = jsonResponse.keys();
-                while (keyIter.hasNext()) {
-                    String mobile = keyIter.next().toString();
-                    JSONObject jsObj = jsonResponse.optJSONObject(mobile);
-                    Contact contact = null;
-                    contact = new ContactParser().parse(jsObj);
-                    contact.setMainPhone(mobile);
-                    result.add(contact);
-                }
+            JSONObject resp = new JSONObject(http.GetResponse());
+            ArrayList<User> userList = new ArrayList<User>();
 
-            }
+            userList.addAll(new GroupParser(new UserParser())
+                        .parse(resp.optJSONArray("data")));
 
-        } catch (Exception ex) {
-            throw new MoMoException(ex);
-        }
-
-        return result;
-    }
-
-    /**
-     * 修改名片
-     * 
-     * @param contact
-     * @return
-     * @throws MoMoException
-     */
-    public static void updateUserCard(Contact contact) throws MoMoException {
-        HttpTool http = new HttpTool(RequestUrl.UPDATE_USER_CARD_URL);
-
-        JSONObject param = new JSONObject();
-        try {
-            param = new ContactParser().toJSONObject(contact);
-
-            http.DoPost(param);
+            return userList;
         } catch (Exception ex) {
             throw new MoMoException(ex);
         }
     }
-
 
     /**
      * 获取长文本内容

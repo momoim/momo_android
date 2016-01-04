@@ -14,16 +14,8 @@
 			android:text="选择联系人"
 			android:layout_centerInParent="true" 
 			style="@style/txt_title_bar"/>
-		
-		<ImageButton  android:id="@+id/btn_add_mobile"
-			style="@style/image_rect_bg_button" android:layout_centerVertical="true"
-			android:paddingLeft="10dip" android:paddingRight="10dip"
-			android:paddingTop="5dip" android:paddingBottom="5dip"
-			android:layout_alignParentLeft="true" android:layout_width="wrap_content"
-			android:visibility="gone"
-			android:layout_height="wrap_content" android:src="@drawable/btn_contact_add_momo" />
-			
-		<ImageButton  android:id="@+id/btn_confirm_select"
+
+		<ImageButton  android:id="@+id/btn_confirm"
 			style="@style/image_rect_bg_button" android:layout_centerVertical="true"
 			android:paddingLeft="10dip" android:paddingRight="10dip"
 			android:paddingTop="5dip" android:paddingBottom="5dip"
@@ -31,48 +23,11 @@
 			android:layout_height="wrap_content" android:src="@drawable/dynamic_end" />
 	</RelativeLayout>
 
-<!-- 	<EditText android:layout_margin="5dip" android:hint="@string/txt_search_friend" -->
-<!-- 		android:drawableRight="@drawable/ic_search" android:id="@+id/search" -->
-<!-- 		android:editable="true" android:layout_height="50dip" -->
-<!-- 		android:layout_width="fill_parent" /> -->
-		
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<LinearLayout android:visibility="gone"
-			android:focusable="true" android:focusableInTouchMode="true"
-			 android:layout_alignParentBottom="true"
-			android:padding="5dip" android:orientation="horizontal"
-			android:layout_height="wrap_content" android:layout_width="fill_parent"
-			android:background="@drawable/at_hint_bar_bg">
-		<EditText android:layout_weight="1" android:id="@+id/text_name"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@null" android:textColor="#ffffff" />
-		<Button android:id="@+id/btn_confirm" android:paddingLeft="10dip"
-				android:paddingRight="10dip" android:paddingTop="5dip"
-				android:paddingBottom="5dip" android:text="@string/txt_ok"
-				android:layout_width="wrap_content" android:layout_height="wrap_content" />
-		</LinearLayout>
-		<ListView android:id="@+id/gridview" 
+		<ListView android:id="@+id/gridview"
 			android:paddingBottom="0dip"
 			android:layout_width="fill_parent" android:layout_height="fill_parent" />
-		
-		<cn.com.nd.momo.view.AlphabeticBar
-	    	android:id="@+id/alphabetic_bar"
-			android:background="#00000000" 
-			android:layout_width="30dip"
-			android:layout_alignParentRight="true"
-			android:layout_height="fill_parent" />
-						
-		<TextView android:id="@+id/txt_letter_index" android:visibility="gone"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_centerInParent="true"
-						android:background="@drawable/letter_indexer_bg"
-						android:gravity="center"
-						android:textSize="30sp"
-						android:text="A"
-						android:textStyle="bold"
-						android:textColor="#4f4f4f"/>
 	</RelativeLayout>
 	
 	<LinearLayout android:id="@+id/bottom_bar" 

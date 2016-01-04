@@ -17,6 +17,7 @@ public final class RequestUrl {
     static public final String LOGIN = URL_API + "/user/login.json";
 
 
+    static public final String FRIENDS = URL_API + "/friend/index.json?page=1&pagesize=200";
 
     static public final String APPLY_VERIFYCODE = URL_API + "/user/apply_verifycode.json";
     static public final String BIND_MOBILE = URL_API + "/user/bind_mobile.json";
