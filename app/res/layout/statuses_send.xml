@@ -129,7 +129,7 @@
                 android:layout_weight="1"
                 android:paddingTop="10dip"
                 android:src="@drawable/btn_dynamic_camera" />
-            
+
             <!-- 新浪 -->
 
             <ImageButton
@@ -137,7 +137,8 @@
                 style="@style/image_blue_bg_button"
                 android:layout_weight="1"
                 android:paddingTop="10dip"
-                android:src="@drawable/btn_dynamic_sina" />
+                android:src="@drawable/btn_dynamic_sina"
+                android:visibility="gone"/>
             
             <TextView
                 android:id="@+id/btn_keyboard"
