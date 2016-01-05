@@ -97,10 +97,6 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
 
     private ImageButton btnBroadcast;
 
-    private ImageButton btnImage;
-
-    private TextView btnKeyboard;
-
     private SmileySelector mSmileySelector;
 
     private ImageButton btnLocation;
@@ -158,7 +154,6 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
 
         mUploadedProcess = (TextView)findViewById(R.id.upload_attach);
         barTitle = (RelativeLayout)findViewById(R.id.bar_statuses_title);
-        btnImage = (ImageButton)findViewById(R.id.btn_sync_sina);
         // 地理位置按钮
         btnLocation = (ImageButton)findViewById(R.id.btn_location);
         // mUploadedProcess.setOnClickListener(this);
@@ -481,12 +476,7 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
         return groupAll;
     }
 
-    private void setSinaState() {
-        boolean syncSina = ConfigHelper.getInstance(this).loadBooleanKey(
-                ConfigHelper.CONFIG_KEY_SYNC_SINA, false);
-        btnImage.setImageResource(syncSina ? R.drawable.btn_dynamic_sina
-                : R.drawable.btn_dynamic_sina_no_sync);
-    }
+
 
     // set geography location
     private void setLocationState() {
@@ -507,14 +497,12 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
         SelectorActivity.prepare();
 
         do {
-            setSinaState();
             findViewById(R.id.btn_friend).setOnClickListener(this);
 
             // 发分享
             if (getIntent().getAction().equals(ACTION_BROADCAST) || isShareSystem()) {
                 findViewById(R.id.btn_ablum_camera).setOnClickListener(this);
                 findViewById(R.id.btn_ablum_pic).setOnClickListener(this);
-                findViewById(R.id.btn_sync_sina).setOnClickListener(this);
                 findViewById(R.id.btn_location).setOnClickListener(this);
                 break;
             }
@@ -526,7 +514,6 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
                 findViewById(R.id.btn_ablum_camera).setVisibility(View.GONE);
                 findViewById(R.id.upload_attach).setVisibility(View.GONE);
                 findViewById(R.id.btn_ablum_pic).setVisibility(View.GONE);
-                findViewById(R.id.btn_sync_sina).setOnClickListener(this);
                 findViewById(R.id.btn_location).setOnClickListener(this);
                 break;
             }
@@ -535,7 +522,6 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
             if (getIntent().getAction().equals(ACTION_DRAFT)) {
                 findViewById(R.id.btn_ablum_camera).setOnClickListener(this);
                 findViewById(R.id.btn_ablum_pic).setOnClickListener(this);
-                findViewById(R.id.btn_sync_sina).setOnClickListener(this);
                 findViewById(R.id.btn_location).setOnClickListener(this);
                 DraftInfo info = Statuses_Draft_Activity.mDraftInfo;
                 mDynamicPoster.mDynamicPostInfo.mParamContent = info.content;
@@ -664,14 +650,6 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
                 i.putExtra(Statuses_Images_Activity.EXTRAS_IMAGES, mDynamicPoster.getLocalUrls());
                 startActivityForResult(i, 115);
                 break;
-            case R.id.btn_sync_sina:
-                boolean syncSina = ConfigHelper.getInstance(this).loadBooleanKey(
-                        ConfigHelper.CONFIG_KEY_SYNC_SINA, false);
-                ConfigHelper.getInstance(this).saveBooleanKey(ConfigHelper.CONFIG_KEY_SYNC_SINA,
-                        !syncSina);
-                ConfigHelper.getInstance(this).commit();
-                setSinaState();
-                break;
             case R.id.btn_location:
                 boolean geoLocation = ConfigHelper.getInstance(this).loadBooleanKey(
                         ConfigHelper.CONFIG_KEY_GEOGRAPHY_LOCATION, false);
@@ -710,10 +688,7 @@ public class Statuses_Send_Activity extends Activity implements OnClickListener 
         do {
             mDynamicPoster.mDynamicPostInfo.mParamContent = makeContent(txtBroadcast.getText()
                     .toString());
-
-            boolean syncSina = ConfigHelper.getInstance(this).loadBooleanKey(
-                    ConfigHelper.CONFIG_KEY_SYNC_SINA, false);
-            mDynamicPoster.mDynamicPostInfo.mParamIsSyncSina = syncSina;
+            mDynamicPoster.mDynamicPostInfo.mParamIsSyncSina = false;
 
             if (mCurrentGroup.getGroupID() != ID_GROUPALL) {
                 mDynamicPoster.mDynamicPostInfo.mParamGroupInfo = mCurrentGroup;

@@ -92,8 +92,6 @@ public class ConfigHelper {
 
     public static String PATTERN_URL = "http://[^\\s]*";
 
-    public static String CONFIG_KEY_SYNC_SINA = "sync_sina";
-
     // geography location
     public static String CONFIG_KEY_GEOGRAPHY_LOCATION = "geo_location";
 

@@ -40,101 +40,6 @@
 					android:src="@drawable/option_arrow" />
 
 			</LinearLayout>
-			
-			<!-- change mobile -->
-			<LinearLayout android:id="@+id/btn_opt_change_mobile"
-				android:orientation="horizontal" android:gravity="center_vertical"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@drawable/mm_frame_set_middle" android:paddingTop="13dip"
-				android:paddingLeft="20dip" android:paddingRight="20dip"
-				android:paddingBottom="13dip"
-				android:clickable="true">
-
-				<TextView 
-					android:layout_width="fill_parent" android:layout_height="wrap_content"
-					android:textSize="20dip" android:textColor="@color/light_black"
-					android:layout_weight="1" android:text="@string/txt_change_mobile" />
-
-				<ImageView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:layout_marginRight="5dip"
-					android:src="@drawable/option_arrow" />
-
-			</LinearLayout>
-			
-			<!-- change password -->
-			<LinearLayout android:id="@+id/btn_opt_change_password"
-				android:orientation="horizontal" android:gravity="center_vertical"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@drawable/mm_frame_set_down" android:paddingTop="13dip"
-				android:paddingLeft="20dip" android:paddingRight="20dip"
-				android:paddingBottom="13dip"
-				android:clickable="true">
-
-				<TextView 
-					android:layout_width="fill_parent" android:layout_height="wrap_content"
-					android:textSize="20dip" android:textColor="@color/light_black"
-					android:layout_weight="1" android:text="@string/txt_change_pwd" />
-
-				<ImageView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:layout_marginRight="5dip"
-					android:src="@drawable/option_arrow" />
-
-			</LinearLayout>
-
-
-			<!-- upgrade -->
-			<LinearLayout android:id="@+id/btn_opt_upgrade"
-			    android:layout_marginTop="10dip"
-				android:orientation="horizontal" android:gravity="center_vertical"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@drawable/mm_frame_set_up"
-				android:paddingTop="13dip" android:paddingLeft="20dip"
-				android:paddingRight="20dip" android:paddingBottom="13dip"
-				android:clickable="true" >
-
-				<TextView android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:textSize="20dip"
-					android:textColor="@color/light_black" android:text="@string/txt_option_upgrade" />
-
-			</LinearLayout>
-
-			<!-- feed back -->
-			<LinearLayout android:id="@+id/btn_opt_feed_back"
-				android:orientation="horizontal" android:gravity="center_vertical"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@drawable/mm_frame_set_middle"
-				android:paddingTop="13dip" android:paddingLeft="20dip"
-				android:paddingRight="20dip" android:paddingBottom="13dip"
-				android:clickable="true">
-
-				<TextView android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:textSize="20dip"
-					android:textColor="@color/light_black" android:text="@string/txt_option_feed_back" 
-					android:layout_weight="1"/>
-				<ImageView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:layout_marginRight="5dip"
-					android:src="@drawable/option_arrow"/>
-
-			</LinearLayout>
-			
-			<!-- help -->
-			<LinearLayout android:id="@+id/btn_opt_help"
-				android:orientation="horizontal" android:gravity="center_vertical"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@drawable/mm_frame_set_middle"
-				android:paddingTop="13dip" android:paddingLeft="20dip"
-				android:paddingRight="20dip" android:paddingBottom="13dip"
-				android:clickable="true">
-
-				<TextView android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:textSize="20dip"
-					android:textColor="@color/light_black" android:text="@string/txt_option_help" 
-					android:layout_weight="1"/>
-				<ImageView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:layout_marginRight="5dip"
-					android:src="@drawable/option_arrow"/>
-
-			</LinearLayout>
 
 			<!-- about -->
 			<LinearLayout android:id="@+id/btn_opt_about"
@@ -146,13 +51,14 @@
 
 				<TextView android:layout_width="fill_parent"
 					android:layout_height="wrap_content" android:textSize="20dip"
-					android:textColor="@color/light_black" android:text="@string/txt_option_about" 
+					android:textColor="@color/light_black" android:text="@string/txt_option_about"
 					android:layout_weight="1"/>
 				<ImageView android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:layout_marginRight="5dip"
 					android:src="@drawable/option_arrow"/>
 
 			</LinearLayout>
+
 			<Button android:id="@+id/btn_quit" android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:text="@string/btn_option_quit"
 				android:background="@drawable/btn_bg_red" android:textSize="15dip"

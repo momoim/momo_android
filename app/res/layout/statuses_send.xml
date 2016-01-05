@@ -130,25 +130,7 @@
                 android:paddingTop="10dip"
                 android:src="@drawable/btn_dynamic_camera" />
 
-            <!-- 新浪 -->
 
-            <ImageButton
-                android:id="@+id/btn_sync_sina"
-                style="@style/image_blue_bg_button"
-                android:layout_weight="1"
-                android:paddingTop="10dip"
-                android:src="@drawable/btn_dynamic_sina"
-                android:visibility="gone"/>
-            
-            <TextView
-                android:id="@+id/btn_keyboard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingRight="20dip"
-                android:text="140"
-                android:textColor="@color/white"
-                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
