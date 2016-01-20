@@ -63,13 +63,12 @@ public class MainActivity extends ActivityGroup {
         sendBroadcast(new Intent(getString(R.string.action_message_launch)));
 
         int now = Utils.getNow();
-        if (now >= GlobalUserInfo.getExpireTS() + 60) {
+        if (now >= GlobalUserInfo.getExpireTS() - 60) {
             refreshToken();
         } else {
             int t = GlobalUserInfo.getExpireTS() - 60 - now;
             refreshTokenDelay(t);
         }
-
         Log.d(TAG, "On Create end");
     }
 
