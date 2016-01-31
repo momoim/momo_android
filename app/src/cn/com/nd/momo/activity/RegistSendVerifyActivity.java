@@ -8,9 +8,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Telephony;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -18,12 +23,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.apache.http.HttpStatus;
+import org.w3c.dom.Text;
+
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cn.com.nd.momo.R;
 import cn.com.nd.momo.api.MoMoHttpApi;
 import cn.com.nd.momo.api.exception.MoMoException;
+import cn.com.nd.momo.api.types.OAuthInfo;
 import cn.com.nd.momo.api.util.Log;
 import cn.com.nd.momo.api.util.Utils;
+import cn.com.nd.momo.util.Timer;
 import cn.com.nd.momo.manager.GlobalUserInfo;
+
+import static android.os.SystemClock.uptimeMillis;
 
 public class RegistSendVerifyActivity extends Activity implements OnClickListener {
     private static final String TAG = "RegistSendVerifyActivity";
@@ -53,108 +70,9 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
     // dialog
     private ProgressDialog m_progressDlg = null;
 
-
-
-    public static class RegistThread extends Thread {
-        private static String TAG = "RegistThread";
-
-        // message define
-        public static final int HTTP_GET_VERIFY = 1; // get verify code
-        // return code for get verify code
-        public static final int HTTP_GET_VERIFY_OK = 200;
-
-        private ProgressDialog mDlg = null;
-
-        private Handler mHandler = null;
-
-        private String mPhoneNum = null;
-
-        public RegistThread(Context c, ProgressDialog dlg, Handler h) {
-            this.mDlg = dlg;
-            this.mHandler = h;
-        }
-
-        public void setRegistInfo(String phoneNum) {
-            this.mPhoneNum = phoneNum;
-        }
-
-        @Override
-        public void run() {
-            int nRet = 0;
-            try {
-                MoMoHttpApi.register(GlobalUserInfo.getZoneCode(), mPhoneNum);
-                exitWithErrorCode(HTTP_GET_VERIFY, HTTP_GET_VERIFY_OK, "");
-            } catch (MoMoException e) {
-                exitWithErrorCode(HTTP_GET_VERIFY, e.getCode(), e.getSimpleMsg());
-            } catch (Exception e) {
-                exitWithErrorCode(HTTP_GET_VERIFY, nRet, "注册失败");
-            }
-        }
-
-        // send error message and exit progress dialog
-        private void exitWithErrorCode(int msgWhat, int nRet, String strRet) {
-            // destroy progress dialog
-            if (mDlg != null) {
-                mDlg.dismiss();
-            }
-
-            if (mHandler != null) {
-                Message msg = new Message();
-                msg.what = msgWhat;
-                Bundle b = new Bundle();
-                b.putInt("http_ret", nRet);
-                b.putString("http_response", strRet);
-                msg.setData(b);
-                mHandler.sendMessage(msg);
-
-            } else {
-                Log.e(TAG, "exitWithErrorCode: mHandler is null");
-
-            }
-        }
-    }
-
-    // regist thread
-    private RegistThread mThread = null;
-
-    // handler to process message from http response
-    private Handler m_Handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            Bundle b = msg.getData();
-            int nRet = b.getInt("http_ret");
-            String strRet = b.getString("http_response");
-
-            switch (msg.what) {
-                case RegistThread.HTTP_GET_VERIFY:
-                    // show message
-                    if (nRet != RegistThread.HTTP_GET_VERIFY_OK) {
-                        if (nRet == 400117) {
-                            Intent data = new Intent();
-                            data.putExtra(EXTRA_HAD_REGIST, true);
-                            data.putExtra(EXTRA_REGIST_ZONE_CODE, GlobalUserInfo.getZoneCode());
-                            data.putExtra(EXTRA_REGIST_MOBILE, mEditPhoneNum.getText().toString());
-                            setResult(RESULT_OK, data);
-                            Utils.displayToast("手机号码已注册，请登录", 0);
-                            RegistSendVerifyActivity.this.finish();
-                            return;
-                        }
-                        mTxtResponse.setVisibility(View.VISIBLE);
-                        mTxtResponse.setText(strRet);
-                    } else {
-                        Intent intent = new Intent(RegistSendVerifyActivity.this,
-                                RegistVerifyCodeActivity.class);
-                        intent.putExtra(EXTRA_REGIST_MOBILE, mEditPhoneNum.getText().toString());
-                        startActivityForResult(intent, REQ_VERIFY_CODE_CODE);
-                    }
-                    break;
-
-                default:
-                    Log.e(TAG, "handleMessage: get an message " + msg.what);
-                    break;
-            }
-        }
-    };
+    private long timestamp;
+    private int beginQuery;
+    private Timer queryTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +94,7 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
 
         getWindow().setSoftInputMode(
                 android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
     }
 
     @Override
@@ -201,8 +120,8 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
                 }
 
                 if (null == Utils.getActiveNetWorkName(this)) {
-                    cn.com.nd.momo.api.util.Utils.displayToast(
-                            getString(R.string.error_net_work), Toast.LENGTH_SHORT);
+                    Toast.makeText(this, getString(R.string.error_net_work),
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -210,37 +129,11 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
 
                 // show waiting dialog
                 m_progressDlg = ProgressDialog.show(RegistSendVerifyActivity.this,
-                        getResources()
-                                .getText(R.string.msg_reg_info_process_title), getResources()
-                                .getText(
-                                        R.string.msg_reg_info_get_verify_code));
+                        getResources().getText(R.string.msg_reg_info_process_title),
+                        getResources().getText(R.string.msg_reg_info_get_verify_code));
                 m_progressDlg.setCancelable(false);
-                // begin to regist
-                mThread = new RegistThread(v.getContext(), m_progressDlg, m_Handler);
-                mThread.setRegistInfo(mEditPhoneNum.getText().toString());
-                mThread.start();
 
-                // when thread is searching sms, we allow user to press back
-                // key
-                m_progressDlg.setOnCancelListener(new OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        // show information to user and go to active UI
-                        AlertDialog MsgAlert = new AlertDialog.Builder(
-                                RegistSendVerifyActivity.this).create();
-                        MsgAlert.setMessage(getResources().getString(
-                                R.string.msg_reg_info_find_verify_timeout));
-                        MsgAlert.setButton(getResources().getString(R.string.btn_reg_info_OK),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                });
-
-                        MsgAlert.show();
-                    }
-                });
+                getVerifyCode(mEditPhoneNum.getText().toString());
 
                 break;
         }
@@ -285,7 +178,6 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
         // check phone number
         if ((bCheckAll) || (mEditPhoneNum.equals(v))) {
             if (mEditPhoneNum.length() < 1) {
-                // mEditPhoneNum.setError(getResources().getString(R.string.msg_reg_info_phone_null));
                 mEditPhoneNum.requestFocus();
                 bRet = false;
             }
@@ -306,4 +198,163 @@ public class RegistSendVerifyActivity extends Activity implements OnClickListene
         }
     }
 
+    private String matchSMS(String body) {
+        //sms template "尊敬的用户,您的注册验证码是773322,感谢您使用momo！";
+        if (body.indexOf("momo") != -1 && body.indexOf("您的注册验证码是") != -1) {
+            Pattern p = Pattern.compile("您的注册验证码是([0-9]{6})", Pattern.CASE_INSENSITIVE);
+            Matcher match = p.matcher(body);
+            if (!match.find()) {
+                return "";
+            } else {
+                String code = match.group(1);
+                Log.d(TAG, "code:" + code);
+                return code;
+            }
+        }
+        return "";
+    }
+
+    private String getVerifyCodeFromSMS() {
+        long timestamp = this.timestamp*1000;
+        Uri inboxURI = Uri.parse("content://sms/inbox");
+        Log.d(TAG, "search timestamp:" + timestamp);
+        Cursor c = getContentResolver().query(inboxURI,
+                null,
+                "date>?",
+                new String[]{
+                        String.valueOf(timestamp)
+                },
+                null);
+
+        if (c == null || c.getCount() < 1) {
+            return "";
+        }
+
+        if (c.moveToFirst()) {
+            do {
+                String strBody = c.getString(c.getColumnIndex("body"));
+                String code = matchSMS(strBody);
+                if (!TextUtils.isEmpty(code)) {
+                    return code;
+                }
+            } while (c.moveToNext());
+        }
+        return "";
+    }
+
+    private void getVerifyCode(final String mPhoneNum) {
+        timestamp = cn.com.nd.momo.util.Utils.getNow();
+
+        new AsyncTask<Void, Integer, Integer>() {
+            private String exceptMsg = "";
+
+            @Override
+            protected Integer doInBackground(Void... urls) {
+                int nRet = 0;
+                try {
+                    MoMoHttpApi.register(GlobalUserInfo.getZoneCode(), mPhoneNum);
+                    nRet = 200;
+                } catch (MoMoException e) {
+                    nRet = e.getCode();
+                    exceptMsg = e.getSimpleMsg();
+                } catch (Exception e) {
+                    nRet = 0;
+                    exceptMsg = "注册失败";
+                }
+                return nRet;
+            }
+            @Override
+            protected void onPostExecute(Integer result) {
+                if (result != 200) {
+                    mTxtResponse.setVisibility(View.VISIBLE);
+                    mTxtResponse.setText(exceptMsg);
+                } else {
+                    searchSMS();
+                }
+            }
+        }.execute();
+    }
+
+    private void searchSMS() {
+        queryTimer = new Timer() {
+            @Override
+            protected void fire() {
+                long now = cn.com.nd.momo.util.Utils.getNow();
+                if (now - beginQuery >= 60) {
+                    Log.i(TAG, "read verify code from sms timeout");
+                    m_progressDlg.dismiss();
+                    queryTimer.suspend();
+
+                    Intent intent = new Intent(RegistSendVerifyActivity.this,
+                            RegistVerifyCodeActivity.class);
+                    intent.putExtra(EXTRA_REGIST_MOBILE, mEditPhoneNum.getText().toString());
+                    startActivityForResult(intent, REQ_VERIFY_CODE_CODE);
+
+                    return;
+                }
+
+                String verifyCode = RegistSendVerifyActivity.this.getVerifyCodeFromSMS();
+                if (!TextUtils.isEmpty(verifyCode)) {
+                    queryTimer.suspend();
+                    regist(mEditPhoneNum.getText().toString(), verifyCode);
+                }
+            }
+        };
+        beginQuery = cn.com.nd.momo.util.Utils.getNow();
+        queryTimer.setTimer(uptimeMillis(), 1000);
+        queryTimer.resume();
+    }
+
+    private void regist(final String mobile, final String verifyCode) {
+        // show waiting dialog
+        m_progressDlg.setMessage(getString(R.string.msg_reg_info_do_active));
+        m_progressDlg.setCancelable(false);
+
+        new AsyncTask<Void, Integer, Integer>() {
+            private String exceptMsg = "";
+            @Override
+            protected Integer doInBackground(Void... urls) {
+                int nRet = 0;
+
+                try {
+                    OAuthInfo mOAuthInfo = MoMoHttpApi.registerVerify(
+                            GlobalUserInfo.getZoneCode(), mobile, verifyCode);
+                    if (mOAuthInfo != null) {
+                        nRet = HttpStatus.SC_OK;
+                        GlobalUserInfo.setOAuthInfo(mOAuthInfo);
+                    }
+                } catch (MoMoException ex) {
+                    nRet = ex.getCode();
+                    exceptMsg = ex.getSimpleMsg();
+                } catch (Exception ex) {
+                    nRet = 0;
+                    exceptMsg = ex.getMessage();
+                }
+                return nRet;
+            }
+            @Override
+            protected void onPostExecute(Integer result) {
+                if (m_progressDlg != null && m_progressDlg.isShowing()) {
+                    m_progressDlg.dismiss();
+                }
+
+                if (result != 200) {
+                    mTxtResponse.setVisibility(View.VISIBLE);
+                    mTxtResponse.setText(exceptMsg);
+                    return;
+                } else {
+                    {
+                        Intent intent = new Intent(RegistSendVerifyActivity.this, RegInfoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+
+                    Intent intent = new Intent();
+                    intent.putExtra(RegistSendVerifyActivity.EXTRA_REGIST_COMPLETE, true);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            }
+        }.execute();
+    }
 }
